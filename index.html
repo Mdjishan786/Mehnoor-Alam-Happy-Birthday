@@ -14,9 +14,6 @@
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 
 <style>
-/* ═══════════════════════════════════════════════════════════
-   🎨 GLOBAL RESET & BASE STYLES
-   ═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;font-family:'Nunito',sans-serif}
 body{background:#0d0620;display:flex;align-items:center;justify-content:center}
@@ -43,7 +40,6 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 @keyframes floatUpFade{0%{transform:translateY(0) scale(.5);opacity:0}20%{opacity:1}100%{transform:translateY(-200px) scale(1.4);opacity:0}}
 @keyframes giftPop{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.08) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
 @keyframes giftEmojiBurst{0%{transform:translate(0,0) scale(0);opacity:0}30%{opacity:1}100%{transform:translate(var(--ex),var(--ey)) scale(1.6);opacity:0}}
-@keyframes modalIn{0%{opacity:0;transform:scale(.85) translateY(30px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes overlayIn{from{opacity:0}to{opacity:1}}
 @keyframes lockPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @keyframes welcomeGlow{0%,100%{text-shadow:0 0 20px rgba(250,204,21,.6)}50%{text-shadow:0 0 40px rgba(250,204,21,.9)}}
@@ -56,14 +52,12 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 @keyframes qrPulse{0%,100%{box-shadow:0 0 40px rgba(168,85,247,.6)}50%{box-shadow:0 0 60px rgba(236,72,153,.8)}}
 @keyframes memoryPop{0%{opacity:0;transform:scale(.8) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes musicIndicator{0%,100%{transform:scaleY(1);opacity:.9}50%{transform:scaleY(1.8);opacity:1}}
-@keyframes giftArrowSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes starTwinkle{0%,100%{opacity:0;transform:scale(0.5)}50%{opacity:1;transform:scale(1.2)}}
 @keyframes giftImageFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.04)}}
-@keyframes cardGlow{0%,100%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.5)}50%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.9),0 0 0 12px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.6)}}
-/* ⭐ NEW: folder & admin page animations */
+@keyframes cardGlow{0%,100%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.7)}50%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.9),0 0 60px rgba(250,204,21,.6)}}
 @keyframes folderOpen{0%{transform:scale(.8) rotateX(-40deg);opacity:0}100%{transform:scale(1) rotateX(0);opacity:1}}
-@keyframes slideInRight{0%{transform:translateX(100%);opacity:0}100%{transform:translateX(0);opacity:1}}
-@keyframes slideUpFade{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes hintBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes giftArrowSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 .gift-card.celebrating{animation:giftPop 1.1s cubic-bezier(.34,1.56,.64,1) forwards}
 .gift-emoji-burst{position:absolute;font-size:26px;pointer-events:none;left:50%;top:50%;animation:giftEmojiBurst 1.1s ease-out forwards;z-index:50}
@@ -73,9 +67,9 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .anim-heartBeat{animation:heartBeat 1.4s ease-in-out infinite}
 .celebrate-pop{animation:celebratePop 1s cubic-bezier(.34,1.56,.64,1) forwards !important}
 .celebrate-ring{position:absolute;inset:0;border:6px solid #ec4899;border-radius:16px;pointer-events:none;animation:ringExpand .9s ease-out forwards}
-.celebrate-sparkle{position:absolute;top:50%;left:50%;font-size:20px;pointer-events:none;animation:sparkleBurst .9s ease-out forwards;z-index:50}
+.celebrate-sparkle{position:absolute;top:50%;left:50%;pointer-events:none;animation:sparkleBurst .9s ease-out forwards;z-index:50}
 .celebration-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,215,80,.8),rgba(236,72,153,.5) 40%,transparent 70%);pointer-events:none;z-index:9999;animation:bgFlash 1s ease-out forwards}
-.celebration-emoji{position:fixed;font-size:36px;pointer-events:none;z-index:10000;animation:floatUpFade 1s ease-out forwards}
+.celebration-emoji{position:fixed;pointer-events:none;z-index:10000;animation:floatUpFade 1s ease-out forwards}
 
 .app{position:absolute;inset:0;overflow:hidden}
 .bg-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
@@ -99,15 +93,14 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;letter-spacing:.3px;cursor:pointer;position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.34,1.56,.64,1);user-select:none}
 .btn:active{transform:scale(.96);transition-duration:.08s}
-.btn:hover{transform:translateY(-2px) scale(1.03)}
 .btn-gradient{background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#f97316 100%);color:#fff;box-shadow:0 8px 28px rgba(168,85,247,.45)}
 .btn-purple{background:linear-gradient(135deg,#8b5cf6,#a855f7);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.45)}
 .btn-pink{background:linear-gradient(135deg,#ec4899,#f97316);color:#fff;box-shadow:0 8px 24px rgba(236,72,153,.5)}
 .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);pointer-events:none;animation:rippleOut .7s ease-out forwards}
 
 .msg-card{background:#fff;border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;text-align:left;box-shadow:0 8px 24px rgba(120,60,200,.12);border:1px solid rgba(200,160,255,.15)}
-.msg-icon{font-size:26px;line-height:1;flex-shrink:0}
-.msg-text{font-size:15px;color:#3a2a5c;font-weight:600;line-height:1.55}
+.msg-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.msg-text{font-size:15px;color:#3a2a5c;font-weight:600;line-height:1.55;flex:1}
 
 .cake-image-wrap{position:relative;width:100%;max-width:340px;margin:0 auto 26px;cursor:pointer;display:block}
 .cake-image-wrap img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.5)}
@@ -131,8 +124,8 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .fs-hint{position:absolute;top:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;font-weight:700;background:rgba(0,0,0,.4);padding:6px 16px;border-radius:50px}
 
 .letter{width:100%;max-width:340px;background:linear-gradient(180deg,#fffef7 0%,#fff8e7 100%);border-radius:18px;padding:28px 24px;box-shadow:0 20px 50px rgba(180,140,80,.25);position:relative;text-align:left;border:1px solid rgba(220,200,160,.4);background-image:repeating-linear-gradient(180deg,transparent 0 34px,rgba(200,180,150,.18) 34px 35px);background-position:0 22px;margin:0 auto}
-.letter-stamp{position:absolute;top:16px;right:16px;width:44px;height:52px;border-radius:6px;background:#fff;border:2px dashed #f4a6c0;display:flex;align-items:center;justify-content:center;font-size:22px;transform:rotate(6deg)}
-.letter-bear{width:64px;height:64px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.letter-stamp{position:absolute;top:16px;right:16px;width:44px;height:52px;border-radius:6px;background:#fff;border:2px dashed #f4a6c0;display:flex;align-items:center;justify-content:center;transform:rotate(6deg)}
+.letter-bear{width:64px;height:64px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
 .letter-greet{font-family:'Dancing Script',cursive;font-weight:700;font-size:26px;color:#a0522d;margin-bottom:14px;text-align:center}
 .letter-body{font-family:'Caveat',cursive;font-size:20px;line-height:1.55;color:#4a3a2a;font-weight:500}
 .letter-sign{font-family:'Caveat',cursive;font-size:22px;color:#b45309;text-align:right;margin-top:22px;font-weight:600}
@@ -145,20 +138,72 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .gift-sub{font-size:12px;opacity:.85;font-weight:500}
 .gift-tap-hint{font-size:9px;opacity:.7;font-weight:700;letter-spacing:.5px;margin-top:3px;text-transform:uppercase}
 
-/* ⭐ NEW: Available gifts showcase on last page */
-.available-gifts-section{margin-top:36px;width:100%;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:22px;padding:20px 16px;box-shadow:0 14px 40px rgba(168,85,247,.22);border:2px solid rgba(250,204,21,.4)}
-.available-gifts-title{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899,#f97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:6px}
-.available-gifts-sub{font-size:11px;color:#7c3aed;font-weight:800;text-align:center;margin-bottom:14px;letter-spacing:.3px}
-.available-gifts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.available-gift-tile{display:flex;align-items:center;gap:8px;padding:10px 10px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border-radius:14px;border:1.5px solid rgba(251,191,36,.5);box-shadow:0 4px 12px rgba(251,191,36,.15)}
-.available-gift-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.available-gift-icon img{width:26px;height:26px;object-fit:contain}
-.available-gift-name{font-family:'Nunito',sans-serif;font-size:10.5px;font-weight:800;color:#1a202c;line-height:1.2;letter-spacing:.2px}
+.available-page{background:radial-gradient(ellipse at 50% 0%,#fbbf24 0%,#f97316 30%,#ec4899 70%,#a855f7 100%);padding:22px 14px}
+.available-title{font-family:'Dancing Script',cursive;font-size:clamp(29px,9vw,40px);font-weight:700;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4),0 0 40px rgba(255,255,255,.6);margin-bottom:7px;text-align:center;line-height:1.05}
+.available-sub{color:rgba(255,255,255,.95);font-size:12px;font-weight:800;margin-bottom:18px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center;letter-spacing:.3px;padding:0 10px;line-height:1.4}
+.available-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;width:100%;max-width:380px;margin-bottom:20px}
+.available-tile{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:16px;padding:12px 9px;display:flex;flex-direction:column;align-items:center;gap:7px;border:2px solid rgba(255,255,255,.6);box-shadow:0 9px 24px rgba(0,0,0,.25),inset 0 -4px 12px rgba(0,0,0,.05);position:relative}
+.available-tile-img{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.available-tile-img img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.available-tile-num{position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(251,191,36,.5)}
+.available-tile-name{font-family:'Nunito',sans-serif;font-size:10.5px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.2px}
+
+.gift-picker-page{background:radial-gradient(ellipse at 50% 0%,#7dd3fc 0%,#38bdf8 30%,#0ea5e9 60%,#0284c7 100%);padding:16px}
+.gift-picker-title{font-family:'Dancing Script',cursive;font-size:clamp(30px,9vw,42px);font-weight:700;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4),0 0 40px rgba(250,204,21,.6);margin-bottom:6px;text-align:center}
+.gift-picker-sub{color:rgba(255,255,255,.95);font-size:13px;font-weight:800;margin-bottom:18px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
+.gift-carousel-viewport{width:260px;height:340px;overflow:hidden;border-radius:32px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);box-shadow:0 30px 70px rgba(0,0,0,.4),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.5);position:relative;margin:0 auto;isolation:isolate}
+.gift-carousel-top-bar,.gift-carousel-bottom-bar{position:absolute;left:0;right:0;height:12px;background:linear-gradient(90deg,transparent,#facc15,#fde047,#facc15,transparent);z-index:10;box-shadow:0 0 24px rgba(250,204,21,.7)}
+.gift-carousel-top-bar{top:0;border-radius:32px 32px 0 0}
+.gift-carousel-bottom-bar{bottom:0;border-radius:0 0 32px 32px}
+.gift-carousel-track{display:flex;will-change:transform;height:100%}
+.gift-carousel-track.spinning{transition:transform 15s cubic-bezier(0.15, 0.85, 0.25, 1)}
+.gift-carousel-track.settled{transition:transform .35s ease}
+.gift-slide{width:260px;height:340px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;box-sizing:border-box;position:relative;gap:16px}
+.gift-slide-img-wrap{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.25),inset 0 -10px 30px rgba(0,0,0,.15)}
+.gift-slide-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.45);filter:blur(6px);z-index:1}
+.gift-slide-img{width:130px;height:130px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25));animation:giftImageFloat 2.5s ease-in-out infinite}
+.gift-slide-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.3px;padding:0 8px}
+.gift-picker-arrow{margin-top:24px;width:100px;height:100px;border-radius:50%;border:6px solid #fff;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;cursor:pointer;box-shadow:0 18px 44px rgba(251,191,36,.6),0 0 0 8px rgba(255,255,255,.4),inset 0 -8px 20px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;transition:transform .2s;user-select:none;position:relative}
+.gift-picker-arrow::after{content:'';position:absolute;inset:-12px;border-radius:50%;border:3px dashed rgba(255,255,255,.6);animation:giftArrowSpin 12s linear infinite}
+.gift-picker-arrow:active{transform:scale(.92)}
+.gift-picker-arrow:disabled{cursor:wait;opacity:.85}
+.gift-picker-arrow:not(:disabled){animation:floatY 2s ease-in-out infinite}
+.gift-picker-arrow svg{width:48px;height:48px;stroke:#fff;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.gift-picker-hint{color:#fff;font-size:14px;font-weight:800;margin-top:20px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
+
+.scratch-page{background:radial-gradient(ellipse at 50% 0%,#7dd3fc 0%,#38bdf8 30%,#0ea5e9 60%,#0284c7 100%);padding:20px 16px}
+.scratch-title{font-family:'Dancing Script',cursive;font-size:clamp(30px,9vw,42px);font-weight:700;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4),0 0 40px rgba(250,204,21,.6);margin-bottom:6px;text-align:center}
+.scratch-sub{color:rgba(255,255,255,.95);font-size:13px;font-weight:800;margin-bottom:22px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center;letter-spacing:.3px;padding:0 10px}
+.scratch-card-wrap{width:280px;height:280px;margin:0 auto;border-radius:28px;position:relative;background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.6);overflow:hidden;isolation:isolate}
+.scratch-gift-under{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:28px;padding:20px}
+.scratch-gift-img-wrap{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.2),inset 0 -8px 20px rgba(0,0,0,.1);margin-bottom:14px}
+.scratch-gift-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(6px);z-index:1}
+.scratch-gift-img{width:110px;height:110px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25))}
+.scratch-gift-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;padding:0 8px}
+.scratch-canvas{position:absolute;top:0;left:0;width:280px;height:280px;z-index:100;touch-action:none;cursor:crosshair;transition:opacity .7s ease;border-radius:28px;display:block;pointer-events:auto}
+.scratch-hint{color:#fff;font-size:14px;font-weight:800;margin-top:22px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center;animation:hintBounce 1.6s ease-in-out infinite;letter-spacing:.3px}
+.scratch-progress-wrap{width:220px;height:8px;background:rgba(255,255,255,.3);border-radius:4px;overflow:hidden;margin:16px auto 0;box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}
+.scratch-progress-fill{height:100%;background:linear-gradient(90deg,#fde047,#fbbf24,#f97316);border-radius:4px;transition:width .15s ease;box-shadow:0 0 12px rgba(250,204,21,.8)}
+.scratch-progress-text{color:#fff;font-size:11px;font-weight:800;text-align:center;margin-top:8px;text-shadow:0 2px 6px rgba(0,0,0,.4);letter-spacing:.3px;opacity:.9}
+
+.gift-result-page{background:radial-gradient(ellipse at 50% 30%,#4a1d96 0%,#2a1560 45%,#0d0620 100%)}
+.gift-result-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.gift-sparkle{position:absolute;animation:starTwinkle 1.8s ease-in-out infinite}
+.gift-result-content{position:relative;z-index:5;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
+.gift-result-ribbon{position:relative;padding:10px 26px;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;border-radius:50px;box-shadow:0 10px 30px rgba(251,191,36,.55),0 0 0 4px rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:20px;z-index:2}
+.gift-result-card{width:100%;max-width:280px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:32px;padding:24px 20px 22px;text-align:center;position:relative;box-shadow:0 25px 70px rgba(0,0,0,.4),0 0 0 6px rgba(255,255,255,.7),0 0 0 10px rgba(250,204,21,.45);animation:cardGlow 2.5s ease-in-out infinite;margin-bottom:22px}
+.gift-result-img-wrap{width:160px;height:160px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.2),inset 0 -8px 20px rgba(0,0,0,.1)}
+.gift-result-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(6px);z-index:1}
+.gift-result-img{width:115px;height:115px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));animation:giftImageFloat 2.5s ease-in-out infinite}
+.gift-result-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#1a202c;line-height:1.2;letter-spacing:.3px;padding:0 6px}
+.gift-result-boy{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 6px rgba(0,0,0,.3);backdrop-filter:blur(10px);margin-bottom:18px}
+.gift-continue-btn{width:100%;max-width:280px;padding:16px 32px;border-radius:50px;border:4px solid #fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 14px 36px rgba(168,85,247,.6),0 0 0 6px rgba(255,255,255,.25);letter-spacing:.5px;transition:transform .2s;animation:shine 3s linear infinite}
+.gift-continue-btn:active{transform:scale(.95)}
 
 .gift-modal-overlay{position:fixed;inset:0;z-index:25000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.7)}
 .gift-modal{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:24px;padding:28px 22px 24px;width:100%;max-width:340px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(168,85,247,.4)}
-.gift-modal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(168,85,247,.12);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.gift-modal-emoji{font-size:58px;margin-bottom:8px;display:block}
+.gift-modal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(168,85,247,.12);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer}
+.gift-modal-emoji{width:72px;height:72px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center}
 .gift-modal-title{font-family:'Dancing Script',cursive;font-size:26px;font-weight:700;color:#a21caf;margin-bottom:4px}
 .gift-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;margin-bottom:6px}
 .gift-modal-question{font-size:13px;color:#4a3a5c;font-weight:700;margin:14px 0 16px}
@@ -166,7 +211,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .gift-send-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;color:#fff}
 .gift-send-wa{background:linear-gradient(135deg,#25D366,#128C7E)}
 .gift-send-mail{background:linear-gradient(135deg,#a855f7,#ec4899)}
-.gift-send-icon{font-size:20px}
+.gift-send-icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
 
 .qr-modal-overlay{position:fixed;inset:0;z-index:26000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(13,6,32,.88)}
 .qr-modal{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:28px;padding:32px 22px 26px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5);overflow:hidden}
@@ -200,11 +245,11 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .share-modal-overlay{position:fixed;inset:0;z-index:27000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.9);overflow-y:auto}
 .share-modal{position:relative;width:100%;max-width:400px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:26px;padding:26px 22px 22px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5);max-height:90vh;overflow-y:auto}
 .share-modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;z-index:5}
-.share-modal-emoji{font-size:54px;margin-bottom:8px;display:block}
+.share-modal-emoji{width:72px;height:72px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center}
 .share-modal-title{font-family:'Dancing Script',cursive;font-size:28px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
 .share-modal-sub{font-size:12.5px;color:#7c3aed;font-weight:700;margin-bottom:6px}
 .share-modal-hint{font-size:11px;color:#a89580;font-weight:700;margin-bottom:18px}
-.share-warn{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;margin-bottom:14px;text-align:left}
+.share-warn{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;margin-bottom:14px;text-align:left;display:flex;gap:8px;align-items:flex-start}
 .share-warn-warn{background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);color:#92400e}
 .share-warn-ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#065f46}
 .share-file-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:16px;border:2px dashed rgba(168,85,247,.4);background:rgba(168,85,247,.06);color:#a855f7;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:14px}
@@ -218,7 +263,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .share-thumb-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(239,68,68,.85);color:#fff;font-size:11px;font-weight:800;cursor:pointer}
 .share-upload-btn{width:100%;padding:16px;border-radius:16px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);cursor:pointer;margin-top:16px}
 .share-success{text-align:center;padding:20px 0}
-.share-success-emoji{font-size:64px;display:block;margin-bottom:12px}
+.share-success-emoji{width:80px;height:80px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
 .share-success-text{font-family:'Dancing Script',cursive;font-size:24px;font-weight:700;color:#a21caf;margin-bottom:6px}
 .share-success-sub{font-size:12px;color:#7c3aed;font-weight:700}
 
@@ -228,7 +273,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .date-wrong-tap{animation:shake .4s ease}
 .Bhanja-calendar{width:100%;max-width:100%;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(220,120,170,.25);font-family:"Comic Sans MS","Trebuchet MS",cursive;position:relative}
 .bc-header{padding:14px 10px 10px;text-align:center;background:linear-gradient(180deg,#fff4fa,#ffeaf5)}
-.bc-emojis{font-size:15px;letter-spacing:2px}
+.bc-emojis{display:flex;justify-content:center;gap:4px;align-items:center;margin-bottom:2px}
 .bc-title{font-size:36px;font-weight:bold;background:linear-gradient(90deg,#ef1670,#a937c9,#179ed5,#8d42d5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .bc-year{font-size:34px;font-weight:bold;background:linear-gradient(90deg,#222,#008fd0,#f2b600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .bc-Bhanja-area{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px}
@@ -236,7 +281,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .bc-girl.one{background:#ffb8d5}
 .bc-girl.two{background:#c9b2ff}
 .bc-Bhanja-text{font-size:10px;font-weight:bold;text-align:center;margin-top:2px;color:#333}
-.bc-heart{font-size:24px}
+.bc-heart{display:flex;align-items:center;justify-content:center}
 .bc-quote{margin:8px auto 4px;padding:8px;width:92%;background:#ffb9dc;border-radius:16px;font-size:13px;font-weight:bold;color:#222}
 .bc-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:5px 5px 0}
 .bc-weekday{text-align:center;padding:7px 2px;border-radius:12px;font-size:12px;font-weight:bold}
@@ -253,7 +298,8 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .bc-date.sat-box{background:#ffe6f2;border-color:#ee87b6}
 .bc-date-num{font-size:17px;font-weight:bold;line-height:1;color:#222}
 .bc-date-num.sunday-num{color:#e51f2a}
-.bc-date-icon{font-size:16px;margin-top:3px;line-height:1}
+.bc-date-icon{width:18px;height:18px;margin-top:2px;line-height:1;display:flex;align-items:center;justify-content:center}
+.bc-date-icon img{width:100%;height:100%;object-fit:contain}
 .bc-special-22{background:#f0e5ff !important;border:2px dashed #8b32e8 !important;box-shadow:0 0 0 2px rgba(180,100,255,.08);position:relative;animation:bc-pulse 2s ease-in-out infinite;z-index:20}
 .bc-special-22 .bc-date-num{color:#7126c9}
 @keyframes bc-pulse{0%,100%{box-shadow:0 0 0 2px rgba(180,100,255,.08)}50%{box-shadow:0 0 0 4px rgba(180,100,255,.25)}}
@@ -265,64 +311,16 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .bc-message:nth-child(3){background:#ffd5dc}
 .bc-message:nth-child(4){background:#b9dcfa}
 
-.gift-picker-page{background:radial-gradient(ellipse at 50% 0%,#7dd3fc 0%,#38bdf8 30%,#0ea5e9 60%,#0284c7 100%);padding:16px}
-.gift-picker-title{font-family:'Dancing Script',cursive;font-size:clamp(30px,9vw,42px);font-weight:700;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4),0 0 40px rgba(250,204,21,.6);margin-bottom:6px;text-align:center}
-.gift-picker-sub{color:rgba(255,255,255,.95);font-size:13px;font-weight:800;margin-bottom:18px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
-.gift-carousel-viewport{width:260px;height:340px;overflow:hidden;border-radius:32px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);box-shadow:0 30px 70px rgba(0,0,0,.4),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.5);position:relative;margin:0 auto}
-.gift-carousel-top-bar,.gift-carousel-bottom-bar{position:absolute;left:0;right:0;height:12px;background:linear-gradient(90deg,transparent,#facc15,#fde047,#facc15,transparent);z-index:10;box-shadow:0 0 24px rgba(250,204,21,.7)}
-.gift-carousel-top-bar{top:0;border-radius:32px 32px 0 0}
-.gift-carousel-bottom-bar{bottom:0;border-radius:0 0 32px 32px}
-.gift-carousel-track{display:flex;will-change:transform;height:100%}
-.gift-carousel-track.spinning{transition:transform 3.5s cubic-bezier(0.15, 0.85, 0.25, 1)}
-.gift-carousel-track.settled{transition:transform .35s ease}
-.gift-slide{width:260px;height:340px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;box-sizing:border-box;position:relative;gap:16px}
-.gift-slide-img-wrap{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.25),inset 0 -10px 30px rgba(0,0,0,.15)}
-.gift-slide-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.45);filter:blur(6px);z-index:1}
-.gift-slide-img{width:130px;height:130px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25));animation:giftImageFloat 2.5s ease-in-out infinite}
-.gift-slide-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.3px;padding:0 8px}
-.gift-picker-arrow{margin-top:24px;width:100px;height:100px;border-radius:50%;border:6px solid #fff;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;cursor:pointer;box-shadow:0 18px 44px rgba(251,191,36,.6),0 0 0 8px rgba(255,255,255,.4),inset 0 -8px 20px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;transition:transform .2s;user-select:none;position:relative}
-.gift-picker-arrow::after{content:'';position:absolute;inset:-12px;border-radius:50%;border:3px dashed rgba(255,255,255,.6);animation:giftArrowSpin 12s linear infinite}
-.gift-picker-arrow:active{transform:scale(.92)}
-.gift-picker-arrow:disabled{cursor:wait;opacity:.85}
-.gift-picker-arrow:not(:disabled){animation:floatY 2s ease-in-out infinite}
-.gift-picker-arrow.spinning svg{animation:giftArrowSpin .8s linear infinite}
-.gift-picker-arrow svg{width:48px;height:48px;stroke:#fff;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
-.gift-picker-hint{color:#fff;font-size:14px;font-weight:800;margin-top:20px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
-
-.gift-result-page{background:radial-gradient(ellipse at 50% 30%,#4a1d96 0%,#2a1560 45%,#0d0620 100%);padding:20px;overflow:hidden;position:relative}
-.gift-result-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.gift-sparkle{position:absolute;font-size:26px;animation:starTwinkle 1.8s ease-in-out infinite}
-.gift-result-content{position:relative;z-index:5;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
-.gift-result-ribbon{position:relative;padding:10px 26px;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;border-radius:50px;box-shadow:0 10px 30px rgba(251,191,36,.55),0 0 0 4px rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:20px;z-index:2}
-.gift-result-card{width:100%;max-width:280px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:32px;padding:24px 20px 22px;text-align:center;position:relative;box-shadow:0 25px 70px rgba(0,0,0,.4),0 0 0 6px rgba(255,255,255,.7),0 0 0 10px rgba(250,204,21,.45);animation:cardGlow 2.5s ease-in-out infinite;margin-bottom:22px}
-.gift-result-img-wrap{width:160px;height:160px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.2),inset 0 -8px 20px rgba(0,0,0,.1)}
-.gift-result-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(6px);z-index:1}
-.gift-result-img{width:115px;height:115px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));animation:giftImageFloat 2.5s ease-in-out infinite}
-.gift-result-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#1a202c;line-height:1.2;letter-spacing:.3px;padding:0 6px}
-.gift-result-boy{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 6px rgba(0,0,0,.3);backdrop-filter:blur(10px);margin-bottom:18px}
-.gift-continue-btn{width:100%;max-width:280px;padding:16px 32px;border-radius:50px;border:4px solid #fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 14px 36px rgba(168,85,247,.6),0 0 0 6px rgba(255,255,255,.25);letter-spacing:.5px;transition:transform .2s;animation:shine 3s linear infinite;margin-bottom:14px}
-.gift-continue-btn:active{transform:scale(.95)}
-.gift-auto-timer{display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:13px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.4);letter-spacing:.3px;opacity:.95}
-.gift-timer-ring{position:relative;width:34px;height:34px}
-.gift-timer-ring svg{width:34px;height:34px;transform:rotate(-90deg)}
-.gift-timer-ring circle{fill:none;stroke-width:3;stroke-linecap:round}
-.gift-timer-ring .bg-circle{stroke:rgba(255,255,255,.25)}
-.gift-timer-ring .fg-circle{stroke:#fde047;stroke-dasharray:88;transition:stroke-dashoffset 1s linear}
-.gift-timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fde047}
-
-/* ═══════════════════════════════════════════════════════════
-   🔐 ADMIN PANEL
-   ═══════════════════════════════════════════════════════════ */
 .admin-overlay{position:fixed;inset:0;background:rgba(13,6,32,.96);z-index:10000;overflow-y:auto;padding:20px;display:flex;justify-content:center;align-items:flex-start}
 .admin-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:24px;width:100%;max-width:520px;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
-.admin-panel h2{font-family:'Dancing Script',cursive;font-size:28px;color:#f0abfc;margin-bottom:6px;text-align:center}
+.admin-panel h2{font-family:'Dancing Script',cursive;font-size:28px;color:#f0abfc;margin-bottom:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px}
 .admin-panel .sub{font-size:12px;color:rgba(233,213,255,.5);text-align:center;margin-bottom:20px}
 .admin-field{margin-bottom:14px}
 .admin-field label{display:block;font-size:11px;font-weight:800;color:#c4b5fd;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
 .admin-field input,.admin-field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:10px 12px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;outline:none}
 .admin-field textarea{resize:vertical;min-height:70px}
 .admin-section{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.15);border-radius:12px;padding:14px;margin-bottom:16px}
-.admin-section h3{font-size:13px;color:#f0abfc;margin-bottom:10px;text-transform:uppercase;font-weight:800}
+.admin-section h3{font-size:13px;color:#f0abfc;margin-bottom:10px;text-transform:uppercase;font-weight:800;display:flex;align-items:center;gap:8px}
 .admin-row{display:grid;grid-template-columns:60px 1fr;gap:8px;margin-bottom:8px;align-items:center}
 .admin-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
@@ -336,7 +334,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .mem-editor{background:rgba(255,255,255,.04);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:12px;margin-bottom:12px}
 .mem-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .mem-editor-head span{font-size:11px;font-weight:800;color:#f0abfc;text-transform:uppercase}
-.mem-preview{width:100%;height:100px;border-radius:8px;background:#0d0620;margin-bottom:10px;border:1px solid rgba(168,85,247,.2);position:relative;overflow:hidden}
+.mem-preview{width:100%;height:150px;border-radius:8px;background:#0d0620;margin-bottom:10px;border:1px solid rgba(168,85,247,.2);position:relative;overflow:hidden}
 .mem-preview img{width:100%;height:100%;object-fit:cover}
 .mem-file-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.4);color:#e9d5ff;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:8px}
 .mem-file-btn input{display:none}
@@ -347,53 +345,48 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .mem-slider-row span{font-size:11px;color:#c4b5fd;font-weight:700;text-align:right}
 .mem-caption-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:8px;padding:8px 10px;color:#fff;font-family:'Nunito',sans-serif;font-size:13px;outline:none;margin-top:4px}
 
-/* ⭐ NEW: Folder button style */
 .folder-btn{width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1.5px solid rgba(168,85,247,.35);background:linear-gradient(135deg, rgba(168,85,247,.12), rgba(236,72,153,.08));color:#e9d5ff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:transform .2s;margin-bottom:10px;text-align:left}
-.folder-btn:hover{transform:translateY(-2px);background:linear-gradient(135deg, rgba(168,85,247,.2), rgba(236,72,153,.15))}
-.folder-btn:active{transform:scale(.98)}
-.folder-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 6px 16px rgba(251,191,36,.4)}
+.folder-btn:hover{transform:translateY(-2px)}
+.folder-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.folder-icon img{width:26px;height:26px;object-fit:contain}
 .folder-info{flex:1}
 .folder-title{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
 .folder-sub{font-size:11px;color:rgba(233,213,255,.6);font-weight:700}
 .folder-arrow{font-size:18px;color:rgba(233,213,255,.5)}
 
-/* ⭐ NEW: Folder view (full screen page) */
 .folder-view{position:fixed;inset:0;background:rgba(13,6,32,.98);z-index:10100;overflow-y:auto;padding:20px}
 .folder-view-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:20px;width:100%;max-width:520px;margin:0 auto;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:folderOpen .4s ease-out}
 .folder-view-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(168,85,247,.2)}
 .folder-back-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.15);color:#e9d5ff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.folder-back-btn:active{transform:scale(.9)}
 .folder-view-title{flex:1}
-.folder-view-title h2{font-family:'Dancing Script',cursive;font-size:22px;color:#f0abfc;margin-bottom:2px;line-height:1.1}
+.folder-view-title h2{font-family:'Dancing Script',cursive;font-size:22px;color:#f0abfc;margin-bottom:2px;line-height:1.1;display:flex;align-items:center;gap:8px}
 .folder-view-title p{font-size:11px;color:rgba(233,213,255,.6);font-weight:700}
 .folder-view-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.folder-view-tile{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#0d0620;border:1.5px solid rgba(168,85,247,.3);cursor:pointer;transition:transform .2s}
-.folder-view-tile:hover{transform:scale(1.03)}
+.folder-view-tile{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#0d0620;border:1.5px solid rgba(168,85,247,.3);cursor:pointer}
 .folder-view-tile img,.folder-view-tile video{width:100%;height:100%;object-fit:cover;display:block}
 .folder-view-tile-num{position:absolute;top:8px;left:8px;background:rgba(168,85,247,.9);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:50px;z-index:2}
-.folder-view-tile-name{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));color:#fff;font-size:11px;font-weight:800;padding:20px 8px 8px;text-align:center;letter-spacing:.3px;z-index:2}
-.folder-view-tile-del{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(239,68,68,.9);color:#fff;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3}
+.folder-view-tile-name{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));color:#fff;font-size:11px;font-weight:800;padding:20px 8px 8px;text-align:center;z-index:2}
+.folder-view-tile-del{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(239,68,68,.9);color:#fff;font-size:12px;font-weight:800;cursor:pointer;z-index:3}
+.folder-view-tile-edit{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:none;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 4px 12px rgba(168,85,247,.5)}
 .folder-view-empty{text-align:center;padding:40px 20px;color:rgba(233,213,255,.5);font-size:13px;font-weight:700}
-.folder-view-empty-icon{font-size:60px;display:block;margin-bottom:14px;opacity:.5}
+.folder-view-empty-icon{width:80px;height:80px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;opacity:.55}
 .folder-view-actions{display:flex;gap:10px;margin-top:16px}
 .folder-view-actions .admin-btn{flex:1}
-
-/* ⭐ NEW: Image preview modal (folder view ke andar) */
-.img-preview-modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10200;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
+.folder-view-hint{font-size:11px;color:rgba(233,213,255,.55);text-align:center;margin-top:14px;line-height:1.5}
+.img-preview-modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10200;display:flex;align-items:center;justify-content:center;padding:20px}
 .img-preview-modal img,.img-preview-modal video{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.img-preview-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
-.img-preview-info{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:50px;letter-spacing:.3px;backdrop-filter:blur(10px);text-align:center;max-width:90%}
-
-/* ⭐ NEW: Gift picker info folder tiles (like images) */
+.img-preview-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:#fff;font-size:22px;cursor:pointer}
+.img-preview-info{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:50px;text-align:center}
 .gift-folder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px}
-.gift-folder-tile{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid rgba(168,85,247,.25);box-shadow:0 6px 16px rgba(168,85,247,.15)}
-.gift-folder-tile-img{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.gift-folder-tile{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid rgba(168,85,247,.25)}
+.gift-folder-tile-img{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
 .gift-folder-tile-img img{width:42px;height:42px;object-fit:contain}
-.gift-folder-tile-num{position:absolute;top:-4px;left:-4px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(251,191,36,.5)}
-.gift-folder-tile-name{font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.2px}
+.gift-folder-tile-num{position:absolute;top:-4px;left:-4px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.gift-folder-tile-name{font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2}
 
 .password-gate{position:absolute;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 30%,#2a1560 0%,#150830 45%,#08021a 100%);overflow-y:auto}
-.pg-lock{font-size:72px;margin-bottom:18px;animation:lockPulse 2.5s ease-in-out infinite;display:block}
+.pg-lock{width:80px;height:80px;margin:0 auto 18px;animation:lockPulse 2.5s ease-in-out infinite;display:block}
+.pg-lock img{width:100%;height:100%;object-fit:contain}
 .pg-title{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:10px}
 .pg-sub{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;margin-bottom:28px;line-height:1.5;max-width:300px}
 .pg-input-wrap{width:100%;max-width:320px;position:relative;margin-bottom:16px}
@@ -401,18 +394,24 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .pg-input:focus{border-color:#ec4899;background:rgba(236,72,153,.12);box-shadow:0 0 0 4px rgba(236,72,153,.15)}
 .pg-input.shake{animation:inputShake .5s ease}
 .pg-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.2);color:#e9d5ff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pg-eye img{width:20px;height:20px;object-fit:contain}
 .pg-error{color:#fca5a5;font-size:12px;font-weight:700;margin-bottom:14px;min-height:18px}
-.pg-btn{width:100%;max-width:320px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.5)}
-.pg-hint{color:rgba(255,255,255,.35);font-size:11px;font-weight:600;margin-top:20px}
+.pg-btn{width:100%;max-width:320px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.5);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.pg-btn img{width:20px;height:20px;object-fit:contain}
+.pg-hint{color:rgba(255,255,255,.35);font-size:11px;font-weight:600;margin-top:20px;display:inline-flex;align-items:center;gap:6px}
+.pg-hint img{width:16px;height:16px;object-fit:contain}
 
 .welcome-screen{position:absolute;inset:0;z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 40%,#4a1d96 0%,#2a1560 45%,#0d0620 100%);overflow:hidden}
 .welcome-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.welcome-sparkle{position:absolute;font-size:22px;animation:sparkleRain linear forwards}
-.welcome-emoji{font-size:88px;margin-bottom:20px;display:block;animation:welcomeZoom 1s cubic-bezier(.34,1.56,.64,1) forwards}
+.welcome-sparkle{position:absolute;animation:sparkleRain linear forwards}
+.welcome-sparkle img{width:100%;height:100%;object-fit:contain}
+.welcome-emoji{width:110px;height:110px;margin:0 auto 20px;display:block;animation:welcomeZoom 1s cubic-bezier(.34,1.56,.64,1) forwards}
+.welcome-emoji img{width:100%;height:100%;object-fit:contain}
 .welcome-title{font-family:'Dancing Script',cursive;font-size:clamp(40px,12vw,56px);font-weight:700;color:#fff;animation:welcomeGlow 2s ease-in-out infinite;margin-bottom:14px}
 .welcome-name{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7,#fde047);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:22px}
 .welcome-sub{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;line-height:1.6;max-width:300px;margin-bottom:32px}
-.welcome-btn{padding:16px 40px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899,#a855f7);cursor:pointer;box-shadow:0 10px 30px rgba(236,72,153,.5);animation:doorOpen 1s ease-out .3s both}
+.welcome-btn{padding:16px 40px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899,#a855f7);cursor:pointer;box-shadow:0 10px 30px rgba(236,72,153,.5);animation:doorOpen 1s ease-out .3s both;display:inline-flex;align-items:center;gap:10px}
+.welcome-btn img{width:22px;height:22px;object-fit:contain}
 </style>
 </head>
 <body>
@@ -422,159 +421,68 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ⭐⭐⭐  SECTION 1: USER CONFIGURATION (SIRF YAHAN CHANGE KARO)  ⭐⭐⭐
-   ═══════════════════════════════════════════════════════════════════════════
-   👇 Har config ke saath likha hai "kya hai" aur "kahan use hota hai"
-   👇 Sirf quotes "" ke andar apni value paste karo
+   🎨 SVG ICON HELPER — Converts any emoji to Twemoji SVG URL
    ═══════════════════════════════════════════════════════════════════════════ */
+function emojiToTwemojiUrl(emoji) {
+  if (!emoji) return '';
+  const cps = [];
+  for (const ch of emoji) {
+    const cp = ch.codePointAt(0);
+    if (cp === 0xFE0F) continue; // skip variation selector
+    cps.push(cp.toString(16));
+  }
+  return `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/${cps.join('-')}.svg`;
+}
 
-/* ─────────────────────────────────────────────────────────────────────────
-   🔐 ACCESS PASSWORD
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: Website kholte hi jo password maangta hai
-   KAHAN DIKHEGA: Pehli screen par (lock 🔐 icon ke saath)
-   ───────────────────────────────────────────────────────────────────────── */
+function EmojiIcon({ emoji, size = 24, className = '', style = {} }) {
+  return (
+    <img
+      src={emojiToTwemojiUrl(emoji)}
+      alt={emoji}
+      width={size}
+      height={size}
+      className={className}
+      style={{ display: 'inline-block', verticalAlign: 'middle', objectFit: 'contain', ...style }}
+      draggable={false}
+    />
+  );
+}
+
 const ACCESS_PASSWORD = "1234";
-
-/* ─────────────────────────────────────────────────────────────────────────
-   📸 INSTAGRAM QR CODE IMAGE
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: Instagram QR code ka image (jo "Create birthday card" button se khulta hai)
-   KAHAN DIKHEGA: Last page (Gifts page) → "📸 Create your birthday card" button → modal
-   ⚠️ ZAROORI: Direct image URL hona chahiye (.png / .jpg me khatam ho)
-   ───────────────────────────────────────────────────────────────────────── */
 const INSTAGRAM_QR_IMAGE = "https://plain-apac-prod-public.komododecks.com/202609/15/GaED9XL07402ZbZKsgD3/image.png";
-
-/* ─────────────────────────────────────────────────────────────────────────
-   🖼️ PAGE 1 IMAGE (Intro screen par)
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: Birthday boy ki photo (pehli screen par dikhti hai)
-   KAHAN DIKHEGA: "For You, Mahnoor Alam" heading ke neeche, chhoti frame me
-   ───────────────────────────────────────────────────────────────────────── */
 const PAGE_1_IMAGE = "https://cdn.phototourl.com/free/2026-09-15-7122d3ef-ec20-49ea-b718-2443a3595eb2.jpg";
-
-/* ─────────────────────────────────────────────────────────────────────────
-   🎂 CAKE IMAGE (Wish page par)
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: Birthday cake ki image (candle blow karne wali page)
-   KAHAN DIKHEGA: "Make a Wish!" page par, cake ke upar tap karke candle bujhao
-   ───────────────────────────────────────────────────────────────────────── */
 const CAKE_IMAGE = "https://kommodo.ai/i/N5iJvBYKEVUT6iXVHFEF";
+const MEMORY_1  = "https://kommodo.ai/i/V843RjGjGr8D8BbNhsTE";
+const MEMORY_2  = "https://kommodo.ai/i/84G6U7pFnUVvAlrSV1Oq";
+const MEMORY_3  = "https://kommodo.ai/i/Ad02PqsX6Hqsqx4Kec2W";
+const MEMORY_4  = "https://kommodo.ai/i/WXbymmNWnSE9rym9fZpj";
+const MEMORY_5  = "https://kommodo.ai/i/mXis4f60iQPYCH16oILO";
+const MEMORY_6  = "https://kommodo.ai/i/3p3MSnp6FAgLhGxvhyD8";
+const MEMORY_7  = "https://kommodo.ai/i/3PDBgxwjU02CtofIr4uZ";
+const MEMORY_8  = "https://kommodo.ai/i/Syfv3yedtvLg8zDnA7w2";
+const MEMORY_9  = "https://kommodo.ai/i/L5ptgx19O3HfbglqF3gP";
+const MEMORY_10 = "https://kommodo.ai/i/VTh6FrfbS8F7FyUN0yLY";
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024;
+const MAX_VIDEO_SIZE = 200 * 1024 * 1024;
+const MAX_FILES_AT_ONCE = 20;
 
-/* ─────────────────────────────────────────────────────────────────────────
-   📸 10 MEMORY IMAGES (Beautiful Memories page par)
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: 10 yaadein (photos) jo carousel me dikhti hain
-   KAHAN DIKHEGA: "Beautiful Memories 📸" page par, ek ek karke dikhega
-   ───────────────────────────────────────────────────────────────────────── */
-const MEMORY_1  = "https://kommodo.ai/i/V843RjGjGr8D8BbNhsTE"; // Memory 1 - pehli photo
-const MEMORY_2  = "https://kommodo.ai/i/84G6U7pFnUVvAlrSV1Oq"; // Memory 2 - dusri photo
-const MEMORY_3  = "https://kommodo.ai/i/Ad02PqsX6Hqsqx4Kec2W"; // Memory 3 - teesri photo
-const MEMORY_4  = "https://kommodo.ai/i/WXbymmNWnSE9rym9fZpj"; // Memory 4 - chauthi photo
-const MEMORY_5  = "https://kommodo.ai/i/mXis4f60iQPYCH16oILO"; // Memory 5 - paanchvi photo
-const MEMORY_6  = "https://kommodo.ai/i/3p3MSnp6FAgLhGxvhyD8"; // Memory 6 - chhati photo
-const MEMORY_7  = "https://kommodo.ai/i/3PDBgxwjU02CtofIr4uZ"; // Memory 7 - saatvi photo
-const MEMORY_8  = "https://kommodo.ai/i/Syfv3yedtvLg8zDnA7w2"; // Memory 8 - aathvi photo
-const MEMORY_9  = "https://kommodo.ai/i/L5ptgx19O3HfbglqF3gP"; // Memory 9 - nauvi photo
-const MEMORY_10 = "https://kommodo.ai/i/VTh6FrfbS8F7FyUN0yLY"; // Memory 10 - dasvi photo
-
-/* ─────────────────────────────────────────────────────────────────────────
-   📤 SHARE MEMORY FILE SIZE LIMITS
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: User max kitni badi image/video upload kar sakta hai
-   KAHAN USE: "Share Your Memory" button (Reach Me section me camera icon)
-   ───────────────────────────────────────────────────────────────────────── */
-const MAX_IMAGE_SIZE = 4 * 1024 * 1024;      // 4 MB per image
-const MAX_VIDEO_SIZE = 200 * 1024 * 1024;    // 200 MB per video
-const MAX_FILES_AT_ONCE = 20;                 // Ek baar me max 20 files
-
-/* ─────────────────────────────────────────────────────────────────────────
-   ⭐ 10 GIFT PICKER ITEMS — GIFT PICKING PAGE KE LIYE
-   ─────────────────────────────────────────────────────────────────────────
-   KYA HAI: 10 gifts jo carousel me ghoomte hain (arrow tap karne par)
-   KAHAN DIKHEGA: Candle blow karne ke baad "Pick Your Gift!" page par
-   
-   🔧 HAR GIFT KE FIELDS:
-   ─ name: Gift ka naam (jo result me dikhta hai)
-   ─ emoji: Fallback emoji (agar image load na ho)
-   ─ color: Gift ki theme color (circle background)
-   ─ img: Gift ki REAL IMAGE ka URL (Twemoji SVG — yahan apna bhi laga sakte ho)
-   ───────────────────────────────────────────────────────────────────────── */
 const GIFT_PICKER_LIST = [
-  {
-    name: "Remote Control Car",                              // 🚗 Gift ka naam
-    emoji: "🚗",                                              // Fallback emoji
-    color: "#ef4444",                                         // Red color
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f697.svg" // 🚗 Car icon
-  },
-  {
-    name: "Teddy Bear",                                       // 🧸 Gift ka naam
-    emoji: "🧸",
-    color: "#f59e0b",                                         // Orange-gold
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f8.svg" // 🧸 Teddy bear icon
-  },
-  {
-    name: "Dinosaur Toy",                                     // 🦕 Gift ka naam
-    emoji: "🦕",
-    color: "#10b981",                                         // Green
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f995.svg" // 🦕 Dinosaur icon
-  },
-  {
-    name: "Building Blocks",                                  // 🧱 Gift ka naam
-    emoji: "🧱",
-    color: "#f97316",                                         // Orange
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f1.svg" // 🧱 Bricks icon
-  },
-  {
-    name: "Drawing Kit",                                      // 🎨 Gift ka naam
-    emoji: "🎨",
-    color: "#8b5cf6",                                         // Purple
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3a8.svg" // 🎨 Palette icon
-  },
-  {
-    name: "Mini Basketball",                                  // 🏀 Gift ka naam
-    emoji: "🏀",
-    color: "#fb923c",                                         // Orange
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3c0.svg" // 🏀 Basketball icon
-  },
-  {
-    name: "Toy JCB",                                          // 🚜 Gift ka naam
-    emoji: "🚜",
-    color: "#eab308",                                         // Yellow
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f69c.svg" // 🚜 Tractor/JCB icon
-  },
-  {
-    name: "Puzzle Game",                                      // 🧩 Gift ka naam
-    emoji: "🧩",
-    color: "#06b6d4",                                         // Cyan
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e9.svg" // 🧩 Puzzle icon
-  },
-  {
-    name: "Balloon Set",                                      // 🎈 Gift ka naam
-    emoji: "🎈",
-    color: "#ec4899",                                         // Pink
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f388.svg" // 🎈 Balloon icon
-  },
-  {
-    name: "Surprise Gift Box",                                // 🎁 Gift ka naam
-    emoji: "🎁",
-    color: "#a855f7",                                         // Purple
-    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f381.svg" // 🎁 Gift box icon
-  },
+  { name: "Remote Control Car", emoji: "🚗", color: "#ef4444", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f697.svg" },
+  { name: "Teddy Bear",         emoji: "🧸", color: "#f59e0b", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f8.svg" },
+  { name: "Dinosaur Toy",       emoji: "🦕", color: "#10b981", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f995.svg" },
+  { name: "Building Blocks",    emoji: "🧱", color: "#f97316", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f1.svg" },
+  { name: "Drawing Kit",        emoji: "🎨", color: "#8b5cf6", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3a8.svg" },
+  { name: "Mini Basketball",    emoji: "🏀", color: "#fb923c", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3c0.svg" },
+  { name: "Toy JCB",            emoji: "🚜", color: "#eab308", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f69c.svg" },
+  { name: "Puzzle Game",        emoji: "🧩", color: "#06b6d4", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e9.svg" },
+  { name: "Balloon Set",        emoji: "🎈", color: "#ec4899", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f388.svg" },
+  { name: "Surprise Gift Box",  emoji: "🎁", color: "#a855f7", img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f381.svg" },
 ];
 
-/* ─────────────────────────────────────────────────────────────────────────
-   ⚙️ CONSTANTS — CHANGE MAT KARO
-   ───────────────────────────────────────────────────────────────────────── */
-const GIFT_RESULT_KEY = "bday_gift_result_v1";   // localStorage key (gift result save)
-const GIFT_CARD_WIDTH = 260;                       // Carousel card ki width (px)
-const AUTO_ADVANCE_SECONDS = 20;                   // Gift result page → 20 sec me auto next
+const GIFT_RESULT_KEY = "bday_gift_result_v1";
+const SPIN_DURATION_MS = 15000;
+const SCRATCH_THRESHOLD = 55;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🛑  SECTION 2: YAHAN SE NEECHE CHANGE MAT KARO
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* 📞 Reach Me — contact info (admin panel me bhi change kar sakte ho) */
 const REACH_ME = {
   whatsappNumber: "919304940805", whatsappDisplay: "WhatsApp",
   email: "mdjishancse@gmail.com", emailDisplay: "Email",
@@ -586,12 +494,10 @@ const REACH_ME = {
   instagram: "https://www.instagram.com/jishan_2k_7?igsh=MW5jMzNtaXg0Z3VueQ%3D%3D",
   emailLink: "mdjishancse@gmail.com",
 };
+const ADMIN_PASSWORD = "admin123";
+const SECRET_TAPS_NEEDED = 6;
+const SECRET_TAP_WINDOW = 4000;
 
-const ADMIN_PASSWORD = "admin123";                  // Admin panel ka password
-const SECRET_TAPS_NEEDED = 6;                        // Intro page par 6 tap = admin khule
-const SECRET_TAP_WINDOW = 4000;                      // 4 second window
-
-/* 📅 Calendar cells — dates + emojis (Calendar page ke liye) */
 const CALENDAR_CELLS = [
   { empty: true, dayClass: 'sun-box' },{ empty: true, dayClass: 'mon-box' },
   { num: 1, icon: '☀️', dayClass: 'tue-box' },{ num: 2, icon: '🌱', dayClass: 'wed-box' },
@@ -611,7 +517,6 @@ const CALENDAR_CELLS = [
   { num: 29, icon: '❤️', dayClass: 'tue-box' },{ num: 30, icon: '🌿', dayClass: 'wed-box' },
   { empty: true, dayClass: 'thu-box' },{ empty: true, dayClass: 'fri-box' },{ empty: true, dayClass: 'sat-box' },
 ];
-
 const DEFAULT_MEMORIES = [
   { src: MEMORY_1, caption: "Memory 1" },{ src: MEMORY_2, caption: "Memory 2" },
   { src: MEMORY_3, caption: "Memory 3" },{ src: MEMORY_4, caption: "Memory 4" },
@@ -619,7 +524,6 @@ const DEFAULT_MEMORIES = [
   { src: MEMORY_7, caption: "Memory 7" },{ src: MEMORY_8, caption: "Memory 8" },
   { src: MEMORY_9, caption: "Memory 9" },{ src: MEMORY_10, caption: "Memory 10" },
 ];
-
 const DEFAULT_CALENDAR = {
   month: "September", year: "2026", title: "Find your special date ✨",
   hint: "Tap on the correct date 👇", quoteLine1: "Same Crazy Bhanja 💕",
@@ -627,7 +531,6 @@ const DEFAULT_CALENDAR = {
   Bhanja2: "Forever 💜", specialDate: 15,
   messages: ["💕 Lots of Hugs", "✨ Lots of Smiles", "💗 Keep Being Happy", "🦋 Make Happy Memories"],
 };
-
 const DEFAULT_CONFIG = {
   name: "Mahnoor Alam",
   messages: [
@@ -647,9 +550,6 @@ const DEFAULT_CONFIG = {
   cakeImage: CAKE_IMAGE, page1Image: PAGE_1_IMAGE, calendar: { ...DEFAULT_CALENDAR },
 };
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🎵 MUSIC ENGINE — Har page ke liye alag melody
-   ═══════════════════════════════════════════════════════════════════════════ */
 let _audioCtx = null;
 const getAudioCtx = () => {
   if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -697,27 +597,16 @@ const MELODY_HAPPY_BIRTHDAY = [
   [N.G4,.3,.12],[N.G4,.15,.12],[N.G5,.4,.13],[N.E5,.4,.12],[N.C5,.4,.12],[N.B4,.4,.12],[N.A4,.8,.12],
   [N.F5,.3,.12],[N.F5,.15,.12],[N.E5,.4,.12],[N.C5,.4,.12],[N.D5,.4,.12],[N.C5,.9,.13],
 ];
+const MELODY_AVAILABLE = [[N.C5,.2,.12],[N.D5,.2,.12],[N.E5,.2,.12],[N.G5,.4,.14],[N.E5,.15,.12],[N.G5,.5,.14]];
 const MELODY_PAGE_7 = [[N.F5,.3,.09],[N.E5,.3,.09],[N.D5,.35,.09],[N.C5,.35,.09],[N.D5,.3,.09],[N.E5,.3,.09],[N.F5,.7,.1]];
 const MELODY_PAGE_8 = [[N.G4,.4,.08],[N.C5,.4,.08],[N.E5,.5,.09],[N.G5,.6,.1],[N.E5,.4,.09],[N.C5,.7,.08]];
 const MELODY_PAGE_9 = [[N.C5,.2,.12],[N.C5,.15,.12],[N.D5,.25,.12],[N.E5,.25,.12],[N.E5,.2,.12],[N.D5,.25,.12],[N.C5,.25,.12],[N.G4,.5,.13]];
-const MELODY_PAGE_GIFT = [[N.C5,.2,.13],[N.D5,.2,.13],[N.E5,.2,.13],[N.G5,.3,.14],[N.E5,.15,.12],[N.G5,.5,.14]];
-
 const PAGE_MELODIES = {
-  1: MELODY_PAGE_1,     // Intro - magical
-  2: MELODY_PAGE_2,     // Dark - eerie
-  3: MELODY_PAGE_3,     // Calendar - playful
-  4: MELODY_PAGE_4,     // Surprise - fanfare
-  5: MELODY_PAGE_5,     // Messages - warm
-  6: MELODY_HAPPY_BIRTHDAY, // Candle blow - HAPPY BIRTHDAY 🎵
-  7: MELODY_PAGE_GIFT,  // Gift picker
-  8: MELODY_PAGE_7,     // Memories - nostalgic
-  9: MELODY_PAGE_8,     // Letter - romantic
-  10: MELODY_PAGE_9,    // Gifts - celebratory
+  1: MELODY_PAGE_1, 2: MELODY_PAGE_2, 3: MELODY_PAGE_3, 4: MELODY_PAGE_4, 5: MELODY_PAGE_5,
+  6: MELODY_HAPPY_BIRTHDAY, 7: MELODY_AVAILABLE, 8: MELODY_AVAILABLE, 9: MELODY_PAGE_7,
+  10: MELODY_PAGE_8, 11: MELODY_PAGE_9,
 };
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   💾 STORAGE — IndexedDB + memory fallback (Shared Memories ke liye)
-   ═══════════════════════════════════════════════════════════════════════════ */
 const DB_NAME = 'BirthdaySharedMemories';
 const DB_VERSION = 1;
 const STORE_NAME = 'memories';
@@ -728,7 +617,7 @@ const checkIDB = async () => {
   if (_idbAvailable !== null) return _idbAvailable;
   try {
     if (typeof window === 'undefined' || !window.indexedDB) { _idbAvailable = false; _idbReason = 'Is browser me IndexedDB support nahi hai.'; return false; }
-    if (window.location.protocol === 'file:') { _idbAvailable = false; _idbReason = 'Page file:// se khula hai — IndexedDB browser security se blocked hai. Permanent storage ke liye page ko http:// ya https:// se kholo.'; return false; }
+    if (window.location.protocol === 'file:') { _idbAvailable = false; _idbReason = 'Page file:// se khula hai — IndexedDB blocked hai.'; return false; }
     const test = await new Promise((resolve, reject) => {
       const req = indexedDB.open('__bdaytest__', 1);
       req.onsuccess = () => { try { req.result.close(); } catch (e) {} try { indexedDB.deleteDatabase('__bdaytest__'); } catch (e) {} resolve(true); };
@@ -813,9 +702,6 @@ const formatBytes = (bytes) => {
   return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 };
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🛠️  UTILITIES
-   ═══════════════════════════════════════════════════════════════════════════ */
 function extractKomodoId(src) {
   if (!src) return null;
   const str = String(src);
@@ -873,9 +759,6 @@ let CONFIG = (() => {
   return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 })();
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🧩 UI COMPONENTS
-   ═══════════════════════════════════════════════════════════════════════════ */
 function SmartImage({ src, id, alt, style, className }) {
   const candidates = useMemo(() => buildImageCandidates(src, id), [src, id]);
   const [idx, setIdx] = useState(0);
@@ -886,7 +769,7 @@ function SmartImage({ src, id, alt, style, className }) {
     else setFailed(true);
   };
   if (failed || !candidates.length) {
-    return (<div className={className} style={{ ...style, background: 'linear-gradient(135deg,#c084fc,#ec4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 800, fontSize: 13, textAlign: 'center', padding: 16, minHeight: 200 }}>🖼️<br/>Image loading...</div>);
+    return (<div className={className} style={{ ...style, background: 'linear-gradient(135deg,#c084fc,#ec4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 800, fontSize: 13, textAlign: 'center', padding: 16, minHeight: 200 }}>Loading...</div>);
   }
   return (<img src={candidates[idx]} alt={alt} className={className} style={style} onError={handleError} draggable={false} />);
 }
@@ -938,26 +821,19 @@ function MusicIndicator() {
   return (<div className="music-indicator"><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /></div>);
 }
 function CameraIcon() {
-  return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-      <circle cx="12" cy="13" r="4"/>
-    </svg>
-  );
+  return (<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>);
 }
 function FullscreenViewer({ src, id, onClose }) {
   const [scale, setScale] = useState(1);
-  const zoomIn = () => setScale(s => Math.min(5, s + 0.5));
-  const zoomOut = () => setScale(s => Math.max(1, s - 0.5));
   return (
     <div className="fullscreen-viewer" onClick={onClose}>
       <div className="fs-hint">Pinch / Scroll to zoom</div>
       <button className="fs-close" onClick={(e) => { e.stopPropagation(); onClose(); }}>✕</button>
       <SmartImage src={src} id={id} alt="Full" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transform: `scale(${scale})`, transition: 'transform .1s', userSelect: 'none' }} />
       <div className="fs-controls" onClick={(e) => e.stopPropagation()}>
-        <button className="fs-btn" onClick={zoomOut}>−</button>
+        <button className="fs-btn" onClick={() => setScale(s => Math.max(1, s - 0.5))}>−</button>
         <button className="fs-btn" onClick={() => setScale(1)} style={{ width: 'auto', padding: '0 14px', fontSize: 12, fontWeight: 800 }}>RESET</button>
-        <button className="fs-btn" onClick={zoomIn}>+</button>
+        <button className="fs-btn" onClick={() => setScale(s => Math.min(5, s + 0.5))}>+</button>
       </div>
     </div>
   );
@@ -969,7 +845,14 @@ function CelebrationBurst({ active }) {
     return Array.from({ length: 12 }, (_, i) => ({ id: i, emoji: emojis[i % emojis.length], left: 40 + Math.random() * 20, top: 40 + Math.random() * 20, delay: Math.random() * 0.3 }));
   }, [active]);
   if (!active) return null;
-  return (<><div className="celebration-overlay" />{particles.map(p => (<div key={p.id} className="celebration-emoji" style={{ left: `${p.left}%`, top: `${p.top}%`, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
+  return (<>
+    <div className="celebration-overlay" />
+    {particles.map(p => (
+      <div key={p.id} className="celebration-emoji" style={{ left: `${p.left}%`, top: `${p.top}%`, animationDelay: `${p.delay}s` }}>
+        <EmojiIcon emoji={p.emoji} size={40} />
+      </div>
+    ))}
+  </>);
 }
 function GiftEmojiBurst({ active, emoji }) {
   const particles = useMemo(() => {
@@ -982,22 +865,22 @@ function GiftEmojiBurst({ active, emoji }) {
     });
   }, [active, emoji]);
   if (!active) return null;
-  return (<>{particles.map(p => (<div key={p.id} className="gift-emoji-burst" style={{ '--ex': p.ex, '--ey': p.ey, '--er': p.er, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
+  return (<>{particles.map(p => (<div key={p.id} className="gift-emoji-burst" style={{ '--ex': p.ex, '--ey': p.ey, '--er': p.er, animationDelay: `${p.delay}s` }}><EmojiIcon emoji={p.emoji} size={28} /></div>))}</>);
 }
 function GiftSendModal({ gift, onClose }) {
   const sendWhatsApp = () => { window.open(`https://wa.me/${REACH_ME.whatsappNumber}?text=${encodeURIComponent(gift.waMsg || '')}`, '_blank'); onClose(); };
-  const sendEmail = () => { window.location.href = `mailto:${REACH_ME.email}?subject=${encodeURIComponent(`🎁 Gift Redeem: ${gift.title}`)}&body=${encodeURIComponent(gift.mailMsg || '')}`; onClose(); };
+  const sendEmail = () => { window.location.href = `mailto:${REACH_ME.email}?subject=${encodeURIComponent(`Gift: ${gift.title}`)}&body=${encodeURIComponent(gift.mailMsg || '')}`; onClose(); };
   return (
     <div className="gift-modal-overlay" onClick={(e) => { if (e.target.classList.contains('gift-modal-overlay')) onClose(); }}>
       <div className="gift-modal">
         <button className="gift-modal-close" onClick={onClose}>✕</button>
-        <span className="gift-modal-emoji">{gift.icon}</span>
+        <div className="gift-modal-emoji"><EmojiIcon emoji={gift.icon} size={72} /></div>
         <div className="gift-modal-title">{gift.title}</div>
         <div className="gift-modal-sub">{gift.sub}</div>
-        <p className="gift-modal-question">🎉 Kaise bhejna hai apna gift?</p>
+        <p className="gift-modal-question">Kaise bhejna hai apna gift?</p>
         <div className="gift-modal-btns">
-          <button className="gift-send-btn gift-send-wa" onClick={sendWhatsApp}><span className="gift-send-icon">💬</span>Send on WhatsApp</button>
-          <button className="gift-send-btn gift-send-mail" onClick={sendEmail}><span className="gift-send-icon">✉️</span>Send via Email</button>
+          <button className="gift-send-btn gift-send-wa" onClick={sendWhatsApp}><span className="gift-send-icon"><EmojiIcon emoji="💬" size={20} /></span>Send on WhatsApp</button>
+          <button className="gift-send-btn gift-send-mail" onClick={sendEmail}><span className="gift-send-icon"><EmojiIcon emoji="✉️" size={20} /></span>Send via Email</button>
         </div>
       </div>
     </div>
@@ -1011,10 +894,10 @@ function QRModal({ onClose }) {
         <button className="qr-modal-close" onClick={onClose}>✕</button>
         <div className="qr-modal-badge">✦ SCAN & FOLLOW ✦</div>
         <h2 className="qr-modal-title">My Instagram</h2>
-        <p className="qr-modal-sub">Scan this QR code to follow me 💜</p>
+        <p className="qr-modal-sub">Scan this QR code to follow me</p>
         <div className="qr-image-wrap"><SmartImage src={INSTAGRAM_QR_IMAGE} alt="Instagram QR" style={{ width: 200, height: 200, borderRadius: 14, objectFit: 'cover', display: 'block', background: '#fff' }} /></div>
-        <div className="qr-instagram-tag"><span>📸</span> @Instagram</div>
-        <p className="qr-hint">📱 Open your phone camera & point at the QR</p>
+        <div className="qr-instagram-tag"><EmojiIcon emoji="📸" size={16} /> @Instagram</div>
+        <p className="qr-hint">Open your phone camera & point at the QR</p>
       </div>
     </div>
   );
@@ -1069,20 +952,20 @@ function ShareMemoryModal({ onClose }) {
         <button className="share-modal-close" onClick={onClose}>✕</button>
         {success ? (
           <div className="share-success">
-            <span className="share-success-emoji">🎉</span>
+            <div className="share-success-emoji"><EmojiIcon emoji="🎉" size={80} /></div>
             <div className="share-success-text">Memory Share Ho Gayi!</div>
-            <div className="share-success-sub">Aapke pyare moments share karne ke liye shukriya 💖</div>
+            <div className="share-success-sub">Aapke pyare moments share karne ke liye shukriya</div>
           </div>
         ) : (
           <>
-            <span className="share-modal-emoji">📸</span>
+            <div className="share-modal-emoji"><EmojiIcon emoji="📸" size={72} /></div>
             <h2 className="share-modal-title">Share Your Memory</h2>
-            <p className="share-modal-sub">Photos ya videos add karo 💜</p>
+            <p className="share-modal-sub">Photos ya videos add karo</p>
             <p className="share-modal-hint">{MAX_FILES_AT_ONCE} files tak · Images ≤ 4MB · Videos ≤ 200MB</p>
-            {idbReady === false && (<div className="share-warn share-warn-warn">⚠️ <b>Storage Ki Warning:</b> {getIDBReason()}<br />Ye files sirf tab tak rahengi jab tak aap page refresh nahi karte.</div>)}
-            {idbReady === true && (<div className="share-warn share-warn-ok">✅ Permanent storage ON hai — aapki files hamesha safe rahengi.</div>)}
+            {idbReady === false && (<div className="share-warn share-warn-warn"><EmojiIcon emoji="⚠️" size={16} /><span><b>Warning:</b> {getIDBReason()}<br />Files sirf session me rahengi.</span></div>)}
+            {idbReady === true && (<div className="share-warn share-warn-ok"><EmojiIcon emoji="✅" size={16} /><span>Permanent storage ON hai</span></div>)}
             <label className="share-file-btn">
-              <span style={{ fontSize: 18 }}>📁</span>
+              <EmojiIcon emoji="📁" size={20} />
               {files.length ? `Aur add karo (${files.length}/${MAX_FILES_AT_ONCE})` : 'Photos / Videos Choose Karo'}
               <input type="file" accept="image/*,video/*" multiple onChange={(e) => { handleFiles(e.target.files); e.target.value = ''; }} disabled={uploading} />
             </label>
@@ -1098,7 +981,7 @@ function ShareMemoryModal({ onClose }) {
               </div>
             </>)}
             {uploading && (<div className="share-progress-bar" style={{ marginTop: 14 }}><div className="share-progress-fill" style={{ width: `${progress}%` }} /></div>)}
-            {files.length > 0 && (<button className="share-upload-btn" onClick={handleUpload} disabled={uploading}>{uploading ? `Upload ho raha hai ${progress}%...` : `📤 Upload ${files.length} File${files.length > 1 ? 's' : ''}`}</button>)}
+            {files.length > 0 && (<button className="share-upload-btn" onClick={handleUpload} disabled={uploading}><EmojiIcon emoji="📤" size={18} style={{ marginRight: 6, verticalAlign: 'middle' }} />{uploading ? `Upload ho raha hai ${progress}%...` : `Upload ${files.length} File${files.length > 1 ? 's' : ''}`}</button>)}
           </>
         )}
       </div>
@@ -1110,18 +993,9 @@ function ReachMe({ onOpenShare }) {
     <div className="reachme-wrap">
       <h2 className="reachme-title">Reach me</h2>
       <div className="reachme-circles">
-        <a className="reachme-item" href={`https://wa.me/${REACH_ME.whatsappNumber}`} target="_blank" rel="noopener noreferrer">
-          <div className="reachme-circle">W</div>
-          <div className="reachme-label">{REACH_ME.whatsappDisplay}</div>
-        </a>
-        <a className="reachme-item" href={`mailto:${REACH_ME.email}`}>
-          <div className="reachme-circle">E</div>
-          <div className="reachme-label">{REACH_ME.emailDisplay}</div>
-        </a>
-        <a className="reachme-item" href={`tel:${REACH_ME.phoneNumber}`}>
-          <div className="reachme-circle">P</div>
-          <div className="reachme-label">{REACH_ME.phoneDisplay}</div>
-        </a>
+        <a className="reachme-item" href={`https://wa.me/${REACH_ME.whatsappNumber}`} target="_blank" rel="noopener noreferrer"><div className="reachme-circle">W</div><div className="reachme-label">{REACH_ME.whatsappDisplay}</div></a>
+        <a className="reachme-item" href={`mailto:${REACH_ME.email}`}><div className="reachme-circle">E</div><div className="reachme-label">{REACH_ME.emailDisplay}</div></a>
+        <a className="reachme-item" href={`tel:${REACH_ME.phoneNumber}`}><div className="reachme-circle">P</div><div className="reachme-label">{REACH_ME.phoneDisplay}</div></a>
         <button className="reachme-item" onClick={onOpenShare} type="button">
           <div className="reachme-circle"><CameraIcon /></div>
           <div className="reachme-label">Share Your Memory</div>
@@ -1139,9 +1013,6 @@ function ReachMe({ onOpenShare }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   📄 PAGE COMPONENTS
-   ═══════════════════════════════════════════════════════════════════════════ */
 function PasswordGate({ onSuccess }) {
   const [pw, setPw] = useState('');
   const [showPw, setShowPw] = useState(false);
@@ -1157,25 +1028,25 @@ function PasswordGate({ onSuccess }) {
       setTimeout(() => onSuccess(), 1200);
     } else {
       playNote(220, .18, .14, 'sawtooth'); setTimeout(() => playNote(165, .22, .14, 'sawtooth'), 150);
-      setError('❌ Password galat hai! Dobara try karo.');
+      setError('Password galat hai! Dobara try karo.');
       setShake(true); setTimeout(() => setShake(false), 600); setPw('');
     }
   };
   return (
     <div className="password-gate">
       <Stars count={50} />
-      <span className="pg-lock">{unlocking ? '🔓' : '🔐'}</span>
+      <div className="pg-lock"><EmojiIcon emoji={unlocking ? '🔓' : '🔐'} size={80} /></div>
       <h1 className="pg-title">{unlocking ? 'Khul raha hai...' : 'Secret Surprise'}</h1>
-      <p className="pg-sub">{unlocking ? 'Kuch khaas aane wala hai...' : 'Ye birthday card locked hai. Password daalo ✨'}</p>
+      <p className="pg-sub">{unlocking ? 'Kuch khaas aane wala hai...' : 'Ye birthday card locked hai. Password daalo'}</p>
       <div className="pg-input-wrap">
         <input type={showPw ? 'text' : 'password'} className={`pg-input ${shake ? 'shake' : ''}`} value={pw} maxLength={4}
           onChange={(e) => setPw(e.target.value.replace(/\D/g, ''))} onKeyDown={(e) => { if (e.key === 'Enter') tryUnlock(); }}
           placeholder="••••" autoFocus disabled={unlocking} />
-        <button className="pg-eye" onClick={() => setShowPw(!showPw)} type="button">{showPw ? '🙈' : '👁️'}</button>
+        <button className="pg-eye" onClick={() => setShowPw(!showPw)} type="button"><EmojiIcon emoji={showPw ? '🙈' : '👁️'} size={20} /></button>
       </div>
       <div className="pg-error">{error}</div>
-      <button className="pg-btn" onClick={tryUnlock} disabled={unlocking || pw.length < 4}>{unlocking ? '✨ Khul raha hai...' : 'Unlock 🔓'}</button>
-      <p className="pg-hint">💡 Hint: 4 digit ka number</p>
+      <button className="pg-btn" onClick={tryUnlock} disabled={unlocking || pw.length < 4}><EmojiIcon emoji="✨" size={18} />{unlocking ? 'Khul raha hai...' : 'Unlock'}<EmojiIcon emoji="🔓" size={18} /></button>
+      <p className="pg-hint"><EmojiIcon emoji="💡" size={14} /> Hint: 4 digit ka number</p>
     </div>
   );
 }
@@ -1192,15 +1063,16 @@ function WelcomeScreen({ onContinue }) {
   }, []);
   return (
     <div className="welcome-screen">
-      <div className="welcome-sparkles">{sparkles.map(s => (<span key={s.id} className="welcome-sparkle" style={{ left: `${s.left}%`, fontSize: s.size, animationDuration: `${s.dur}s`, animationDelay: `${s.delay}s` }}>{s.emoji}</span>))}</div>
-      <span className="welcome-emoji">🎉</span>
+      <div className="welcome-sparkles">{sparkles.map(s => (<span key={s.id} className="welcome-sparkle" style={{ left: `${s.left}%`, width: s.size, height: s.size, animationDuration: `${s.dur}s`, animationDelay: `${s.delay}s` }}><EmojiIcon emoji={s.emoji} size={s.size} /></span>))}</div>
+      <div className="welcome-emoji"><EmojiIcon emoji="🎉" size={110} /></div>
       <h1 className="welcome-title">Welcome!</h1>
-      <h2 className="welcome-name">{CONFIG.name} 💖</h2>
-      <p className="welcome-sub">Aaj tumhara special din hai ✨<br />Chalo shuru karein tumhari surprise journey! 🎁</p>
-      {showBtn && <button className="welcome-btn" onClick={() => { stopMelody(); onContinue(); }}>Let's Go! 🚀</button>}
+      <h2 className="welcome-name">{CONFIG.name}</h2>
+      <p className="welcome-sub">Aaj tumhara special din hai<br />Chalo shuru karein tumhari surprise journey!</p>
+      {showBtn && <button className="welcome-btn" onClick={() => { stopMelody(); onContinue(); }}>Let's Go! <EmojiIcon emoji="🚀" size={22} /></button>}
     </div>
   );
 }
+
 function PageIntro({ onNext, onSecretUnlock }) {
   const tapTimesRef = useRef([]);
   const handleTap = () => {
@@ -1214,14 +1086,14 @@ function PageIntro({ onNext, onSecretUnlock }) {
       <MusicIndicator />
       <div style={{ position: 'relative', zIndex: 2, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,36px)', background: 'linear-gradient(90deg,#fde047,#facc15,#fde047)', backgroundSize: '200% auto', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 20px rgba(250,204,21,.55))', animation: 'shine 3s linear infinite', marginBottom: 12 }}>For You, {CONFIG.name}</h1>
-        <div className="anim-heartBeat" style={{ fontSize: 42, marginBottom: 8 }}>🌞</div>
+        <div className="anim-heartBeat" style={{ marginBottom: 8 }}><EmojiIcon emoji="🌞" size={48} /></div>
         <p style={{ color: 'rgba(255,255,255,.75)', fontSize: 14, fontWeight: 600, marginBottom: 32 }}>Someone special made this just for you...</p>
         <div className="anim-float" style={{ marginBottom: 36 }}>
           <div style={{ width: 200, height: 260, background: 'linear-gradient(145deg,#fde2e7,#fbcfe8)', borderRadius: 22, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 50px rgba(236,72,153,.35),0 0 80px rgba(236,72,153,.2)', border: '4px solid rgba(255,255,255,.4)' }}>
             <SmartImage src={CONFIG.page1Image} alt="Birthday Boy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
-        <RippleButton onClick={(e) => { e.stopPropagation(); onNext(); }} className="btn btn-gradient" style={{ padding: '18px 40px', fontSize: 17 }}>Tap to open your surprise! 🎁</RippleButton>
+        <RippleButton onClick={(e) => { e.stopPropagation(); onNext(); }} className="btn btn-gradient" style={{ padding: '18px 40px', fontSize: 17 }}>Tap to open your surprise! <EmojiIcon emoji="🎁" size={20} /></RippleButton>
       </div>
     </div>
   );
@@ -1239,9 +1111,9 @@ function PageDark({ onNext }) {
       <MusicIndicator />
       <Stars count={70} />
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '20px 0' }}>
-        <div style={{ width: 80, height: 80, margin: '0 auto 26px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 56, opacity: lighting ? 1 : .35, transition: 'opacity .8s, transform .8s', transform: lighting ? 'scale(1.2)' : 'scale(1)', filter: lighting ? 'drop-shadow(0 0 40px #facc15)' : 'none' }}>🌤️</div>
+        <div style={{ width: 80, height: 80, margin: '0 auto 26px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: lighting ? 1 : .35, transition: 'opacity .8s, transform .8s', transform: lighting ? 'scale(1.2)' : 'scale(1)', filter: lighting ? 'drop-shadow(0 0 40px #facc15)' : 'none' }}><EmojiIcon emoji="🌤️" size={64} /></div>
         <p style={{ color: '#fff', fontSize: 17, fontWeight: 700, marginBottom: 10, opacity: lighting ? 1 : .75 }}>Yahan thoda andhera hai...</p>
-        <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>Lights on karne ke liye kahin bhi tap karo 💡</p>
+        <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>Lights on karne ke liye kahin bhi tap karo <EmojiIcon emoji="💡" size={16} /></p>
       </div>
     </div>
   );
@@ -1261,13 +1133,18 @@ function PageBirthdayDate({ onCorrect }) {
         <p className="date-page-hint">{cal.hint}</p>
         <div className="Bhanja-calendar">
           <div className="bc-header">
-            <div className="bc-emojis">💗 ✨ 👑 💗</div>
+            <div className="bc-emojis">
+              <EmojiIcon emoji="💗" size={16} />
+              <EmojiIcon emoji="✨" size={16} />
+              <EmojiIcon emoji="👑" size={16} />
+              <EmojiIcon emoji="💗" size={16} />
+            </div>
             <div className="bc-title">{cal.month}</div>
             <div className="bc-year">{cal.year}</div>
             <div className="bc-Bhanja-area">
-              <div><div className="bc-girl one">🎀</div><div className="bc-Bhanja-text">{cal.Bhanja1}</div></div>
-              <div className="bc-heart">💕</div>
-              <div><div className="bc-girl two">🎀</div><div className="bc-Bhanja-text">{cal.Bhanja2}</div></div>
+              <div><div className="bc-girl one"><EmojiIcon emoji="🎀" size={36} /></div><div className="bc-Bhanja-text">{cal.Bhanja1}</div></div>
+              <div className="bc-heart"><EmojiIcon emoji="💕" size={26} /></div>
+              <div><div className="bc-girl two"><EmojiIcon emoji="🎀" size={36} /></div><div className="bc-Bhanja-text">{cal.Bhanja2}</div></div>
             </div>
             <div className="bc-quote">{cal.quoteLine1}<br />{cal.quoteLine2}</div>
           </div>
@@ -1284,23 +1161,24 @@ function PageBirthdayDate({ onCorrect }) {
               if (isSpecial) {
                 return (
                   <div key={i} className={`bc-date ${cell.dayClass} bc-special-22 ${celebrating ? 'celebrate-pop' : ''}`} onClick={handleCorrectTap}>
-                    <div className="bc-date-num">{cell.num}</div><div className="bc-date-icon">{cell.icon}</div>
+                    <div className="bc-date-num">{cell.num}</div>
+                    <div className="bc-date-icon"><EmojiIcon emoji={cell.icon} size={18} /></div>
                     {celebrating && <div className="celebrate-ring" />}
                     {celebrating && (<>
-                      <div className="celebrate-sparkle" style={{ '--sx': '-60px', '--sy': '-50px' }}>✨</div>
-                      <div className="celebrate-sparkle" style={{ '--sx': '60px', '--sy': '-50px', animationDelay: '.1s' }}>⭐</div>
-                      <div className="celebrate-sparkle" style={{ '--sx': '-70px', '--sy': '30px', animationDelay: '.15s' }}>💫</div>
-                      <div className="celebrate-sparkle" style={{ '--sx': '70px', '--sy': '30px', animationDelay: '.2s' }}>✨</div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '-60px', '--sy': '-50px' }}><EmojiIcon emoji="✨" size={22} /></div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '60px', '--sy': '-50px', animationDelay: '.1s' }}><EmojiIcon emoji="⭐" size={22} /></div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '-70px', '--sy': '30px', animationDelay: '.15s' }}><EmojiIcon emoji="💫" size={22} /></div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '70px', '--sy': '30px', animationDelay: '.2s' }}><EmojiIcon emoji="✨" size={22} /></div>
                     </>)}
                   </div>
                 );
               }
-              return (<div key={i} className={`bc-date ${cell.dayClass}`} onClick={handleWrongTap}><div className={`bc-date-num ${cell.sunday ? 'sunday-num' : ''}`}>{cell.num}</div><div className="bc-date-icon">{cell.icon}</div></div>);
+              return (<div key={i} className={`bc-date ${cell.dayClass}`} onClick={handleWrongTap}><div className={`bc-date-num ${cell.sunday ? 'sunday-num' : ''}`}>{cell.num}</div><div className="bc-date-icon"><EmojiIcon emoji={cell.icon} size={18} /></div></div>);
             })}
           </div>
           <div className="bc-bottom"><div className="bc-messages">{cal.messages.map((msg, i) => (<div key={i} className="bc-message">{msg}</div>))}</div></div>
         </div>
-        <p style={{ color: '#9c3c72', fontSize: 11, fontWeight: 700, letterSpacing: 1, marginTop: 14, textTransform: 'uppercase' }}>{wrongShake ? '❌ Dobara try karo' : '✨ Sahi date par tap karo ✨'}</p>
+        <p style={{ color: '#9c3c72', fontSize: 11, fontWeight: 700, letterSpacing: 1, marginTop: 14, textTransform: 'uppercase' }}>{wrongShake ? 'Dobara try karo' : 'Sahi date par tap karo'}</p>
       </div>
     </div>
   );
@@ -1310,7 +1188,7 @@ function PageSurprise({ onNext }) {
   return (
     <div className="page-container" style={{ background: 'radial-gradient(circle at 50% 50%,#ffd54a 0%,#ffb347 40%,#ff8c42 75%,#ff6b1a 100%)' }}>
       <MusicIndicator />
-      <div className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 44, fontWeight: 700, color: '#7c2d12', textShadow: '0 4px 20px rgba(255,255,255,.6)', zIndex: 2, position: 'relative' }}>Surprise! 🎉</div>
+      <div className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 44, fontWeight: 700, color: '#7c2d12', textShadow: '0 4px 20px rgba(255,255,255,.6)', zIndex: 2, position: 'relative', display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>Surprise! <EmojiIcon emoji="🎉" size={44} /></div>
     </div>
   );
 }
@@ -1324,12 +1202,12 @@ function PageMessages({ onNext }) {
         <MusicIndicator />
         <Balloons count={5} />
         <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
-          <div className="anim-pop" style={{ width: 110, height: 110, margin: '0 auto 16px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, border: '3px solid rgba(255,255,255,.7)' }}>🧸</div>
-          <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday,<br />{CONFIG.name}! 🎈</h1>
+          <div className="anim-pop" style={{ width: 110, height: 110, margin: '0 auto 16px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid rgba(255,255,255,.7)' }}><EmojiIcon emoji="🧸" size={70} /></div>
+          <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday,<br />{CONFIG.name}! <EmojiIcon emoji="🎈" size={28} /></h1>
           <div className="stack mt-md" style={{ gap: 14 }}>
-            {CONFIG.messages.map((m, i) => (<div key={i} className="msg-card anim-fadeUp" style={{ animationDelay: `${.15 + i * .12}s` }}><div className="msg-icon">{m.icon}</div><div className="msg-text">{m.text}</div></div>))}
+            {CONFIG.messages.map((m, i) => (<div key={i} className="msg-card anim-fadeUp" style={{ animationDelay: `${.15 + i * .12}s` }}><div className="msg-icon"><EmojiIcon emoji={m.icon} size={30} /></div><div className="msg-text">{m.text}</div></div>))}
           </div>
-          <div className="mt-lg"><RippleButton onClick={onNext} className="btn btn-pink" style={{ padding: '16px 34px', fontSize: 16 }}>Cake Time! 🎂 →</RippleButton></div>
+          <div className="mt-lg"><RippleButton onClick={onNext} className="btn btn-pink" style={{ padding: '16px 34px', fontSize: 16 }}>Cake Time! <EmojiIcon emoji="🎂" size={20} /> →</RippleButton></div>
         </div>
       </div>
     </>
@@ -1354,8 +1232,8 @@ function PageWish({ onNext }) {
         <Stars count={60} />
         <Balloons count={6} />
         <div style={{ position: 'relative', zIndex: 2, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#f0abfc', textShadow: '0 0 30px rgba(240,171,252,.6)', marginBottom: 8 }}>Make a Wish! ✨</h1>
-          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, fontWeight: 600, marginBottom: 22 }}>Candle bujhane ke liye flame par tap karo 🕯️</p>
+          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#f0abfc', textShadow: '0 0 30px rgba(240,171,252,.6)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>Make a Wish! <EmojiIcon emoji="✨" size={32} /></h1>
+          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, fontWeight: 600, marginBottom: 22 }}>Candle bujhane ke liye flame par tap karo</p>
           <div className="cake-image-wrap" onClick={extinguishCandle}>
             <SmartImage src={CONFIG.cakeImage} alt="Birthday Cake" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 18, boxShadow: '0 15px 40px rgba(0,0,0,.5)' }} />
             <div className="flame-position" onClick={(e) => { e.stopPropagation(); extinguishCandle(); }}>
@@ -1363,7 +1241,7 @@ function PageWish({ onNext }) {
             </div>
           </div>
           {allBlown ? (
-            <p className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 24, color: '#fde047', textShadow: '0 0 20px rgba(253,224,71,.7)', textAlign: 'center' }}>🎵 Happy Birthday to You! 🎵<br /><span style={{ fontSize: 18 }}>Tumhari wish poori ho ✨</span></p>
+            <p className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 24, color: '#fde047', textShadow: '0 0 20px rgba(253,224,71,.7)', textAlign: 'center' }}>Happy Birthday to You!<br /><span style={{ fontSize: 18 }}>Tumhari wish poori ho <EmojiIcon emoji="✨" size={20} /></span></p>
           ) : (
             <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>1 candle jalti hui hai</p>
           )}
@@ -1372,45 +1250,191 @@ function PageWish({ onNext }) {
     </>
   );
 }
+function PageAvailableGifts({ onNext }) {
+  return (
+    <div className="page-container available-page">
+      <MusicIndicator />
+      <h1 className="available-title" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}><EmojiIcon emoji="🎁" size={40} /> Available Gifts</h1>
+      <p className="available-sub">Ye sab gifts mein se koi bhi tumhara ho sakta hai!<br />Chalo aage badho aur apna gift choose karo <EmojiIcon emoji="✨" size={14} /></p>
+      <div className="available-grid">
+        {GIFT_PICKER_LIST.map((g, i) => (
+          <div key={i} className="available-tile">
+            <div className="available-tile-img" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
+              <span className="available-tile-num">{i + 1}</span>
+              <img src={g.img} alt={g.name} draggable={false} />
+            </div>
+            <div className="available-tile-name">{g.name}</div>
+          </div>
+        ))}
+      </div>
+      <button className="btn btn-gradient" style={{ padding: '18px 40px', fontSize: 17, boxShadow: '0 15px 40px rgba(0,0,0,.4),0 0 0 4px rgba(255,255,255,.4)' }} onClick={onNext}>
+        Pick Your Gift <EmojiIcon emoji="🎯" size={22} /> →
+      </button>
+    </div>
+  );
+}
+
+function ScratchCard({ gift, onRevealed }) {
+  const canvasRef = useRef(null);
+  const isDrawingRef = useRef(false);
+  const lastPointRef = useRef(null);
+  const hasRevealedRef = useRef(false);
+  const [revealed, setRevealed] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const CANVAS_SIZE = 280;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = CANVAS_SIZE;
+    canvas.height = CANVAS_SIZE;
+    const ctx = canvas.getContext('2d');
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    const grad = ctx.createLinearGradient(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    grad.addColorStop(0, '#c084fc');
+    grad.addColorStop(0.25, '#a855f7');
+    grad.addColorStop(0.5, '#ec4899');
+    grad.addColorStop(0.75, '#f97316');
+    grad.addColorStop(1, '#fbbf24');
+    ctx.fillStyle = grad;
+    ctx.fillRect(-6, -6, CANVAS_SIZE + 12, CANVAS_SIZE + 12);
+    for (let i = 0; i < 16; i++) {
+      ctx.fillStyle = `rgba(255,255,255,${0.05 + Math.random() * 0.1})`;
+      ctx.fillRect(-6, i * (CANVAS_SIZE / 16) - 6, CANVAS_SIZE + 12, 5);
+    }
+    for (let i = 0; i < 130; i++) {
+      ctx.fillStyle = `rgba(255,255,255,${0.15 + Math.random() * 0.3})`;
+      const x = Math.random() * CANVAS_SIZE;
+      const y = Math.random() * CANVAS_SIZE;
+      const r = 1 + Math.random() * 3.5;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.strokeStyle = 'rgba(255,255,255,.12)';
+    ctx.lineWidth = 2;
+    for (let i = -CANVAS_SIZE; i < CANVAS_SIZE * 2; i += 18) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i - CANVAS_SIZE, CANVAS_SIZE);
+      ctx.stroke();
+    }
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = 'bold 28px Nunito, Arial, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.98)';
+    ctx.shadowColor = 'rgba(0,0,0,.35)';
+    ctx.shadowBlur = 6;
+    ctx.fillText('Scratch Karo!', CANVAS_SIZE / 2, CANVAS_SIZE / 2 - 10);
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 15px Nunito, Arial, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.88)';
+    ctx.fillText('Ungli se ragrho', CANVAS_SIZE / 2, CANVAS_SIZE / 2 + 28);
+    ctx.globalCompositeOperation = 'destination-out';
+  }, []);
+
+  const getCoords = (e) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    let x, y;
+    if (e.touches && e.touches[0]) {
+      x = (e.touches[0].clientX - rect.left) * scaleX;
+      y = (e.touches[0].clientY - rect.top) * scaleY;
+    } else {
+      x = (e.clientX - rect.left) * scaleX;
+      y = (e.clientY - rect.top) * scaleY;
+    }
+    return { x, y };
+  };
+
+  const scratchAt = (x, y) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if (lastPointRef.current) {
+      ctx.lineWidth = 48;
+      ctx.beginPath();
+      ctx.moveTo(lastPointRef.current.x, lastPointRef.current.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    }
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, Math.PI * 2);
+    ctx.fill();
+    lastPointRef.current = { x, y };
+    if (Math.random() < 0.18) playNote(1200 + Math.random() * 400, 0.02, 0.03, 'square');
+  };
+
+  const checkPercent = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    try {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      let cleared = 0;
+      for (let i = 3; i < imageData.data.length; i += 16) {
+        if (imageData.data[i] < 128) cleared++;
+      }
+      const sampled = imageData.data.length / 16;
+      const p = (cleared / sampled) * 100;
+      setPercent(p);
+      if (p >= SCRATCH_THRESHOLD && !hasRevealedRef.current) {
+        hasRevealedRef.current = true;
+        setRevealed(true);
+        setTimeout(() => onRevealed(), 500);
+      }
+    } catch (e) {}
+  };
+
+  const onStart = (e) => { if (revealed) return; isDrawingRef.current = true; lastPointRef.current = null; const c = getCoords(e); if (c) scratchAt(c.x, c.y); };
+  const onMove = (e) => { if (!isDrawingRef.current || revealed) return; if (e.cancelable) e.preventDefault(); const c = getCoords(e); if (c) scratchAt(c.x, c.y); };
+  const onEnd = () => { if (!isDrawingRef.current) return; isDrawingRef.current = false; lastPointRef.current = null; checkPercent(); };
+
+  return (
+    <>
+      <div className="scratch-card-wrap">
+        <div className="scratch-gift-under" style={{ background: `linear-gradient(135deg, ${gift.color}22 0%, ${gift.color}55 100%)` }}>
+          <div className="scratch-gift-img-wrap" style={{ background: `linear-gradient(135deg, ${gift.color}, ${gift.color}cc)` }}>
+            <img className="scratch-gift-img" src={gift.img} alt={gift.name} draggable={false} />
+          </div>
+          <div className="scratch-gift-name">{gift.name}</div>
+        </div>
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_SIZE}
+          height={CANVAS_SIZE}
+          className="scratch-canvas"
+          style={{ opacity: revealed ? 0 : 1, pointerEvents: revealed ? 'none' : 'auto', zIndex: 100 }}
+          onMouseDown={onStart}
+          onMouseMove={onMove}
+          onMouseUp={onEnd}
+          onMouseLeave={onEnd}
+          onTouchStart={onStart}
+          onTouchMove={onMove}
+          onTouchEnd={onEnd}
+        />
+      </div>
+      <div className="scratch-progress-wrap">
+        <div className="scratch-progress-fill" style={{ width: `${Math.min(percent, 100)}%` }} />
+      </div>
+      <p className="scratch-progress-text">{Math.round(percent)}% scratch ho gaya</p>
+    </>
+  );
+}
+
 function PageGiftPicker({ onComplete }) {
+  const [stage, setStage] = useState('spin');
   const [offset, setOffset] = useState(0);
   const [spinning, setSpinning] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(-1);
-  const [showCelebration, setShowCelebration] = useState(false);
   const [confetti, setConfetti] = useState(false);
-  const [autoTimer, setAutoTimer] = useState(AUTO_ADVANCE_SECONDS);
-  const autoTimerRef = useRef(null);
-  const autoAdvanceRef = useRef(null);
-
-  const startAutoTimer = (result) => {
-    if (autoTimerRef.current) clearInterval(autoTimerRef.current);
-    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
-    setAutoTimer(AUTO_ADVANCE_SECONDS);
-    let remaining = AUTO_ADVANCE_SECONDS;
-    autoTimerRef.current = setInterval(() => {
-      remaining -= 1;
-      setAutoTimer(remaining);
-      if (remaining <= 0) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
-    }, 1000);
-    autoAdvanceRef.current = setTimeout(() => { onComplete(result); }, AUTO_ADVANCE_SECONDS * 1000);
-  };
-
-  const handleContinue = () => {
-    if (autoTimerRef.current) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
-    if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null; }
-    try {
-      const saved = localStorage.getItem(GIFT_RESULT_KEY);
-      if (saved) onComplete(JSON.parse(saved));
-      else onComplete({ giftIndex: selectedIdx, giftName: GIFT_PICKER_LIST[selectedIdx]?.name || '' });
-    } catch (e) { onComplete({ giftIndex: selectedIdx, giftName: GIFT_PICKER_LIST[selectedIdx]?.name || '' }); }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (autoTimerRef.current) clearInterval(autoTimerRef.current);
-      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
-    };
-  }, []);
 
   const handleSpin = () => {
     if (spinning || selectedIdx >= 0) return;
@@ -1418,18 +1442,21 @@ function PageGiftPicker({ onComplete }) {
     playNote(440, .12, .12, 'square');
     setTimeout(() => playNote(494, .12, .12, 'square'), 100);
     setTimeout(() => playNote(523, .12, .12, 'square'), 200);
+
     const winner = Math.floor(Math.random() * GIFT_PICKER_LIST.length);
-    const laps = 3;
-    const finalOffset = (laps * GIFT_PICKER_LIST.length + winner) * GIFT_CARD_WIDTH;
+    const laps = 6;
+    const finalOffset = (laps * GIFT_PICKER_LIST.length + winner) * 260;
     setOffset(finalOffset);
-    for (let i = 0; i < 20; i++) { setTimeout(() => { if (i < 20) playNote(800 - i * 20, .04, .05, 'square'); }, 300 + i * 150); }
+
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => playNote(1000 - i * 10, 0.03, 0.04, 'square'), 200 + i * 280);
+    }
+
     setTimeout(() => {
       setSpinning(false);
-      setOffset(winner * GIFT_CARD_WIDTH);
+      setOffset(winner * 260);
       setSelectedIdx(winner);
-      setShowCelebration(true);
-      setConfetti(true);
-      playMelody([[N.C5,.15,.14],[N.E5,.15,.14],[N.G5,.15,.14],[N.C6,.35,.15],[N.E5,.15,.13],[N.G5,.15,.14],[N.C6,.5,.15]]);
+
       const result = {
         giftIndex: winner,
         giftName: GIFT_PICKER_LIST[winner].name,
@@ -1440,14 +1467,21 @@ function PageGiftPicker({ onComplete }) {
         timestamp: Date.now(),
       };
       try { localStorage.setItem(GIFT_RESULT_KEY, JSON.stringify(result)); } catch (e) {}
-      startAutoTimer(result);
-    }, 3600);
+
+      setTimeout(() => setStage('scratch'), 400);
+    }, SPIN_DURATION_MS);
   };
 
-  if (showCelebration && selectedIdx >= 0) {
+  const handleRevealed = () => {
+    setConfetti(true);
+    playMelody([[N.C5,.15,.14],[N.E5,.15,.14],[N.G5,.15,.14],[N.C6,.4,.15],[N.E5,.15,.13],[N.G5,.15,.14],[N.C6,.5,.15]]);
+    setTimeout(() => setStage('reveal'), 900);
+  };
+
+  const handleContinue = () => { onComplete(); };
+
+  if (stage === 'reveal' && selectedIdx >= 0) {
     const g = GIFT_PICKER_LIST[selectedIdx];
-    const progress = autoTimer / AUTO_ADVANCE_SECONDS;
-    const dashOffset = 88 - (88 * progress);
     return (
       <div className="page-container gift-result-page">
         <Confetti active={confetti} count={120} />
@@ -1455,30 +1489,33 @@ function PageGiftPicker({ onComplete }) {
         <div className="gift-result-sparkles">
           {Array.from({ length: 14 }).map((_, i) => {
             const emojis = ['✨', '⭐', '💖', '🌟', '💫'];
-            return (<span key={i} className="gift-sparkle" style={{ left: `${5 + Math.random() * 90}%`, top: `${5 + Math.random() * 90}%`, animationDelay: `${Math.random() * 1.8}s`, animationDuration: `${1.2 + Math.random()}s` }}>{emojis[i % emojis.length]}</span>);
+            return (<span key={i} className="gift-sparkle" style={{ left: `${5 + Math.random() * 90}%`, top: `${5 + Math.random() * 90}%`, animationDelay: `${Math.random() * 1.8}s`, animationDuration: `${1.2 + Math.random()}s` }}><EmojiIcon emoji={emojis[i % emojis.length]} size={26} /></span>);
           })}
         </div>
         <div className="gift-result-content">
-          <div className="gift-result-ribbon">🎉 You Got 🎉</div>
+          <div className="gift-result-ribbon">You Got</div>
           <div className="gift-result-card">
             <div className="gift-result-img-wrap" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
               <img className="gift-result-img" src={g.img} alt={g.name} draggable={false} />
             </div>
             <div className="gift-result-name">{g.name}</div>
           </div>
-          <div className="gift-result-boy">🎀 <b>{CONFIG.name}</b> ka pyara gift</div>
+          <div className="gift-result-boy"><EmojiIcon emoji="🎀" size={18} /> <b>{CONFIG.name}</b> ka pyara gift</div>
           <button className="gift-continue-btn" onClick={handleContinue}>Continue → Memories</button>
-          <div className="gift-auto-timer">
-            <div className="gift-timer-ring">
-              <svg viewBox="0 0 34 34">
-                <circle className="bg-circle" cx="17" cy="17" r="14" />
-                <circle className="fg-circle" cx="17" cy="17" r="14" style={{ strokeDashoffset: dashOffset }} />
-              </svg>
-              <span className="gift-timer-num">{autoTimer}</span>
-            </div>
-            <span>{autoTimer > 0 ? `sec me agla page khulega...` : '✨ Khul raha hai...'}</span>
-          </div>
         </div>
+      </div>
+    );
+  }
+
+  if (stage === 'scratch' && selectedIdx >= 0) {
+    const g = GIFT_PICKER_LIST[selectedIdx];
+    return (
+      <div className="page-container scratch-page">
+        <MusicIndicator />
+        <h1 className="scratch-title" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}><EmojiIcon emoji="🎁" size={40} /> Scratch Karo!</h1>
+        <p className="scratch-sub">Ungli se ragrho aur dekho kaunsa gift mila!</p>
+        <ScratchCard gift={g} onRevealed={handleRevealed} />
+        <p className="scratch-hint">Ungli se upar-neeche ragrho</p>
       </div>
     );
   }
@@ -1486,8 +1523,10 @@ function PageGiftPicker({ onComplete }) {
   return (
     <div className="page-container gift-picker-page" style={{ padding: '16px' }}>
       <MusicIndicator />
-      <h1 className="gift-picker-title">🎁 Pick Your Gift!</h1>
-      <p className="gift-picker-sub">Arrow par tap karo aur dekho kaunsa gift milega!</p>
+      <h1 className="gift-picker-title" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}><EmojiIcon emoji="🎁" size={40} /> Pick Your Gift!</h1>
+      <p className="gift-picker-sub">
+        {spinning ? 'Gifts ghoom rahe hain... thoda intezaar karo!' : 'Arrow par tap karo aur dekho kaunsa gift milega!'}
+      </p>
       <div className="gift-carousel-viewport">
         <div className="gift-carousel-top-bar" />
         <div className="gift-carousel-bottom-bar" />
@@ -1502,13 +1541,14 @@ function PageGiftPicker({ onComplete }) {
           ))}
         </div>
       </div>
-      <button className={`gift-picker-arrow ${spinning ? 'spinning' : ''}`} onClick={handleSpin} disabled={spinning} aria-label="Spin for gift">
+      <button className={`gift-picker-arrow ${spinning ? 'spinning' : ''}`} onClick={handleSpin} disabled={spinning} aria-label="Spin">
         <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
       </button>
-      <p className="gift-picker-hint">{spinning ? '🎡 Gifts chal rahe hain...' : '👉 Arrow par tap karo!'}</p>
+      <p className="gift-picker-hint">{spinning ? '15 seconds...' : 'Arrow par tap karo!'}</p>
     </div>
   );
 }
+
 function PageMemories({ onNext }) {
   const [idx, setIdx] = useState(0);
   const [fade, setFade] = useState(true);
@@ -1529,9 +1569,9 @@ function PageMemories({ onNext }) {
         <MusicIndicator />
         <Balloons count={4} />
         <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
-          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#a21caf', marginBottom: 22, textAlign: 'center' }}>Beautiful Memories 📸</h1>
+          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#a21caf', marginBottom: 22, textAlign: 'center', display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>Beautiful Memories <EmojiIcon emoji="📸" size={32} /></h1>
           <div className="mem-frame" onClick={() => setViewerOpen(true)}><div className="mem-frame-inner"><SmartImage key={idx} src={mem.img} id={mem.id} alt={mem.caption || `Memory ${idx + 1}`} className="mem-img" style={imgStyle} /></div></div>
-          <p className="mem-hint" style={{ textAlign: 'center' }}>👆 Fullscreen ke liye image par tap karo</p>
+          <p className="mem-hint" style={{ textAlign: 'center' }}>Fullscreen ke liye tap karo</p>
           <div className="mem-dots">{CONFIG.memories.map((_, i) => (<button key={i} className={`mem-dot ${i === idx ? 'active' : ''}`} onClick={() => goDot(i)} />))}</div>
           <div className="mt-md" style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
             {idx > 0 && <RippleButton onClick={goPrev} className="btn btn-purple" style={{ padding: '14px 24px', fontSize: 14 }}>← Pichli</RippleButton>}
@@ -1549,17 +1589,17 @@ function PageLetter({ onNext }) {
       <MusicIndicator />
       <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
         <div className="letter anim-pop">
-          <div className="letter-stamp">💌</div><div className="letter-bear">🧸</div>
+          <div className="letter-stamp"><EmojiIcon emoji="💌" size={26} /></div>
+          <div className="letter-bear"><EmojiIcon emoji="🧸" size={52} /></div>
           <div className="letter-greet">My Dearest {CONFIG.name},</div>
           <div className="letter-body">{CONFIG.letterBody}</div>
           <div className="letter-sign">{CONFIG.letterSign}</div>
         </div>
-        <div className="mt-lg" style={{ textAlign: 'center' }}><RippleButton onClick={onNext} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 16 }}>Continue 🎁</RippleButton></div>
+        <div className="mt-lg" style={{ textAlign: 'center' }}><RippleButton onClick={onNext} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 16 }}>Continue <EmojiIcon emoji="🎁" size={20} /></RippleButton></div>
       </div>
     </div>
   );
 }
-/* ⭐ UPDATED: Last gifts page with "Available Gifts" showcase */
 function PageGifts() {
   const [confetti, setConfetti] = useState(true);
   const [qrModalOpen, setQrModalOpen] = useState(false);
@@ -1583,41 +1623,24 @@ function PageGifts() {
         <MusicIndicator />
         <Balloons count={7} />
         <div className="last-page-inner">
-          <div className="anim-float" style={{ width: 110, height: 110, margin: '0 auto 14px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, border: '3px solid rgba(255,255,255,.8)' }}>🧸</div>
+          <div className="anim-float" style={{ width: 110, height: 110, margin: '0 auto 14px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid rgba(255,255,255,.8)' }}><EmojiIcon emoji="🧸" size={70} /></div>
           <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday!</h1>
-          <p style={{ color: '#7c3aed', fontSize: 13, fontWeight: 700, marginBottom: 8 }}>Yeh kuch gifts hain dil se 🎁</p>
-          <p style={{ color: '#a855f7', fontSize: 11, fontWeight: 700, marginBottom: 22 }}>👆 Kisi bhi gift par tap karo</p>
+          <p style={{ color: '#7c3aed', fontSize: 13, fontWeight: 700, marginBottom: 8 }}>Yeh kuch gifts hain dil se <EmojiIcon emoji="🎁" size={16} /></p>
+          <p style={{ color: '#a855f7', fontSize: 11, fontWeight: 700, marginBottom: 22 }}>Kisi bhi gift par tap karo</p>
           <div className="stack" style={{ gap: 12 }}>
             {CONFIG.gifts.map((g, i) => (
               <div key={i} className={`gift-card anim-fadeUp ${celebratingIdx === i ? 'celebrating' : ''}`} style={{ background: `linear-gradient(135deg,${g.c1},${g.c2})`, animationDelay: `${.1 + i * .1}s` }} onClick={() => handleGiftTap(g, i)}>
-                <div className="gift-icon">{g.icon}</div>
+                <div className="gift-icon"><EmojiIcon emoji={g.icon} size={30} /></div>
                 <div className="gift-info">
                   <div className="gift-title">{g.title}</div>
                   <div className="gift-sub">{g.sub}</div>
-                  <div className="gift-tap-hint">Redeem karne ke liye tap karo ✨</div>
+                  <div className="gift-tap-hint">Redeem karne ke liye tap karo <EmojiIcon emoji="✨" size={10} /></div>
                 </div>
                 {celebratingIdx === i && <GiftEmojiBurst active={true} emoji={g.icon} />}
               </div>
             ))}
           </div>
-
-          {/* ⭐ NEW: Available Gifts showcase section — yahan dikhte hain saare 10 gift options */}
-          <div className="available-gifts-section">
-            <h2 className="available-gifts-title">🎁 Available Gifts</h2>
-            <p className="available-gifts-sub">Ye sab gifts mein se koi bhi choose kar sakte ho!</p>
-            <div className="available-gifts-grid">
-              {GIFT_PICKER_LIST.map((g, i) => (
-                <div key={i} className="available-gift-tile">
-                  <div className="available-gift-icon" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
-                    <img src={g.img} alt={g.name} draggable={false} />
-                  </div>
-                  <div className="available-gift-name">{g.name}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-lg"><RippleButton onClick={() => setQrModalOpen(true)} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 15 }}>📸 Apna birthday card banao ✨</RippleButton></div>
+          <div className="mt-lg"><RippleButton onClick={() => setQrModalOpen(true)} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 15 }}><EmojiIcon emoji="📸" size={20} /> Apna birthday card banao <EmojiIcon emoji="✨" size={18} /></RippleButton></div>
           <ReachMe onOpenShare={() => setShareModalOpen(true)} />
         </div>
       </div>
@@ -1625,9 +1648,6 @@ function PageGifts() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🔐 ADMIN PANEL + FOLDER VIEWS
-   ═══════════════════════════════════════════════════════════════════════════ */
 function MemoryEditor({ mem, index, onChange }) {
   const fileRef = useRef(null);
   const handleFile = (e) => {
@@ -1641,7 +1661,7 @@ function MemoryEditor({ mem, index, onChange }) {
       <div className="mem-editor-head"><span>Memory #{index + 1}</span></div>
       <div className="mem-preview">{mem.img ? (<SmartImage src={mem.img} id={mem.id} alt="preview" style={{ objectPosition: `${mem.x == null ? 50 : mem.x}% ${mem.y == null ? 50 : mem.y}%`, transform: `scale(${mem.zoom || 1})`, transformOrigin: `${mem.x == null ? 50 : mem.x}% ${mem.y == null ? 50 : mem.y}%`, width: '100%', height: '100%', objectFit: 'cover' }} />) : (<div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(233,213,255,.4)', fontSize: 11, fontWeight: 800 }}>No Image</div>)}</div>
       <div className="admin-field" style={{ marginBottom: 8 }}><label>Image URL</label><input value={mem.img && !mem.img.startsWith('data:') ? mem.img : ''} onChange={(e) => onChange({ ...mem, img: e.target.value, id: extractKomodoId(e.target.value) })} placeholder="https://..." /></div>
-      <label className="mem-file-btn">📁 Upload<input type="file" accept="image/*" ref={fileRef} onChange={handleFile} /></label>
+      <label className="mem-file-btn"><EmojiIcon emoji="📁" size={16} /> Upload<input type="file" accept="image/*" ref={fileRef} onChange={handleFile} /></label>
       <div className="mem-slider-row"><label>Zoom</label><input type="range" min="1" max="3" step="0.05" value={mem.zoom || 1} onChange={(e) => onChange({ ...mem, zoom: parseFloat(e.target.value) })} /><span>{(mem.zoom || 1).toFixed(2)}×</span></div>
       <div className="mem-slider-row"><label>X</label><input type="range" min="0" max="100" step="1" value={mem.x == null ? 50 : mem.x} onChange={(e) => onChange({ ...mem, x: parseInt(e.target.value) })} /><span>{mem.x == null ? 50 : mem.x}%</span></div>
       <div className="mem-slider-row"><label>Y</label><input type="range" min="0" max="100" step="1" value={mem.y == null ? 50 : mem.y} onChange={(e) => onChange({ ...mem, y: parseInt(e.target.value) })} /><span>{mem.y == null ? 50 : mem.y}%</span></div>
@@ -1650,17 +1670,13 @@ function MemoryEditor({ mem, index, onChange }) {
   );
 }
 
-/* ⭐ NEW: Gift Images Folder View — 10 gift images ka folder page */
 function GiftImagesFolderView({ onClose }) {
   return (
     <div className="folder-view">
       <div className="folder-view-panel">
         <div className="folder-view-header">
           <button className="folder-back-btn" onClick={onClose}>←</button>
-          <div className="folder-view-title">
-            <h2>🎁 Gift Images Folder</h2>
-            <p>{GIFT_PICKER_LIST.length} gifts · Carousel me use hote hain</p>
-          </div>
+          <div className="folder-view-title"><h2><EmojiIcon emoji="🎁" size={24} /> Gift Images Folder</h2><p>{GIFT_PICKER_LIST.length} gifts</p></div>
         </div>
         <div className="gift-folder-grid">
           {GIFT_PICKER_LIST.map((g, i) => (
@@ -1673,23 +1689,73 @@ function GiftImagesFolderView({ onClose }) {
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 11, color: 'rgba(233,213,255,.5)', textAlign: 'center', marginTop: 16, lineHeight: 1.5 }}>
-          💡 Yeh 10 gifts carousel me use hote hain. Images change karne ke liye code me<br />
-          <b>GIFT_PICKER_LIST</b> array me har gift ka <b>img</b> URL badlo.
+      </div>
+    </div>
+  );
+}
+
+function MemoryImagesFolderView({ onClose, draft, updateMem }) {
+  const memories = draft.memories || [];
+  const [editingIdx, setEditingIdx] = useState(null);
+
+  if (editingIdx !== null && memories[editingIdx]) {
+    return (
+      <div className="folder-view">
+        <div className="folder-view-panel">
+          <div className="folder-view-header">
+            <button className="folder-back-btn" onClick={() => setEditingIdx(null)}>←</button>
+            <div className="folder-view-title">
+              <h2><EmojiIcon emoji="✏️" size={22} /> Edit Memory #{editingIdx + 1}</h2>
+              <p>Change image, zoom, position</p>
+            </div>
+          </div>
+          <MemoryEditor
+            mem={memories[editingIdx]}
+            index={editingIdx}
+            onChange={(nm) => updateMem(editingIdx, nm)}
+          />
+          <div className="folder-view-actions">
+            <button className="admin-btn admin-btn-primary" onClick={() => setEditingIdx(null)}>✓ Done — Save Changes</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="folder-view">
+      <div className="folder-view-panel">
+        <div className="folder-view-header">
+          <button className="folder-back-btn" onClick={onClose}>←</button>
+          <div className="folder-view-title">
+            <h2><EmojiIcon emoji="📸" size={24} /> Memory Images Folder</h2>
+            <p>{memories.length} memories · Tap to edit</p>
+          </div>
+        </div>
+        <div className="folder-view-grid">
+          {memories.map((m, i) => (
+            <div key={i} className="folder-view-tile" onClick={() => setEditingIdx(i)}>
+              <span className="folder-view-tile-num">#{i + 1}</span>
+              <SmartImage src={m.img} id={m.id} alt={m.caption || `Memory ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <div className="folder-view-tile-name">{m.caption || `Memory ${i + 1}`}</div>
+              <button className="folder-view-tile-edit" onClick={(e) => { e.stopPropagation(); setEditingIdx(i); }}><EmojiIcon emoji="✏️" size={14} /></button>
+            </div>
+          ))}
+        </div>
+        <p className="folder-view-hint">
+          Kisi bhi image par tap karo → uski image change karne ke liye
         </p>
       </div>
     </div>
   );
 }
 
-/* ⭐ NEW: Shared Memories Folder View — alag page par saari shared images */
 function SharedMemoriesFolderView({ onClose }) {
   const [memories, setMemories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [idbStatus, setIdbStatus] = useState(null);
   const [urlCache, setUrlCache] = useState({});
   const [previewItem, setPreviewItem] = useState(null);
-
   const load = async () => {
     setLoading(true);
     const ok = await checkIDB();
@@ -1704,89 +1770,39 @@ function SharedMemoriesFolderView({ onClose }) {
     } catch (e) {}
     setLoading(false);
   };
-
   useEffect(() => { load(); }, []);
-  useEffect(() => {
-    return () => { Object.values(urlCache).forEach(u => { try { URL.revokeObjectURL(u); } catch (e) {} }); };
-  }, []);
-
-  const handleDelete = async (id) => {
-    if (!confirm('Ye memory delete karni hai?')) return;
-    await deleteSharedMemory(id);
-    await load();
-  };
-  const handleClearAll = async () => {
-    if (!confirm('Saari shared memories delete karni hain? Ye undo nahi hoga.')) return;
-    await clearAllSharedMemories();
-    await load();
-  };
-
+  useEffect(() => { return () => { Object.values(urlCache).forEach(u => { try { URL.revokeObjectURL(u); } catch (e) {} }); }; }, []);
+  const handleDelete = async (id) => { if (!confirm('Delete?')) return; await deleteSharedMemory(id); await load(); };
+  const handleClearAll = async () => { if (!confirm('Clear all?')) return; await clearAllSharedMemories(); await load(); };
   return (
     <div className="folder-view">
       <div className="folder-view-panel">
         <div className="folder-view-header">
           <button className="folder-back-btn" onClick={onClose}>←</button>
-          <div className="folder-view-title">
-            <h2>📤 Shared Memories</h2>
-            <p>{memories.length} files · IndexedDB me saved</p>
-          </div>
+          <div className="folder-view-title"><h2><EmojiIcon emoji="📤" size={24} /> Shared Memories</h2><p>{memories.length} files</p></div>
         </div>
-
-        {idbStatus === false && (
-          <div style={{ background: 'rgba(251,191,36,.15)', border: '1px solid rgba(251,191,36,.4)', color: '#fbbf24', fontSize: 11, fontWeight: 700, padding: 10, borderRadius: 8, marginBottom: 14, lineHeight: 1.5 }}>
-            ⚠️ IndexedDB blocked hai — memories sirf session me rahengi (refresh par gayab ho jayengi).
-          </div>
-        )}
-        {idbStatus === true && (
-          <div style={{ background: 'rgba(16,185,129,.15)', border: '1px solid rgba(16,185,129,.4)', color: '#34d399', fontSize: 11, fontWeight: 700, padding: 8, borderRadius: 8, marginBottom: 14 }}>
-            ✅ Permanent storage ON hai — files safe hain
-          </div>
-        )}
-
-        {loading ? (
-          <div className="folder-view-empty"><span className="folder-view-empty-icon">⏳</span>Loading...</div>
-        ) : memories.length === 0 ? (
-          <div className="folder-view-empty">
-            <span className="folder-view-empty-icon">📭</span>
-            Abhi tak koi memory share nahi ki gayi.<br />
-            <span style={{ fontSize: 11, opacity: .7 }}>Reach Me section me "Share Your Memory" par jaake add karo.</span>
-          </div>
+        {idbStatus === false && (<div style={{ background: 'rgba(251,191,36,.15)', border: '1px solid rgba(251,191,36,.4)', color: '#fbbf24', fontSize: 11, fontWeight: 700, padding: 10, borderRadius: 8, marginBottom: 14, display: 'flex', gap: 6 }}><EmojiIcon emoji="⚠️" size={14} /> Session only</div>)}
+        {loading ? (<div className="folder-view-empty"><div className="folder-view-empty-icon"><EmojiIcon emoji="⏳" size={60} /></div>Loading...</div>) : memories.length === 0 ? (
+          <div className="folder-view-empty"><div className="folder-view-empty-icon"><EmojiIcon emoji="📭" size={60} /></div>Abhi tak koi memory share nahi ki gayi.</div>
         ) : (
           <div className="folder-view-grid">
             {memories.map((m, i) => (
               <div key={m.id} className="folder-view-tile" onClick={() => setPreviewItem(m)}>
                 <span className="folder-view-tile-num">#{i + 1}</span>
-                {m.isVideo ? (
-                  <video src={urlCache[m.id] || ''} muted playsInline />
-                ) : (
-                  <img src={urlCache[m.id] || ''} alt={m.name} />
-                )}
+                {m.isVideo ? (<video src={urlCache[m.id] || ''} muted playsInline />) : (<img src={urlCache[m.id] || ''} alt={m.name} />)}
                 <div className="folder-view-tile-name">{formatBytes(m.size)}</div>
                 <button className="folder-view-tile-del" onClick={(e) => { e.stopPropagation(); handleDelete(m.id); }}>✕</button>
               </div>
             ))}
           </div>
         )}
-
-        {memories.length > 0 && (
-          <div className="folder-view-actions">
-            <button className="admin-btn admin-btn-danger" onClick={handleClearAll}>🗑 Clear All</button>
-          </div>
-        )}
+        {memories.length > 0 && (<div className="folder-view-actions"><button className="admin-btn admin-btn-danger" onClick={handleClearAll}><EmojiIcon emoji="🗑" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Clear All</button></div>)}
       </div>
-
-      {/* Image preview modal */}
       {previewItem && (
         <div className="img-preview-modal" onClick={() => setPreviewItem(null)}>
           <button className="img-preview-close" onClick={(e) => { e.stopPropagation(); setPreviewItem(null); }}>✕</button>
-          {previewItem.isVideo ? (
-            <video src={urlCache[previewItem.id] || ''} controls autoPlay playsInline />
-          ) : (
-            <img src={urlCache[previewItem.id] || ''} alt={previewItem.name} />
-          )}
-          <div className="img-preview-info">
-            {previewItem.name} · {formatBytes(previewItem.size)}
-          </div>
+          {previewItem.isVideo ? (<video src={urlCache[previewItem.id] || ''} controls autoPlay playsInline />) : (<img src={urlCache[previewItem.id] || ''} alt={previewItem.name} />)}
+          <div className="img-preview-info">{previewItem.name} · {formatBytes(previewItem.size)}</div>
         </div>
       )}
     </div>
@@ -1798,12 +1814,12 @@ function CalendarEditor({ cal, onChange }) {
   const updateMsg = (i, value) => { const messages = [...(cal.messages || [])]; messages[i] = value; onChange({ ...cal, messages }); };
   return (
     <div className="admin-section">
-      <h3>📅 Calendar</h3>
+      <h3><EmojiIcon emoji="📅" size={18} /> Calendar</h3>
       <div className="admin-grid-2">
         <div className="admin-field" style={{ marginBottom: 0 }}><label>Month</label><input value={cal.month || ''} onChange={(e) => updateField('month', e.target.value)} /></div>
         <div className="admin-field" style={{ marginBottom: 0 }}><label>Year</label><input value={cal.year || ''} onChange={(e) => updateField('year', e.target.value)} /></div>
       </div>
-      <div className="admin-field"><label>⭐ Special Date</label><input type="number" min="1" max="30" value={cal.specialDate || 15} onChange={(e) => updateField('specialDate', parseInt(e.target.value) || 15)} /></div>
+      <div className="admin-field"><label>Special Date</label><input type="number" min="1" max="30" value={cal.specialDate || 15} onChange={(e) => updateField('specialDate', parseInt(e.target.value) || 15)} /></div>
       <div className="admin-field"><label>Title</label><input value={cal.title || ''} onChange={(e) => updateField('title', e.target.value)} /></div>
       <div className="admin-field"><label>Hint</label><input value={cal.hint || ''} onChange={(e) => updateField('hint', e.target.value)} /></div>
       <div className="admin-field"><label>Quote 1</label><input value={cal.quoteLine1 || ''} onChange={(e) => updateField('quoteLine1', e.target.value)} /></div>
@@ -1814,181 +1830,49 @@ function CalendarEditor({ cal, onChange }) {
       </div>
       <div style={{ marginTop: 12 }}>
         <label style={{ fontSize: 11, fontWeight: 800, color: '#c4b5fd', textTransform: 'uppercase', display: 'block', marginBottom: 6 }}>Bottom Messages</label>
-        {(cal.messages || []).map((msg, i) => (
-          <input key={i} value={msg} onChange={(e) => updateMsg(i, e.target.value)} style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(168,85,247,.25)', borderRadius: 10, padding: '10px 12px', color: '#fff', fontFamily: 'Nunito', fontSize: 14, outline: 'none', marginBottom: 6 }} />
-        ))}
+        {(cal.messages || []).map((msg, i) => (<input key={i} value={msg} onChange={(e) => updateMsg(i, e.target.value)} style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(168,85,247,.25)', borderRadius: 10, padding: '10px 12px', color: '#fff', fontFamily: 'Nunito', fontSize: 14, outline: 'none', marginBottom: 6 }} />))}
       </div>
     </div>
   );
 }
-
 function SavedGiftAdmin() {
   const [saved, setSaved] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
   useEffect(() => {
-    try {
-      const data = localStorage.getItem(GIFT_RESULT_KEY);
-      if (data) setSaved(JSON.parse(data));
-      else setSaved(null);
-    } catch (e) { setSaved(null); }
+    try { const data = localStorage.getItem(GIFT_RESULT_KEY); if (data) setSaved(JSON.parse(data)); else setSaved(null); }
+    catch (e) { setSaved(null); }
   }, [refreshKey]);
   const handleClear = () => {
-    if (!confirm('Gift result clear karna hai? Is device par user dobara gift pick kar sakta hai.')) return;
+    if (!confirm('Gift result clear karna hai?')) return;
     try { localStorage.removeItem(GIFT_RESULT_KEY); } catch (e) {}
     setRefreshKey(k => k + 1);
   };
   return (
     <div className="admin-section">
-      <h3>🎁 Saved Gift Result</h3>
-      <p style={{ fontSize: 10.5, color: 'rgba(233,213,255,.55)', marginBottom: 10, lineHeight: 1.5 }}>
-        Ye result us device par save hota hai jis device se gift pick hua tha.
-      </p>
-      {saved ? (
-        <>
-          <div style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', borderRadius: 14, padding: 14, display: 'flex', gap: 12, alignItems: 'center', marginBottom: 10, boxShadow: '0 8px 22px rgba(251,191,36,.35)' }}>
-            <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              {saved.giftImg ? <img src={saved.giftImg} alt="" style={{ width: 44, height: 44, objectFit: 'contain' }} /> : (saved.giftEmoji || '🎁')}
-            </div>
-            <div style={{ flex: 1, textAlign: 'left', color: '#fff' }}>
-              <h4 style={{ fontSize: 16, fontWeight: 900, marginBottom: 2 }}>{saved.giftName || 'Unknown Gift'}</h4>
-              <p style={{ fontSize: 11, fontWeight: 700, opacity: .95, marginBottom: 2 }}>👦 <b>{saved.boyName || CONFIG.name}</b> ko ye gift dena hai</p>
-              <p style={{ fontSize: 10, opacity: .75, marginTop: 4 }}>🕐 {saved.timestamp ? new Date(saved.timestamp).toLocaleString() : 'N/A'}</p>
-            </div>
+      <h3><EmojiIcon emoji="🎁" size={18} /> Saved Gift Result</h3>
+      <p style={{ fontSize: 10.5, color: 'rgba(233,213,255,.55)', marginBottom: 10, lineHeight: 1.5 }}>Ye result us device par save hota hai jis device se pehli baar spin kiya gaya tha.</p>
+      {saved ? (<>
+        <div style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', borderRadius: 14, padding: 14, display: 'flex', gap: 12, alignItems: 'center', marginBottom: 10 }}>
+          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            {saved.giftImg ? <img src={saved.giftImg} alt="" style={{ width: 44, height: 44, objectFit: 'contain' }} /> : <EmojiIcon emoji={saved.giftEmoji || '🎁'} size={40} />}
           </div>
-          <button className="admin-btn admin-btn-danger" onClick={handleClear} style={{ width: '100%', marginTop: 6 }}>🗑 Clear Gift Result (Respin Allow)</button>
-        </>
-      ) : (
-        <div style={{ textAlign: 'center', padding: '16px 10px', color: 'rgba(233,213,255,.5)', fontSize: 12, fontWeight: 700, fontStyle: 'italic' }}>✨ Abhi tak {CONFIG.name} ne koi gift select nahi kiya is device par</div>
+          <div style={{ flex: 1, textAlign: 'left', color: '#fff' }}>
+            <h4 style={{ fontSize: 16, fontWeight: 900, marginBottom: 2 }}>{saved.giftName || 'Unknown Gift'}</h4>
+            <p style={{ fontSize: 11, fontWeight: 700, opacity: .95, marginBottom: 2 }}><b>{saved.boyName || CONFIG.name}</b> ko ye gift dena hai</p>
+            <p style={{ fontSize: 10, opacity: .75, marginTop: 4 }}>{saved.timestamp ? new Date(saved.timestamp).toLocaleString() : 'N/A'}</p>
+          </div>
+        </div>
+        <button className="admin-btn admin-btn-danger" onClick={handleClear} style={{ width: '100%', marginTop: 6 }}><EmojiIcon emoji="🗑" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Clear Gift Result</button>
+      </>) : (
+        <div style={{ textAlign: 'center', padding: '16px 10px', color: 'rgba(233,213,255,.5)', fontSize: 12, fontWeight: 700, fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center' }}><EmojiIcon emoji="✨" size={16} /> Abhi tak koi gift select nahi hua is device par</div>
       )}
     </div>
   );
 }
-
-function AdminPanel({ onClose, onApply }) {
-  const [authed, setAuthed] = useState(false);
-  const [pw, setPw] = useState('');
-  const [err, setErr] = useState('');
-  const [toast, setToast] = useState('');
-  const [showGiftFolder, setShowGiftFolder] = useState(false);       // ⭐ Gift folder view
-  const [showSharedFolder, setShowSharedFolder] = useState(false);   // ⭐ Shared memories folder view
-  const [draft, setDraft] = useState(() => {
-    try {
-      const saved = localStorage.getItem('bdayDraft');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        const merged = mergeConfig(DEFAULT_CONFIG, parsed);
-        if (merged.memories && merged.memories.length < 10) {
-          while (merged.memories.length < 10) merged.memories.push({ img: '', caption: `Memory ${merged.memories.length + 1}`, zoom: 1, x: 50, y: 50 });
-        }
-        return merged;
-      }
-    } catch (e) {}
-    return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-  });
-  useEffect(() => { try { localStorage.setItem('bdayDraft', JSON.stringify(draft)); } catch (e) {} }, [draft]);
-  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(''), 2000); };
-  const tryLogin = () => { if (pw === ADMIN_PASSWORD) { setAuthed(true); setErr(''); } else setErr('Password galat hai!'); };
-  const updateField = (key, value) => setDraft(prev => ({ ...prev, [key]: value }));
-  const updateMsg = (i, key, value) => setDraft(prev => { const messages = [...prev.messages]; messages[i] = { ...messages[i], [key]: value }; return { ...prev, messages }; });
-  const updateMem = (i, newMem) => setDraft(prev => { const memories = [...prev.memories]; memories[i] = newMem; return { ...prev, memories }; });
-  const updateCalendar = (newCal) => setDraft(prev => ({ ...prev, calendar: newCal }));
-  const applyPreview = () => { Object.assign(CONFIG, draft); onApply(draft); showToast('Preview lagaya gaya! 🎉'); };
-  const generateLink = () => {
-    const encoded = encodeConfig(draft);
-    const url = `${window.location.origin + window.location.pathname}#c=${encoded}`;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => showToast('Link copy ho gaya! 📋')).catch(() => prompt('Yeh link copy karo:', url));
-    } else prompt('Yeh link copy karo:', url);
-  };
-  const resetForm = () => { if (!confirm('Default par reset karna hai?')) return; setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); showToast('Reset ho gaya ✅'); };
-  const clearDraft = () => { if (!confirm('Draft clear karna hai?')) return; localStorage.removeItem('bdayDraft'); setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); };
-
-  if (!authed) {
-    return (
-      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
-        <div className="admin-panel" style={{ maxWidth: 340, position: 'relative' }}>
-          <button className="admin-close" onClick={onClose}>✕</button>
-          <h2>Admin Login</h2><p className="sub">Password daalo</p>
-          <div className="admin-field">
-            <label>Password</label>
-            <input type="password" value={pw} autoFocus onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryLogin(); }} placeholder="Admin password daalo" />
-            {err && <div style={{ color: '#f87171', fontSize: 12, marginTop: 6, fontWeight: 700 }}>{err}</div>}
-          </div>
-          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={tryLogin}>Login</button><button className="admin-btn admin-btn-secondary" onClick={onClose}>Cancel</button></div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      {/* ⭐ FOLDER VIEWS — open in full screen when clicked */}
-      {showGiftFolder && <GiftImagesFolderView onClose={() => setShowGiftFolder(false)} />}
-      {showSharedFolder && <SharedMemoriesFolderView onClose={() => setShowSharedFolder(false)} />}
-
-      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
-        <div className="admin-panel">
-          <button className="admin-close" onClick={onClose}>✕</button>
-          <h2>Admin Panel 🎂</h2>
-          <p className="sub">Customize karo aur link share karo</p>
-
-          {/* ⭐ FOLDER BUTTONS — click karke full page kholta hai */}
-          <div className="admin-section">
-            <h3>📁 Folders</h3>
-
-            {/* Gift Images Folder */}
-            <button className="folder-btn" onClick={() => setShowGiftFolder(true)}>
-              <div className="folder-icon">🎁</div>
-              <div className="folder-info">
-                <div className="folder-title">Gift Images Folder</div>
-                <div className="folder-sub">{GIFT_PICKER_LIST.length} gifts · Carousel images</div>
-              </div>
-              <div className="folder-arrow">›</div>
-            </button>
-
-            {/* Shared Memories Folder */}
-            <SharedMemoriesFolderButton onOpen={() => setShowSharedFolder(true)} />
-          </div>
-
-          <SavedGiftAdmin />
-          <CalendarEditor cal={draft.calendar || DEFAULT_CALENDAR} onChange={updateCalendar} />
-
-          <div className="admin-section"><h3>👤 Birthday Boy ka Naam</h3><div className="admin-field"><input value={draft.name} onChange={(e) => updateField('name', e.target.value)} /></div></div>
-
-          <div className="admin-section"><h3>💬 Messages (3)</h3>
-            {draft.messages.map((m, i) => (<div key={i} className="admin-row"><input value={m.icon} onChange={(e) => updateMsg(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={m.text} onChange={(e) => updateMsg(i, 'text', e.target.value)} /></div>))}
-          </div>
-
-          <div className="admin-section"><h3>💌 Letter</h3>
-            <div className="admin-field"><label>Body</label><textarea value={draft.letterBody} onChange={(e) => updateField('letterBody', e.target.value)} /></div>
-            <div className="admin-field"><label>Sign</label><input value={draft.letterSign} onChange={(e) => updateField('letterSign', e.target.value)} /></div>
-          </div>
-
-          <div className="admin-section"><h3>🖼️ Images</h3>
-            <div className="admin-field"><label>Page 1</label><input value={draft.page1Image} onChange={(e) => updateField('page1Image', e.target.value)} /></div>
-            <div className="admin-field"><label>Cake</label><input value={draft.cakeImage} onChange={(e) => updateField('cakeImage', e.target.value)} /></div>
-          </div>
-
-          <div className="admin-section"><h3>📸 Memories ({draft.memories.length})</h3>
-            {draft.memories.map((m, i) => (<MemoryEditor key={i} mem={m} index={i} onChange={(nm) => updateMem(i, nm)} />))}
-          </div>
-
-          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={applyPreview}>👁 Lagao</button><button className="admin-btn admin-btn-primary" onClick={generateLink}>🔗 Link</button></div>
-          <div className="admin-actions"><button className="admin-btn admin-btn-secondary" onClick={resetForm}>♻ Reset</button><button className="admin-btn admin-btn-danger" onClick={clearDraft}>🗑 Clear</button></div>
-          <p className="admin-hint">💡 Gift result har device par alag save hota hai · Access Password: <b>1234</b></p>
-          {toast && <div className="admin-toast">{toast}</div>}
-        </div>
-      </div>
-    </>
-  );
-}
-
-/* ⭐ NEW: Shared Memories Folder Button — count ke saath */
 function SharedMemoriesFolderButton({ onOpen }) {
   const [count, setCount] = useState(null);
   const [idbStatus, setIdbStatus] = useState(null);
   const [size, setSize] = useState(0);
-
   useEffect(() => {
     let mounted = true;
     const load = async () => {
@@ -2003,23 +1887,17 @@ function SharedMemoriesFolderButton({ onOpen }) {
       } catch (e) { setCount(0); }
     };
     load();
-    // Refresh every 3 seconds
     const iv = setInterval(load, 3000);
     return () => { mounted = false; clearInterval(iv); };
   }, []);
-
   return (
     <button className="folder-btn" onClick={onOpen}>
-      <div className="folder-icon" style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}>📤</div>
+      <div className="folder-icon" style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}><EmojiIcon emoji="📤" size={26} /></div>
       <div className="folder-info">
-        <div className="folder-title">
-          Shared Memories ({count === null ? '...' : count})
-        </div>
+        <div className="folder-title">Shared Memories ({count === null ? '...' : count})</div>
         <div className="folder-sub">
-          {count === 0 || count === null
-            ? 'Abhi kuch share nahi hua'
-            : `${formatBytes(size)} · Tap to view all`}
-          {idbStatus === false && ' · ⚠️ session only'}
+          {count === 0 || count === null ? 'Abhi kuch share nahi hua' : `${formatBytes(size)} · Tap to view all`}
+          {idbStatus === false && ' · session only'}
         </div>
       </div>
       <div className="folder-arrow">›</div>
@@ -2027,9 +1905,105 @@ function SharedMemoriesFolderButton({ onOpen }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🚀 APP ROOT
-   ═══════════════════════════════════════════════════════════════════════════ */
+function AdminPanel({ onClose, onApply }) {
+  const [authed, setAuthed] = useState(false);
+  const [pw, setPw] = useState('');
+  const [err, setErr] = useState('');
+  const [toast, setToast] = useState('');
+  const [showGiftFolder, setShowGiftFolder] = useState(false);
+  const [showSharedFolder, setShowSharedFolder] = useState(false);
+  const [showMemoryFolder, setShowMemoryFolder] = useState(false);
+  const [draft, setDraft] = useState(() => {
+    try {
+      const saved = localStorage.getItem('bdayDraft');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const merged = mergeConfig(DEFAULT_CONFIG, parsed);
+        if (merged.memories && merged.memories.length < 10) { while (merged.memories.length < 10) merged.memories.push({ img: '', caption: `Memory ${merged.memories.length + 1}`, zoom: 1, x: 50, y: 50 }); }
+        return merged;
+      }
+    } catch (e) {}
+    return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+  });
+  useEffect(() => { try { localStorage.setItem('bdayDraft', JSON.stringify(draft)); } catch (e) {} }, [draft]);
+  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(''), 2000); };
+  const tryLogin = () => { if (pw === ADMIN_PASSWORD) { setAuthed(true); setErr(''); } else setErr('Password galat hai!'); };
+  const updateField = (key, value) => setDraft(prev => ({ ...prev, [key]: value }));
+  const updateMsg = (i, key, value) => setDraft(prev => { const messages = [...prev.messages]; messages[i] = { ...messages[i], [key]: value }; return { ...prev, messages }; });
+  const updateMem = (i, newMem) => setDraft(prev => { const memories = [...prev.memories]; memories[i] = newMem; return { ...prev, memories }; });
+  const updateCalendar = (newCal) => setDraft(prev => ({ ...prev, calendar: newCal }));
+  const applyPreview = () => { Object.assign(CONFIG, draft); onApply(draft); showToast('Preview lagaya gaya!'); };
+  const generateLink = () => {
+    const encoded = encodeConfig(draft);
+    const url = `${window.location.origin + window.location.pathname}#c=${encoded}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => showToast('Link copy ho gaya!')).catch(() => prompt('Yeh link copy karo:', url));
+    } else prompt('Yeh link copy karo:', url);
+  };
+  const resetForm = () => { if (!confirm('Reset?')) return; setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); showToast('Reset ho gaya'); };
+  const clearDraft = () => { if (!confirm('Clear draft?')) return; localStorage.removeItem('bdayDraft'); setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); };
+  if (!authed) {
+    return (
+      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
+        <div className="admin-panel" style={{ maxWidth: 340, position: 'relative' }}>
+          <button className="admin-close" onClick={onClose}>✕</button>
+          <h2>Admin Login</h2><p className="sub">Password daalo</p>
+          <div className="admin-field"><label>Password</label><input type="password" value={pw} autoFocus onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryLogin(); }} placeholder="Admin password" />{err && <div style={{ color: '#f87171', fontSize: 12, marginTop: 6, fontWeight: 700 }}>{err}</div>}</div>
+          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={tryLogin}>Login</button><button className="admin-btn admin-btn-secondary" onClick={onClose}>Cancel</button></div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <>
+      {showGiftFolder && <GiftImagesFolderView onClose={() => setShowGiftFolder(false)} />}
+      {showSharedFolder && <SharedMemoriesFolderView onClose={() => setShowSharedFolder(false)} />}
+      {showMemoryFolder && <MemoryImagesFolderView onClose={() => setShowMemoryFolder(false)} draft={draft} updateMem={updateMem} />}
+      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
+        <div className="admin-panel">
+          <button className="admin-close" onClick={onClose}>✕</button>
+          <h2>Admin Panel <EmojiIcon emoji="🎂" size={28} /></h2>
+          <p className="sub">Customize karo aur link share karo</p>
+
+          <div className="admin-section">
+            <h3><EmojiIcon emoji="📁" size={18} /> Folders</h3>
+
+            <button className="folder-btn" onClick={() => setShowGiftFolder(true)}>
+              <div className="folder-icon"><EmojiIcon emoji="🎁" size={26} /></div>
+              <div className="folder-info"><div className="folder-title">Gift Images Folder</div><div className="folder-sub">{GIFT_PICKER_LIST.length} gifts · Tap to view all</div></div>
+              <div className="folder-arrow">›</div>
+            </button>
+
+            <button className="folder-btn" onClick={() => setShowMemoryFolder(true)}>
+              <div className="folder-icon" style={{ background: 'linear-gradient(135deg,#06b6d4,#3b82f6)' }}><EmojiIcon emoji="📸" size={26} /></div>
+              <div className="folder-info"><div className="folder-title">Memory Images Folder</div><div className="folder-sub">{(draft.memories || []).length} memories · Tap to edit</div></div>
+              <div className="folder-arrow">›</div>
+            </button>
+
+            <SharedMemoriesFolderButton onOpen={() => setShowSharedFolder(true)} />
+          </div>
+
+          <SavedGiftAdmin />
+          <CalendarEditor cal={draft.calendar || DEFAULT_CALENDAR} onChange={updateCalendar} />
+
+          <div className="admin-section"><h3><EmojiIcon emoji="👤" size={18} /> Birthday Boy ka Naam</h3><div className="admin-field"><input value={draft.name} onChange={(e) => updateField('name', e.target.value)} /></div></div>
+
+          <div className="admin-section"><h3><EmojiIcon emoji="💬" size={18} /> Messages (3)</h3>{draft.messages.map((m, i) => (<div key={i} className="admin-row"><input value={m.icon} onChange={(e) => updateMsg(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={m.text} onChange={(e) => updateMsg(i, 'text', e.target.value)} /></div>))}</div>
+
+          <div className="admin-section"><h3><EmojiIcon emoji="💌" size={18} /> Letter</h3><div className="admin-field"><label>Body</label><textarea value={draft.letterBody} onChange={(e) => updateField('letterBody', e.target.value)} /></div><div className="admin-field"><label>Sign</label><input value={draft.letterSign} onChange={(e) => updateField('letterSign', e.target.value)} /></div></div>
+
+          <div className="admin-section"><h3><EmojiIcon emoji="🖼️" size={18} /> Images</h3><div className="admin-field"><label>Page 1</label><input value={draft.page1Image} onChange={(e) => updateField('page1Image', e.target.value)} /></div><div className="admin-field"><label>Cake</label><input value={draft.cakeImage} onChange={(e) => updateField('cakeImage', e.target.value)} /></div></div>
+
+          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={applyPreview}><EmojiIcon emoji="👁" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Lagao</button><button className="admin-btn admin-btn-primary" onClick={generateLink}><EmojiIcon emoji="🔗" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Link</button></div>
+          <div className="admin-actions"><button className="admin-btn admin-btn-secondary" onClick={resetForm}><EmojiIcon emoji="♻" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Reset</button><button className="admin-btn admin-btn-danger" onClick={clearDraft}><EmojiIcon emoji="🗑" size={16} style={{ marginRight: 6, verticalAlign: 'middle' }} />Clear</button></div>
+          <p className="admin-hint"><EmojiIcon emoji="💡" size={14} /> Access Password: <b>1234</b></p>
+          {toast && <div className="admin-toast">{toast}</div>}
+        </div>
+      </div>
+    </>
+  );
+}
+
 function App() {
   const [accessStage, setAccessStage] = useState(() => {
     try { if (sessionStorage.getItem('bdayUnlocked') === 'yes') return 'app'; } catch (e) {}
@@ -2039,29 +2013,20 @@ function App() {
   const [showBalloons, setShowBalloons] = useState(true);
   const [adminOpen, setAdminOpen] = useState(false);
   const [, forceUpdate] = useState(0);
-
   useEffect(() => { checkIDB(); }, []);
-
   useEffect(() => {
     if (accessStage !== 'app') return;
     stopMelody();
     const melody = PAGE_MELODIES[page];
-    if (melody) {
-      const t = setTimeout(() => playMelody(melody), 400);
-      return () => clearTimeout(t);
-    }
+    if (melody) { const t = setTimeout(() => playMelody(melody), 400); return () => clearTimeout(t); }
   }, [page, accessStage]);
-
   useEffect(() => { setShowBalloons(page !== 2 && page !== 3); }, [page]);
-
   const go = (n) => setPage(n);
   const handleApply = (newCfg) => { Object.assign(CONFIG, newCfg); forceUpdate(v => v + 1); setPage(1); };
   const handleUnlocked = () => { try { sessionStorage.setItem('bdayUnlocked', 'yes'); } catch (e) {} setAccessStage('welcome'); };
   const handleWelcomeContinue = () => { setAccessStage('app'); setPage(1); };
-
   if (accessStage === 'locked') return <PasswordGate onSuccess={handleUnlocked} />;
   if (accessStage === 'welcome') return <WelcomeScreen onContinue={handleWelcomeContinue} />;
-
   const renderPage = () => {
     switch (page) {
       case 1: return <PageIntro onNext={() => go(2)} onSecretUnlock={() => setAdminOpen(true)} />;
@@ -2070,23 +2035,23 @@ function App() {
       case 4: return <PageSurprise onNext={() => go(5)} />;
       case 5: return <PageMessages onNext={() => go(6)} />;
       case 6: return <PageWish onNext={() => go(7)} />;
-      case 7: return <PageGiftPicker onComplete={() => go(8)} />;
-      case 8: return <PageMemories onNext={() => go(9)} />;
-      case 9: return <PageLetter onNext={() => go(10)} />;
-      case 10: return <PageGifts />;
+      case 7: return <PageAvailableGifts onNext={() => go(8)} />;
+      case 8: return <PageGiftPicker onComplete={() => go(9)} />;
+      case 9: return <PageMemories onNext={() => go(10)} />;
+      case 10: return <PageLetter onNext={() => go(11)} />;
+      case 11: return <PageGifts />;
       default: return null;
     }
   };
-
   return (
     <>
       {adminOpen && <AdminPanel onClose={() => setAdminOpen(false)} onApply={handleApply} />}
       <div className="app">
-        {showBalloons && page !== 5 && page !== 7 && page !== 8 && page !== 10 && (<div className="bg-layer" style={{ zIndex: 1 }}><Balloons count={8} /></div>)}
+        {showBalloons && page !== 5 && page !== 8 && page !== 9 && page !== 11 && (<div className="bg-layer" style={{ zIndex: 1 }}><Balloons count={8} /></div>)}
         <div key={page} style={{ position: 'absolute', inset: 0, animation: 'fadeIn .5s ease' }}>{renderPage()}</div>
-        {page > 1 && page < 10 && (
+        {page > 1 && page < 11 && (
           <div style={{ position: 'absolute', bottom: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6, zIndex: 100, pointerEvents: 'none' }}>
-            {[1,2,3,4,5,6,7,8,9,10].map(n => (<div key={n} style={{ width: n === page ? 20 : 6, height: 6, borderRadius: 3, background: n === page ? 'linear-gradient(90deg,#a855f7,#ec4899)' : 'rgba(255,255,255,.25)', transition: 'all .4s' }} />))}
+            {[1,2,3,4,5,6,7,8,9,10,11].map(n => (<div key={n} style={{ width: n === page ? 20 : 6, height: 6, borderRadius: 3, background: n === page ? 'linear-gradient(90deg,#a855f7,#ec4899)' : 'rgba(255,255,255,.25)', transition: 'all .4s' }} />))}
           </div>
         )}
       </div>
