@@ -23,9 +23,6 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 #root{width:100%;height:100%;max-width:460px;position:relative;overflow:hidden;background:#0d0620}
 @media(min-width:500px){#root{height:900px;max-height:96vh;border-radius:38px;box-shadow:0 40px 120px rgba(120,60,200,.35),0 0 0 1px rgba(255,255,255,.06)}}
 
-/* ═══════════════════════════════════════════════════════════
-   ✨ ANIMATIONS
-   ═══════════════════════════════════════════════════════════ */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
@@ -39,32 +36,34 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 @keyframes rippleOut{0%{transform:scale(0);opacity:.7}100%{transform:scale(4);opacity:0}}
 @keyframes heartBeat{0%,70%,100%{transform:scale(1)}20%{transform:scale(1.25)}40%{transform:scale(1)}60%{transform:scale(1.15)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-
-@keyframes celebratePop{
-  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(180,100,255,.7)}
-  40%{transform:scale(1.35) rotate(-6deg);box-shadow:0 0 0 12px rgba(180,100,255,.4),0 0 40px 20px rgba(236,72,153,.6)}
-  70%{transform:scale(1.5) rotate(6deg);box-shadow:0 0 0 20px rgba(180,100,255,.2),0 0 60px 30px rgba(236,72,153,.4)}
-  100%{transform:scale(1.2) rotate(0);box-shadow:0 0 0 30px rgba(180,100,255,0),0 0 80px 40px rgba(236,72,153,0)}
-}
+@keyframes celebratePop{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(-6deg)}70%{transform:scale(1.5) rotate(6deg)}100%{transform:scale(1.2)}}
 @keyframes sparkleBurst{0%{transform:translate(0,0) scale(0);opacity:1}50%{transform:translate(var(--sx),var(--sy)) scale(1.4);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
 @keyframes ringExpand{0%{transform:scale(.5);opacity:1;border-width:6px}100%{transform:scale(2.8);opacity:0;border-width:1px}}
 @keyframes bgFlash{0%{opacity:0}30%{opacity:.6}100%{opacity:0}}
 @keyframes floatUpFade{0%{transform:translateY(0) scale(.5);opacity:0}20%{opacity:1}100%{transform:translateY(-200px) scale(1.4);opacity:0}}
-@keyframes giftPop{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.08) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}75%{transform:scale(1.05) rotate(-2deg)}100%{transform:scale(1) rotate(0)}}
-@keyframes giftEmojiBurst{0%{transform:translate(0,0) scale(0) rotate(0);opacity:0}30%{opacity:1}100%{transform:translate(var(--ex),var(--ey)) scale(1.6) rotate(var(--er));opacity:0}}
+@keyframes giftPop{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.08) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes giftEmojiBurst{0%{transform:translate(0,0) scale(0);opacity:0}30%{opacity:1}100%{transform:translate(var(--ex),var(--ey)) scale(1.6);opacity:0}}
 @keyframes modalIn{0%{opacity:0;transform:scale(.85) translateY(30px)}100%{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes overlayIn{from{opacity:0;backdrop-filter:blur(0px)}to{opacity:1;backdrop-filter:blur(6px)}}
-@keyframes lockPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px rgba(168,85,247,.5))}50%{transform:scale(1.08);filter:drop-shadow(0 0 40px rgba(236,72,153,.7))}}
-@keyframes welcomeGlow{0%,100%{text-shadow:0 0 20px rgba(250,204,21,.6)}50%{text-shadow:0 0 40px rgba(250,204,21,.9),0 0 80px rgba(236,72,153,.7)}}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+@keyframes lockPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes welcomeGlow{0%,100%{text-shadow:0 0 20px rgba(250,204,21,.6)}50%{text-shadow:0 0 40px rgba(250,204,21,.9)}}
 @keyframes doorOpen{0%{opacity:0;transform:perspective(800px) rotateY(-90deg)}100%{opacity:1;transform:perspective(800px) rotateY(0)}}
 @keyframes sparkleRain{0%{transform:translateY(-100vh) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @keyframes inputShake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-10px)}30%,60%,90%{transform:translateX(10px)}}
 @keyframes welcomeZoom{0%{transform:scale(0) rotate(-180deg);opacity:0}60%{transform:scale(1.2) rotate(10deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
-@keyframes qrModalIn{0%{opacity:0;transform:scale(.5) translateY(40px) rotate(-8deg)}60%{transform:scale(1.05) translateY(-5px) rotate(3deg)}100%{opacity:1;transform:scale(1) translateY(0) rotate(0)}}
+@keyframes qrModalIn{0%{opacity:0;transform:scale(.5) translateY(40px)}60%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
 @keyframes qrBorderSpin{to{transform:rotate(360deg)}}
-@keyframes qrPulse{0%,100%{box-shadow:0 0 40px rgba(168,85,247,.6),0 0 80px rgba(236,72,153,.4)}50%{box-shadow:0 0 60px rgba(236,72,153,.8),0 0 120px rgba(168,85,247,.6)}}
+@keyframes qrPulse{0%,100%{box-shadow:0 0 40px rgba(168,85,247,.6)}50%{box-shadow:0 0 60px rgba(236,72,153,.8)}}
 @keyframes memoryPop{0%{opacity:0;transform:scale(.8) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes musicIndicator{0%,100%{transform:scaleY(1);opacity:.9}50%{transform:scaleY(1.8);opacity:1}}
+@keyframes giftArrowSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes starTwinkle{0%,100%{opacity:0;transform:scale(0.5)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes giftImageFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.04)}}
+@keyframes cardGlow{0%,100%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.5)}50%{box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 0 8px rgba(255,255,255,.9),0 0 0 12px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.6)}}
+/* ⭐ NEW: folder & admin page animations */
+@keyframes folderOpen{0%{transform:scale(.8) rotateX(-40deg);opacity:0}100%{transform:scale(1) rotateX(0);opacity:1}}
+@keyframes slideInRight{0%{transform:translateX(100%);opacity:0}100%{transform:translateX(0);opacity:1}}
+@keyframes slideUpFade{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
 
 .gift-card.celebrating{animation:giftPop 1.1s cubic-bezier(.34,1.56,.64,1) forwards}
 .gift-emoji-burst{position:absolute;font-size:26px;pointer-events:none;left:50%;top:50%;animation:giftEmojiBurst 1.1s ease-out forwards;z-index:50}
@@ -78,9 +77,6 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .celebration-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,215,80,.8),rgba(236,72,153,.5) 40%,transparent 70%);pointer-events:none;z-index:9999;animation:bgFlash 1s ease-out forwards}
 .celebration-emoji{position:fixed;font-size:36px;pointer-events:none;z-index:10000;animation:floatUpFade 1s ease-out forwards}
 
-/* ═══════════════════════════════════════════════════════════
-   🏗️  LAYOUT
-   ═══════════════════════════════════════════════════════════ */
 .app{position:absolute;inset:0;overflow:hidden}
 .bg-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
@@ -101,10 +97,7 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .music-bar:nth-child(3){height:70%;animation-delay:.3s}
 .music-bar:nth-child(4){height:90%;animation-delay:.45s}
 
-/* ═══════════════════════════════════════════════════════════
-   🔘 BUTTONS
-   ═══════════════════════════════════════════════════════════ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;letter-spacing:.3px;cursor:pointer;position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;user-select:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;letter-spacing:.3px;cursor:pointer;position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.34,1.56,.64,1);user-select:none}
 .btn:active{transform:scale(.96);transition-duration:.08s}
 .btn:hover{transform:translateY(-2px) scale(1.03)}
 .btn-gradient{background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#f97316 100%);color:#fff;box-shadow:0 8px 28px rgba(168,85,247,.45)}
@@ -112,29 +105,18 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .btn-pink{background:linear-gradient(135deg,#ec4899,#f97316);color:#fff;box-shadow:0 8px 24px rgba(236,72,153,.5)}
 .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);pointer-events:none;animation:rippleOut .7s ease-out forwards}
 
-/* ═══════════════════════════════════════════════════════════
-   💬 MESSAGE CARD
-   ═══════════════════════════════════════════════════════════ */
-.msg-card{background:#fff;border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;text-align:left;box-shadow:0 8px 24px rgba(120,60,200,.12),0 2px 6px rgba(0,0,0,.04);border:1px solid rgba(200,160,255,.15);transition:transform .25s}
-.msg-card:hover{transform:translateY(-3px)}
+.msg-card{background:#fff;border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;text-align:left;box-shadow:0 8px 24px rgba(120,60,200,.12);border:1px solid rgba(200,160,255,.15)}
 .msg-icon{font-size:26px;line-height:1;flex-shrink:0}
 .msg-text{font-size:15px;color:#3a2a5c;font-weight:600;line-height:1.55}
 
-/* ═══════════════════════════════════════════════════════════
-   🎂 CAKE & CANDLE
-   ═══════════════════════════════════════════════════════════ */
 .cake-image-wrap{position:relative;width:100%;max-width:340px;margin:0 auto 26px;cursor:pointer;display:block}
 .cake-image-wrap img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.5)}
-.flame-position{position:absolute;left:47%;top:4%;transform:translate(-50%,-100%);cursor:pointer;pointer-events:auto;z-index:10;transition:transform .2s}
-.flame-position:active{transform:translate(-50%,-100%) scale(.9)}
-.real-flame{width:18px;height:32px;background:radial-gradient(ellipse at 50% 80%,#ffffff 0%,#fffbeb 20%,#fde047 50%,#f97316 80%,#dc2626 100%);border-radius:50% 50% 20% 20%/60% 60% 40% 40%;box-shadow:0 0 15px rgba(253,224,71,.9),0 0 30px rgba(249,115,22,.6),0 0 45px rgba(220,38,38,.4);animation:flicker .15s infinite alternate;transform-origin:center bottom;position:relative}
+.flame-position{position:absolute;left:47%;top:4%;transform:translate(-50%,-100%);cursor:pointer;pointer-events:auto;z-index:10}
+.real-flame{width:18px;height:32px;background:radial-gradient(ellipse at 50% 80%,#ffffff 0%,#fffbeb 20%,#fde047 50%,#f97316 80%,#dc2626 100%);border-radius:50% 50% 20% 20%/60% 60% 40% 40%;box-shadow:0 0 15px rgba(253,224,71,.9),0 0 30px rgba(249,115,22,.6);animation:flicker .15s infinite alternate;transform-origin:center bottom;position:relative}
 .real-flame::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#333;border-radius:1px;z-index:-1}
 .flame-glow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.4),transparent 70%);pointer-events:none}
 .candle-smoke-small{width:12px;height:12px;border-radius:50%;background:rgba(220,220,220,.7);animation:smokeUp 1.4s ease-out forwards;pointer-events:none;position:absolute;bottom:0;left:50%;transform:translateX(-50%)}
 
-/* ═══════════════════════════════════════════════════════════
-   📸 MEMORIES
-   ═══════════════════════════════════════════════════════════ */
 .mem-frame{width:100%;max-width:320px;aspect-ratio:1/1;border-radius:22px;padding:4px;background:linear-gradient(135deg,#f0abfc,#c084fc,#a855f7,#ec4899);box-shadow:0 14px 42px rgba(168,85,247,.35);position:relative;overflow:hidden;cursor:pointer;margin:0 auto}
 .mem-frame-inner{width:100%;height:100%;border-radius:18px;overflow:hidden;background:#f3e8ff;position:relative}
 .mem-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s}
@@ -142,27 +124,19 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .mem-dot{width:9px;height:9px;border-radius:50%;background:#d8b4fe;transition:all .3s;border:none;cursor:pointer;padding:0}
 .mem-dot.active{width:26px;border-radius:5px;background:linear-gradient(90deg,#a855f7,#ec4899)}
 .mem-hint{font-size:11px;color:#a855f7;font-weight:700;letter-spacing:.5px;margin-top:8px;opacity:.75}
-.fullscreen-viewer{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:20000;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:pinch-zoom}
-.fullscreen-viewer img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .1s;user-select:none;-webkit-user-drag:none}
-.fs-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);z-index:20001}
-.fs-controls{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:10px;background:rgba(255,255,255,.1);padding:10px 16px;border-radius:50px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);z-index:20001}
+.fullscreen-viewer{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:20000;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fs-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20001}
+.fs-controls{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:10px;background:rgba(255,255,255,.1);padding:10px 16px;border-radius:50px;z-index:20001}
 .fs-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:800}
-.fs-btn:active{transform:scale(.9)}
-.fs-hint{position:absolute;top:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;font-weight:700;letter-spacing:1px;background:rgba(0,0,0,.4);padding:6px 16px;border-radius:50px}
+.fs-hint{position:absolute;top:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;font-weight:700;background:rgba(0,0,0,.4);padding:6px 16px;border-radius:50px}
 
-/* ═══════════════════════════════════════════════════════════
-   💌 LETTER
-   ═══════════════════════════════════════════════════════════ */
-.letter{width:100%;max-width:340px;background:linear-gradient(180deg,#fffef7 0%,#fff8e7 100%);border-radius:18px;padding:28px 24px;box-shadow:0 20px 50px rgba(180,140,80,.25),0 4px 12px rgba(0,0,0,.06);position:relative;text-align:left;border:1px solid rgba(220,200,160,.4);background-image:repeating-linear-gradient(180deg,transparent 0 34px,rgba(200,180,150,.18) 34px 35px);background-position:0 22px;margin:0 auto}
-.letter-stamp{position:absolute;top:16px;right:16px;width:44px;height:52px;border-radius:6px;background:#fff;border:2px dashed #f4a6c0;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 8px rgba(0,0,0,.06);transform:rotate(6deg)}
-.letter-bear{width:64px;height:64px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:48px;filter:drop-shadow(0 4px 8px rgba(180,140,80,.3))}
+.letter{width:100%;max-width:340px;background:linear-gradient(180deg,#fffef7 0%,#fff8e7 100%);border-radius:18px;padding:28px 24px;box-shadow:0 20px 50px rgba(180,140,80,.25);position:relative;text-align:left;border:1px solid rgba(220,200,160,.4);background-image:repeating-linear-gradient(180deg,transparent 0 34px,rgba(200,180,150,.18) 34px 35px);background-position:0 22px;margin:0 auto}
+.letter-stamp{position:absolute;top:16px;right:16px;width:44px;height:52px;border-radius:6px;background:#fff;border:2px dashed #f4a6c0;display:flex;align-items:center;justify-content:center;font-size:22px;transform:rotate(6deg)}
+.letter-bear{width:64px;height:64px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:48px}
 .letter-greet{font-family:'Dancing Script',cursive;font-weight:700;font-size:26px;color:#a0522d;margin-bottom:14px;text-align:center}
 .letter-body{font-family:'Caveat',cursive;font-size:20px;line-height:1.55;color:#4a3a2a;font-weight:500}
 .letter-sign{font-family:'Caveat',cursive;font-size:22px;color:#b45309;text-align:right;margin-top:22px;font-weight:600}
 
-/* ═══════════════════════════════════════════════════════════
-   🎁 GIFTS
-   ═══════════════════════════════════════════════════════════ */
 .gift-card{width:100%;border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:14px;color:#fff;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.15);transition:transform .25s;cursor:pointer;position:relative;overflow:hidden}
 .gift-card:hover{transform:translateY(-4px) scale(1.02)}
 .gift-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
@@ -170,122 +144,100 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .gift-title{font-size:15px;font-weight:800;margin-bottom:2px}
 .gift-sub{font-size:12px;opacity:.85;font-weight:500}
 .gift-tap-hint{font-size:9px;opacity:.7;font-weight:700;letter-spacing:.5px;margin-top:3px;text-transform:uppercase}
-.gift-modal-overlay{position:fixed;inset:0;z-index:25000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.7);animation:overlayIn .3s ease-out forwards}
-.gift-modal{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:24px;padding:28px 22px 24px;width:100%;max-width:340px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(168,85,247,.4),0 0 0 1px rgba(255,255,255,.6);animation:modalIn .45s cubic-bezier(.34,1.56,.64,1) forwards}
+
+/* ⭐ NEW: Available gifts showcase on last page */
+.available-gifts-section{margin-top:36px;width:100%;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:22px;padding:20px 16px;box-shadow:0 14px 40px rgba(168,85,247,.22);border:2px solid rgba(250,204,21,.4)}
+.available-gifts-title{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899,#f97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:6px}
+.available-gifts-sub{font-size:11px;color:#7c3aed;font-weight:800;text-align:center;margin-bottom:14px;letter-spacing:.3px}
+.available-gifts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.available-gift-tile{display:flex;align-items:center;gap:8px;padding:10px 10px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border-radius:14px;border:1.5px solid rgba(251,191,36,.5);box-shadow:0 4px 12px rgba(251,191,36,.15)}
+.available-gift-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.available-gift-icon img{width:26px;height:26px;object-fit:contain}
+.available-gift-name{font-family:'Nunito',sans-serif;font-size:10.5px;font-weight:800;color:#1a202c;line-height:1.2;letter-spacing:.2px}
+
+.gift-modal-overlay{position:fixed;inset:0;z-index:25000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.7)}
+.gift-modal{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:24px;padding:28px 22px 24px;width:100%;max-width:340px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(168,85,247,.4)}
 .gift-modal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(168,85,247,.12);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.gift-modal-emoji{font-size:58px;line-height:1;margin-bottom:8px;display:block;animation:floatY 3s ease-in-out infinite}
+.gift-modal-emoji{font-size:58px;margin-bottom:8px;display:block}
 .gift-modal-title{font-family:'Dancing Script',cursive;font-size:26px;font-weight:700;color:#a21caf;margin-bottom:4px}
 .gift-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;margin-bottom:6px}
-.gift-modal-question{font-size:13px;color:#4a3a5c;font-weight:700;margin:14px 0 16px;line-height:1.5}
+.gift-modal-question{font-size:13px;color:#4a3a5c;font-weight:700;margin:14px 0 16px}
 .gift-modal-btns{display:flex;flex-direction:column;gap:10px}
-.gift-send-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;color:#fff;transition:transform .18s,box-shadow .18s;letter-spacing:.3px}
-.gift-send-btn:active{transform:scale(.97)}
-.gift-send-btn:hover{transform:translateY(-2px)}
-.gift-send-wa{background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 8px 22px rgba(37,211,102,.45)}
-.gift-send-mail{background:linear-gradient(135deg,#a855f7,#ec4899);box-shadow:0 8px 22px rgba(168,85,247,.45)}
+.gift-send-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;color:#fff}
+.gift-send-wa{background:linear-gradient(135deg,#25D366,#128C7E)}
+.gift-send-mail{background:linear-gradient(135deg,#a855f7,#ec4899)}
 .gift-send-icon{font-size:20px}
-.gift-modal-note{font-size:10.5px;color:#a89580;font-weight:700;margin-top:14px;letter-spacing:.3px}
 
-/* ═══════════════════════════════════════════════════════════
-   📱 QR MODAL
-   ═══════════════════════════════════════════════════════════ */
-.qr-modal-overlay{position:fixed;inset:0;z-index:26000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(13,6,32,.88);animation:overlayIn .35s ease-out forwards}
-.qr-modal{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:28px;padding:32px 22px 26px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5),0 0 0 1px rgba(255,255,255,.6),inset 0 0 60px rgba(168,85,247,.06);animation:qrModalIn .55s cubic-bezier(.34,1.56,.64,1) forwards;overflow:hidden}
-.qr-modal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:30px;padding:2px;background:conic-gradient(from 0deg,#a855f7,#ec4899,#f97316,#fde047,#a855f7);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:qrBorderSpin 4s linear infinite;pointer-events:none;opacity:.85}
-.qr-modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:transform .2s,background .2s}
-.qr-modal-close:hover{background:rgba(236,72,153,.25);color:#ec4899;transform:rotate(90deg)}
+.qr-modal-overlay{position:fixed;inset:0;z-index:26000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(13,6,32,.88)}
+.qr-modal{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:28px;padding:32px 22px 26px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5);overflow:hidden}
+.qr-modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:18px;font-weight:800;cursor:pointer;z-index:5}
 .qr-modal-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#a855f7;background:rgba(168,85,247,.12);padding:6px 14px;border-radius:50px;margin-bottom:14px}
-.qr-modal-title{font-family:'Dancing Script',cursive;font-size:30px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899,#f97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;line-height:1.1}
-.qr-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;letter-spacing:.5px;margin-bottom:22px}
-.qr-image-wrap{position:relative;display:inline-block;padding:14px;background:#fff;border-radius:22px;box-shadow:0 12px 40px rgba(168,85,247,.3),0 0 0 1px rgba(168,85,247,.2);animation:qrPulse 3s ease-in-out infinite}
+.qr-modal-title{font-family:'Dancing Script',cursive;font-size:30px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899,#f97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.qr-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;margin-bottom:22px}
+.qr-image-wrap{display:inline-block;padding:14px;background:#fff;border-radius:22px;box-shadow:0 12px 40px rgba(168,85,247,.3)}
 .qr-image-wrap img{display:block;width:200px;height:200px;border-radius:14px;object-fit:cover;background:#fff}
-.qr-instagram-tag{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:8px 16px;border-radius:50px;background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;box-shadow:0 8px 22px rgba(220,39,67,.4)}
-.qr-instagram-tag span{font-size:14px}
-.qr-hint{font-size:11px;color:#a89580;font-weight:700;margin-top:16px;letter-spacing:.3px;line-height:1.5}
+.qr-instagram-tag{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:8px 16px;border-radius:50px;background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;font-size:12px;font-weight:800}
+.qr-hint{font-size:11px;color:#a89580;font-weight:700;margin-top:16px}
 
-/* ═══════════════════════════════════════════════════════════
-   🎊 CONFETTI
-   ═══════════════════════════════════════════════════════════ */
 .confetti-piece{position:absolute;top:-20px;animation:confettiFall linear forwards;pointer-events:none}
 .stack{display:flex;flex-direction:column;gap:12px}
 .mt-sm{margin-top:14px}.mt-md{margin-top:22px}.mt-lg{margin-top:36px}
 
-/* ═══════════════════════════════════════════════════════════
-   📞 REACH ME (cream panel with circles)
-   ═══════════════════════════════════════════════════════════ */
-.reachme-wrap{width:100%;margin:36px auto 0;background:linear-gradient(180deg,#faf3e0 0%,#f5ead2 100%);border-radius:22px;padding:36px 20px 28px;position:relative;overflow:hidden;box-shadow:0 16px 44px rgba(140,100,50,.18),0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(190,155,95,.25);font-family:'Playfair Display',serif}
-.reachme-wrap::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 12% 18%,rgba(200,165,100,.55) 3px,transparent 4px),radial-gradient(circle at 88% 12%,rgba(200,165,100,.35) 2px,transparent 3px),radial-gradient(circle at 22% 82%,rgba(200,165,100,.4) 2.5px,transparent 3.5px),radial-gradient(circle at 78% 88%,rgba(180,120,100,.45) 3px,transparent 4px),radial-gradient(circle at 8% 55%,rgba(200,165,100,.3) 2px,transparent 3px),radial-gradient(circle at 92% 55%,rgba(200,165,100,.3) 2px,transparent 3px);pointer-events:none;opacity:.9}
-.reachme-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:28px;color:#7a2e3e;text-align:center;margin-bottom:30px;letter-spacing:.5px;position:relative}
+.reachme-wrap{width:100%;margin:36px auto 0;background:linear-gradient(180deg,#faf3e0 0%,#f5ead2 100%);border-radius:22px;padding:36px 20px 28px;position:relative;overflow:hidden;box-shadow:0 16px 44px rgba(140,100,50,.18);border:1px solid rgba(190,155,95,.25);font-family:'Playfair Display',serif}
+.reachme-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:28px;color:#7a2e3e;text-align:center;margin-bottom:30px;position:relative}
 .reachme-circles{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}
-.reachme-item{text-decoration:none;display:flex;flex-direction:column;align-items:center;width:88px;cursor:pointer;-webkit-tap-highlight-color:transparent;background:transparent;border:none;font-family:inherit;padding:0}
-.reachme-circle{width:74px;height:74px;border-radius:50%;border:1.8px solid #b8935a;display:flex;align-items:center;justify-content:center;background:transparent;font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:#7a2e3e;transition:transform .25s,background .25s,box-shadow .25s;box-shadow:0 2px 8px rgba(184,147,90,.12)}
-.reachme-item:hover .reachme-circle,.reachme-item:active .reachme-circle{transform:translateY(-3px) scale(1.04);background:rgba(184,147,90,.08);box-shadow:0 8px 20px rgba(184,147,90,.25)}
-.reachme-label{margin-top:12px;font-family:'Playfair Display',serif;font-size:12px;font-weight:500;color:#5a4636;text-align:center;line-height:1.3;letter-spacing:.2px;word-break:break-word}
-.reachme-made{text-align:center;margin-top:38px;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#8a7a6a;font-weight:400;letter-spacing:.3px;position:relative}
-.reachme-dev{text-align:center;margin-top:6px;font-family:'Playfair Display',serif;font-size:11.5px;color:#8a7a6a;font-weight:400;letter-spacing:.3px;position:relative}
+.reachme-item{text-decoration:none;display:flex;flex-direction:column;align-items:center;width:88px;cursor:pointer;background:transparent;border:none;font-family:inherit;padding:0}
+.reachme-circle{width:74px;height:74px;border-radius:50%;border:1.8px solid #b8935a;display:flex;align-items:center;justify-content:center;background:transparent;font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:#7a2e3e;transition:transform .25s,background .25s;box-shadow:0 2px 8px rgba(184,147,90,.12)}
+.reachme-item:hover .reachme-circle,.reachme-item:active .reachme-circle{transform:translateY(-3px) scale(1.04);background:rgba(184,147,90,.08)}
+.reachme-label{margin-top:12px;font-family:'Playfair Display',serif;font-size:12px;font-weight:500;color:#5a4636;text-align:center;line-height:1.3;word-break:break-word}
+.reachme-made{text-align:center;margin-top:38px;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#8a7a6a;position:relative}
+.reachme-dev{text-align:center;margin-top:6px;font-family:'Playfair Display',serif;font-size:11.5px;color:#8a7a6a;position:relative}
 .reachme-socials{display:flex;justify-content:center;gap:22px;margin-top:30px;position:relative}
-.reachme-social{font-family:'Playfair Display',serif;font-size:18px;color:#a89580;text-decoration:none;font-weight:500;padding:2px 6px;border-bottom:1px solid transparent;transition:all .25s;letter-spacing:1px}
+.reachme-social{font-family:'Playfair Display',serif;font-size:18px;color:#a89580;text-decoration:none;font-weight:500;padding:2px 6px;border-bottom:1px solid transparent;transition:all .25s}
 .reachme-social:hover{color:#7a2e3e;border-bottom:1px solid #b8935a}
+.reachme-circle svg{display:block;width:32px;height:32px;stroke:#7a2e3e;stroke-width:1.6;fill:none}
 
-/* ⭐ Share Memory — Reach Me style circles */
-.reachme-share-divider{margin:26px auto 20px;width:70%;height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,90,.4),transparent);position:relative}
-.reachme-share-title{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:#8a7a6a;text-align:center;margin-bottom:14px;letter-spacing:.5px;position:relative}
-.reachme-share-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}
-
-/* ═══════════════════════════════════════════════════════════
-   📤 SHARE MEMORY MODAL
-   ═══════════════════════════════════════════════════════════ */
-.share-modal-overlay{position:fixed;inset:0;z-index:27000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.9);animation:overlayIn .3s ease-out forwards;overflow-y:auto}
-.share-modal{position:relative;width:100%;max-width:400px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:26px;padding:26px 22px 22px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5),0 0 0 1px rgba(255,255,255,.6);animation:qrModalIn .5s cubic-bezier(.34,1.56,.64,1) forwards;max-height:90vh;overflow-y:auto}
-.share-modal::-webkit-scrollbar{width:6px}
-.share-modal::-webkit-scrollbar-thumb{background:rgba(168,85,247,.4);border-radius:3px}
-.share-modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5}
-.share-modal-close:active{transform:scale(.9)}
-.share-modal-emoji{font-size:54px;line-height:1;margin-bottom:8px;display:block;animation:floatY 3s ease-in-out infinite}
-.share-modal-title{font-family:'Dancing Script',cursive;font-size:28px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;line-height:1.1}
-.share-modal-sub{font-size:12.5px;color:#7c3aed;font-weight:700;margin-bottom:6px;line-height:1.5}
-.share-modal-hint{font-size:11px;color:#a89580;font-weight:700;margin-bottom:18px;line-height:1.5}
-.share-warn{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;margin-bottom:14px;line-height:1.5;text-align:left}
+.share-modal-overlay{position:fixed;inset:0;z-index:27000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.9);overflow-y:auto}
+.share-modal{position:relative;width:100%;max-width:400px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:26px;padding:26px 22px 22px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5);max-height:90vh;overflow-y:auto}
+.share-modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;z-index:5}
+.share-modal-emoji{font-size:54px;margin-bottom:8px;display:block}
+.share-modal-title{font-family:'Dancing Script',cursive;font-size:28px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.share-modal-sub{font-size:12.5px;color:#7c3aed;font-weight:700;margin-bottom:6px}
+.share-modal-hint{font-size:11px;color:#a89580;font-weight:700;margin-bottom:18px}
+.share-warn{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;margin-bottom:14px;text-align:left}
 .share-warn-warn{background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);color:#92400e}
 .share-warn-ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#065f46}
-.share-file-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:16px;border:2px dashed rgba(168,85,247,.4);background:rgba(168,85,247,.06);color:#a855f7;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .25s;margin-bottom:14px}
-.share-file-btn:hover{background:rgba(168,85,247,.15);border-color:#a855f7}
+.share-file-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:16px;border:2px dashed rgba(168,85,247,.4);background:rgba(168,85,247,.06);color:#a855f7;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:14px}
 .share-file-btn input{display:none}
 .share-progress-bar{width:100%;height:8px;background:rgba(168,85,247,.15);border-radius:4px;overflow:hidden;margin-bottom:14px}
 .share-progress-fill{height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:4px;transition:width .3s}
 .share-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;max-height:240px;overflow-y:auto;padding:4px}
-.share-thumb{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#f3e8ff;animation:memoryPop .4s ease-out}
+.share-thumb{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#f3e8ff}
 .share-thumb img,.share-thumb video{width:100%;height:100%;object-fit:cover;display:block}
-.share-thumb-badge{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px;letter-spacing:.3px}
-.share-thumb-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(239,68,68,.85);color:#fff;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.share-thumb-remove:active{transform:scale(.9)}
-.share-upload-btn{width:100%;padding:16px;border-radius:16px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.45);margin-top:16px;letter-spacing:.3px;transition:all .25s}
-.share-upload-btn:hover{transform:translateY(-2px);background-position:right center}
-.share-upload-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.share-thumb-badge{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px}
+.share-thumb-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(239,68,68,.85);color:#fff;font-size:11px;font-weight:800;cursor:pointer}
+.share-upload-btn{width:100%;padding:16px;border-radius:16px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);cursor:pointer;margin-top:16px}
 .share-success{text-align:center;padding:20px 0}
-.share-success-emoji{font-size:64px;display:block;margin-bottom:12px;animation:welcomeZoom .8s ease-out}
+.share-success-emoji{font-size:64px;display:block;margin-bottom:12px}
 .share-success-text{font-family:'Dancing Script',cursive;font-size:24px;font-weight:700;color:#a21caf;margin-bottom:6px}
 .share-success-sub{font-size:12px;color:#7c3aed;font-weight:700}
 
-/* ═══════════════════════════════════════════════════════════
-   📅 CALENDAR PAGE
-   ═══════════════════════════════════════════════════════════ */
 .date-page-bg{background:linear-gradient(135deg, #fff0f7, #fffafc);padding:12px 8px;justify-content:flex-start;overflow-y:auto}
-.date-page-title{font-family:'Dancing Script',cursive;font-size:clamp(22px,6vw,30px);color:#a21caf;text-shadow:0 2px 12px rgba(168,85,247,.3);margin-bottom:4px;margin-top:6px;line-height:1.15;text-align:center}
-.date-page-hint{color:#9c3c72;font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:14px;text-align:center}
+.date-page-title{font-family:'Dancing Script',cursive;font-size:clamp(22px,6vw,30px);color:#a21caf;text-shadow:0 2px 12px rgba(168,85,247,.3);margin-bottom:4px;margin-top:6px;text-align:center}
+.date-page-hint{color:#9c3c72;font-size:12px;font-weight:700;margin-bottom:14px;text-align:center}
 .date-wrong-tap{animation:shake .4s ease}
 .Bhanja-calendar{width:100%;max-width:100%;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(220,120,170,.25);font-family:"Comic Sans MS","Trebuchet MS",cursive;position:relative}
-.bc-header{padding:14px 10px 10px;text-align:center;background:linear-gradient(180deg,#fff4fa,#ffeaf5);position:relative}
+.bc-header{padding:14px 10px 10px;text-align:center;background:linear-gradient(180deg,#fff4fa,#ffeaf5)}
 .bc-emojis{font-size:15px;letter-spacing:2px}
-.bc-title{font-size:36px;line-height:1;font-weight:bold;background:linear-gradient(90deg,#ef1670,#a937c9,#179ed5,#8d42d5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:2px}
-.bc-year{font-size:34px;font-weight:bold;margin-top:2px;background:linear-gradient(90deg,#222,#008fd0,#f2b600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bc-title{font-size:36px;font-weight:bold;background:linear-gradient(90deg,#ef1670,#a937c9,#179ed5,#8d42d5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bc-year{font-size:34px;font-weight:bold;background:linear-gradient(90deg,#222,#008fd0,#f2b600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .bc-Bhanja-area{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px}
 .bc-girl{width:66px;height:66px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
 .bc-girl.one{background:#ffb8d5}
 .bc-girl.two{background:#c9b2ff}
 .bc-Bhanja-text{font-size:10px;font-weight:bold;text-align:center;margin-top:2px;color:#333}
 .bc-heart{font-size:24px}
-.bc-quote{margin:8px auto 4px;padding:8px;width:92%;background:#ffb9dc;border-radius:16px;font-size:13px;font-weight:bold;line-height:1.4;color:#222}
+.bc-quote{margin:8px auto 4px;padding:8px;width:92%;background:#ffb9dc;border-radius:16px;font-size:13px;font-weight:bold;color:#222}
 .bc-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:5px 5px 0}
 .bc-weekday{text-align:center;padding:7px 2px;border-radius:12px;font-size:12px;font-weight:bold}
 .bc-sun{background:#ffb5d3}.bc-mon{background:#ffc1ae}.bc-tue{background:#ffe17b}.bc-wed{background:#a8e9ce}.bc-thu{background:#a9d9fa}.bc-fri{background:#d0b8f5}.bc-sat{background:#f5afd0}
@@ -302,9 +254,9 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .bc-date-num{font-size:17px;font-weight:bold;line-height:1;color:#222}
 .bc-date-num.sunday-num{color:#e51f2a}
 .bc-date-icon{font-size:16px;margin-top:3px;line-height:1}
-.bc-special-22{background:#f0e5ff !important;border:2px dashed #8b32e8 !important;box-shadow:0 0 0 2px rgba(180,100,255,.08),inset 0 0 15px rgba(170,90,255,.08);position:relative;animation:bc-pulse 2s ease-in-out infinite;z-index:20}
+.bc-special-22{background:#f0e5ff !important;border:2px dashed #8b32e8 !important;box-shadow:0 0 0 2px rgba(180,100,255,.08);position:relative;animation:bc-pulse 2s ease-in-out infinite;z-index:20}
 .bc-special-22 .bc-date-num{color:#7126c9}
-@keyframes bc-pulse{0%,100%{box-shadow:0 0 0 2px rgba(180,100,255,.08),inset 0 0 15px rgba(170,90,255,.08)}50%{box-shadow:0 0 0 4px rgba(180,100,255,.25),inset 0 0 20px rgba(170,90,255,.2)}}
+@keyframes bc-pulse{0%,100%{box-shadow:0 0 0 2px rgba(180,100,255,.08)}50%{box-shadow:0 0 0 4px rgba(180,100,255,.25)}}
 .bc-bottom{padding:10px 8px 14px}
 .bc-messages{display:grid;gap:5px;margin-bottom:10px}
 .bc-message{padding:7px 12px;border-radius:10px;font-size:13px;font-weight:bold;color:#222}
@@ -313,81 +265,154 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 .bc-message:nth-child(3){background:#ffd5dc}
 .bc-message:nth-child(4){background:#b9dcfa}
 
+.gift-picker-page{background:radial-gradient(ellipse at 50% 0%,#7dd3fc 0%,#38bdf8 30%,#0ea5e9 60%,#0284c7 100%);padding:16px}
+.gift-picker-title{font-family:'Dancing Script',cursive;font-size:clamp(30px,9vw,42px);font-weight:700;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4),0 0 40px rgba(250,204,21,.6);margin-bottom:6px;text-align:center}
+.gift-picker-sub{color:rgba(255,255,255,.95);font-size:13px;font-weight:800;margin-bottom:18px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
+.gift-carousel-viewport{width:260px;height:340px;overflow:hidden;border-radius:32px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);box-shadow:0 30px 70px rgba(0,0,0,.4),0 0 0 8px rgba(255,255,255,.7),0 0 0 12px rgba(250,204,21,.5);position:relative;margin:0 auto}
+.gift-carousel-top-bar,.gift-carousel-bottom-bar{position:absolute;left:0;right:0;height:12px;background:linear-gradient(90deg,transparent,#facc15,#fde047,#facc15,transparent);z-index:10;box-shadow:0 0 24px rgba(250,204,21,.7)}
+.gift-carousel-top-bar{top:0;border-radius:32px 32px 0 0}
+.gift-carousel-bottom-bar{bottom:0;border-radius:0 0 32px 32px}
+.gift-carousel-track{display:flex;will-change:transform;height:100%}
+.gift-carousel-track.spinning{transition:transform 3.5s cubic-bezier(0.15, 0.85, 0.25, 1)}
+.gift-carousel-track.settled{transition:transform .35s ease}
+.gift-slide{width:260px;height:340px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;box-sizing:border-box;position:relative;gap:16px}
+.gift-slide-img-wrap{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.25),inset 0 -10px 30px rgba(0,0,0,.15)}
+.gift-slide-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.45);filter:blur(6px);z-index:1}
+.gift-slide-img{width:130px;height:130px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25));animation:giftImageFloat 2.5s ease-in-out infinite}
+.gift-slide-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.3px;padding:0 8px}
+.gift-picker-arrow{margin-top:24px;width:100px;height:100px;border-radius:50%;border:6px solid #fff;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;cursor:pointer;box-shadow:0 18px 44px rgba(251,191,36,.6),0 0 0 8px rgba(255,255,255,.4),inset 0 -8px 20px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;transition:transform .2s;user-select:none;position:relative}
+.gift-picker-arrow::after{content:'';position:absolute;inset:-12px;border-radius:50%;border:3px dashed rgba(255,255,255,.6);animation:giftArrowSpin 12s linear infinite}
+.gift-picker-arrow:active{transform:scale(.92)}
+.gift-picker-arrow:disabled{cursor:wait;opacity:.85}
+.gift-picker-arrow:not(:disabled){animation:floatY 2s ease-in-out infinite}
+.gift-picker-arrow.spinning svg{animation:giftArrowSpin .8s linear infinite}
+.gift-picker-arrow svg{width:48px;height:48px;stroke:#fff;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.gift-picker-hint{color:#fff;font-size:14px;font-weight:800;margin-top:20px;text-shadow:0 2px 10px rgba(0,0,0,.4);text-align:center}
+
+.gift-result-page{background:radial-gradient(ellipse at 50% 30%,#4a1d96 0%,#2a1560 45%,#0d0620 100%);padding:20px;overflow:hidden;position:relative}
+.gift-result-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.gift-sparkle{position:absolute;font-size:26px;animation:starTwinkle 1.8s ease-in-out infinite}
+.gift-result-content{position:relative;z-index:5;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
+.gift-result-ribbon{position:relative;padding:10px 26px;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;border-radius:50px;box-shadow:0 10px 30px rgba(251,191,36,.55),0 0 0 4px rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:20px;z-index:2}
+.gift-result-card{width:100%;max-width:280px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:32px;padding:24px 20px 22px;text-align:center;position:relative;box-shadow:0 25px 70px rgba(0,0,0,.4),0 0 0 6px rgba(255,255,255,.7),0 0 0 10px rgba(250,204,21,.45);animation:cardGlow 2.5s ease-in-out infinite;margin-bottom:22px}
+.gift-result-img-wrap{width:160px;height:160px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.2),inset 0 -8px 20px rgba(0,0,0,.1)}
+.gift-result-img-wrap::before{content:'';position:absolute;top:8%;left:18%;width:32%;height:22%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(6px);z-index:1}
+.gift-result-img{width:115px;height:115px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));animation:giftImageFloat 2.5s ease-in-out infinite}
+.gift-result-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#1a202c;line-height:1.2;letter-spacing:.3px;padding:0 6px}
+.gift-result-boy{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 6px rgba(0,0,0,.3);backdrop-filter:blur(10px);margin-bottom:18px}
+.gift-continue-btn{width:100%;max-width:280px;padding:16px 32px;border-radius:50px;border:4px solid #fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 14px 36px rgba(168,85,247,.6),0 0 0 6px rgba(255,255,255,.25);letter-spacing:.5px;transition:transform .2s;animation:shine 3s linear infinite;margin-bottom:14px}
+.gift-continue-btn:active{transform:scale(.95)}
+.gift-auto-timer{display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:13px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.4);letter-spacing:.3px;opacity:.95}
+.gift-timer-ring{position:relative;width:34px;height:34px}
+.gift-timer-ring svg{width:34px;height:34px;transform:rotate(-90deg)}
+.gift-timer-ring circle{fill:none;stroke-width:3;stroke-linecap:round}
+.gift-timer-ring .bg-circle{stroke:rgba(255,255,255,.25)}
+.gift-timer-ring .fg-circle{stroke:#fde047;stroke-dasharray:88;transition:stroke-dashoffset 1s linear}
+.gift-timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fde047}
+
 /* ═══════════════════════════════════════════════════════════
    🔐 ADMIN PANEL
    ═══════════════════════════════════════════════════════════ */
 .admin-overlay{position:fixed;inset:0;background:rgba(13,6,32,.96);z-index:10000;overflow-y:auto;padding:20px;display:flex;justify-content:center;align-items:flex-start}
-.admin-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:24px;width:100%;max-width:520px;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.admin-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:24px;width:100%;max-width:520px;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
 .admin-panel h2{font-family:'Dancing Script',cursive;font-size:28px;color:#f0abfc;margin-bottom:6px;text-align:center}
 .admin-panel .sub{font-size:12px;color:rgba(233,213,255,.5);text-align:center;margin-bottom:20px}
 .admin-field{margin-bottom:14px}
 .admin-field label{display:block;font-size:11px;font-weight:800;color:#c4b5fd;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-.admin-field input,.admin-field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:10px 12px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border .2s}
-.admin-field input:focus,.admin-field textarea:focus{border-color:#a855f7;background:rgba(168,85,247,.1)}
-.admin-field textarea{resize:vertical;min-height:70px;font-family:'Nunito',sans-serif}
+.admin-field input,.admin-field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:10px 12px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;outline:none}
+.admin-field textarea{resize:vertical;min-height:70px}
 .admin-section{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.15);border-radius:12px;padding:14px;margin-bottom:16px}
-.admin-section h3{font-size:13px;color:#f0abfc;margin-bottom:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:800}
+.admin-section h3{font-size:13px;color:#f0abfc;margin-bottom:10px;text-transform:uppercase;font-weight:800}
 .admin-row{display:grid;grid-template-columns:60px 1fr;gap:8px;margin-bottom:8px;align-items:center}
 .admin-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.admin-btn{flex:1;min-width:120px;padding:12px 16px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:transform .15s,box-shadow .15s;letter-spacing:.3px}
-.admin-btn:active{transform:scale(.97)}
-.admin-btn-primary{background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;box-shadow:0 6px 20px rgba(168,85,247,.4)}
+.admin-btn{flex:1;min-width:120px;padding:12px 16px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer}
+.admin-btn-primary{background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff}
 .admin-btn-secondary{background:rgba(255,255,255,.1);color:#e9d5ff;border:1px solid rgba(168,85,247,.3)}
 .admin-btn-danger{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
-.admin-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px}
-.admin-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;padding:12px 24px;border-radius:50px;font-weight:800;font-size:13px;z-index:10001;box-shadow:0 8px 30px rgba(168,85,247,.5);animation:pop .4s}
+.admin-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;z-index:5}
+.admin-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;padding:12px 24px;border-radius:50px;font-weight:800;font-size:13px;z-index:10001}
 .admin-hint{font-size:11px;color:rgba(233,213,255,.4);text-align:center;margin-top:14px;line-height:1.5}
 .mem-editor{background:rgba(255,255,255,.04);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:12px;margin-bottom:12px}
 .mem-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.mem-editor-head span{font-size:11px;font-weight:800;color:#f0abfc;letter-spacing:1px;text-transform:uppercase}
-.mem-preview{width:100%;height:100px;border-radius:8px;background:#0d0620 center/cover;margin-bottom:10px;border:1px solid rgba(168,85,247,.2);position:relative;overflow:hidden}
+.mem-editor-head span{font-size:11px;font-weight:800;color:#f0abfc;text-transform:uppercase}
+.mem-preview{width:100%;height:100px;border-radius:8px;background:#0d0620;margin-bottom:10px;border:1px solid rgba(168,85,247,.2);position:relative;overflow:hidden}
 .mem-preview img{width:100%;height:100%;object-fit:cover}
-.mem-file-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.4);color:#e9d5ff;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;margin-bottom:8px;font-family:'Nunito',sans-serif;letter-spacing:.3px}
-.mem-file-btn:hover{background:rgba(168,85,247,.4);color:#fff}
+.mem-file-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.4);color:#e9d5ff;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:8px}
 .mem-file-btn input{display:none}
 .mem-slider-row{display:grid;grid-template-columns:60px 1fr 40px;gap:8px;align-items:center;margin-bottom:6px}
-.mem-slider-row label{font-size:10px;color:#c4b5fd;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.mem-slider-row label{font-size:10px;color:#c4b5fd;font-weight:800;text-transform:uppercase}
 .mem-slider-row input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:rgba(168,85,247,.3);border-radius:2px;outline:none}
 .mem-slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:linear-gradient(135deg,#a855f7,#ec4899);border-radius:50%;cursor:pointer}
 .mem-slider-row span{font-size:11px;color:#c4b5fd;font-weight:700;text-align:right}
 .mem-caption-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:8px;padding:8px 10px;color:#fff;font-family:'Nunito',sans-serif;font-size:13px;outline:none;margin-top:4px}
-.shared-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.shared-tile{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#0d0620;border:1px solid rgba(168,85,247,.25)}
-.shared-tile img,.shared-tile video{width:100%;height:100%;object-fit:cover;display:block}
-.shared-tile-badge{position:absolute;top:4px;left:4px;background:rgba(168,85,247,.9);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px}
-.shared-tile-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(239,68,68,.9);color:#fff;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.shared-tile-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));color:#fff;font-size:9px;font-weight:700;padding:8px 6px 4px;text-align:center}
-.shared-stats{font-size:11px;color:#c4b5fd;font-weight:700;text-align:center;margin-top:8px}
-.shared-empty{text-align:center;padding:20px 10px;color:rgba(233,213,255,.4);font-size:12px;font-weight:700}
 
-/* ═══════════════════════════════════════════════════════════
-   🔐 PASSWORD GATE & WELCOME
-   ═══════════════════════════════════════════════════════════ */
+/* ⭐ NEW: Folder button style */
+.folder-btn{width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1.5px solid rgba(168,85,247,.35);background:linear-gradient(135deg, rgba(168,85,247,.12), rgba(236,72,153,.08));color:#e9d5ff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:transform .2s;margin-bottom:10px;text-align:left}
+.folder-btn:hover{transform:translateY(-2px);background:linear-gradient(135deg, rgba(168,85,247,.2), rgba(236,72,153,.15))}
+.folder-btn:active{transform:scale(.98)}
+.folder-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 6px 16px rgba(251,191,36,.4)}
+.folder-info{flex:1}
+.folder-title{font-size:14px;font-weight:900;color:#fff;margin-bottom:2px}
+.folder-sub{font-size:11px;color:rgba(233,213,255,.6);font-weight:700}
+.folder-arrow{font-size:18px;color:rgba(233,213,255,.5)}
+
+/* ⭐ NEW: Folder view (full screen page) */
+.folder-view{position:fixed;inset:0;background:rgba(13,6,32,.98);z-index:10100;overflow-y:auto;padding:20px}
+.folder-view-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:20px;width:100%;max-width:520px;margin:0 auto;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:folderOpen .4s ease-out}
+.folder-view-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(168,85,247,.2)}
+.folder-back-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.15);color:#e9d5ff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.folder-back-btn:active{transform:scale(.9)}
+.folder-view-title{flex:1}
+.folder-view-title h2{font-family:'Dancing Script',cursive;font-size:22px;color:#f0abfc;margin-bottom:2px;line-height:1.1}
+.folder-view-title p{font-size:11px;color:rgba(233,213,255,.6);font-weight:700}
+.folder-view-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.folder-view-tile{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#0d0620;border:1.5px solid rgba(168,85,247,.3);cursor:pointer;transition:transform .2s}
+.folder-view-tile:hover{transform:scale(1.03)}
+.folder-view-tile img,.folder-view-tile video{width:100%;height:100%;object-fit:cover;display:block}
+.folder-view-tile-num{position:absolute;top:8px;left:8px;background:rgba(168,85,247,.9);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:50px;z-index:2}
+.folder-view-tile-name{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));color:#fff;font-size:11px;font-weight:800;padding:20px 8px 8px;text-align:center;letter-spacing:.3px;z-index:2}
+.folder-view-tile-del{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(239,68,68,.9);color:#fff;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3}
+.folder-view-empty{text-align:center;padding:40px 20px;color:rgba(233,213,255,.5);font-size:13px;font-weight:700}
+.folder-view-empty-icon{font-size:60px;display:block;margin-bottom:14px;opacity:.5}
+.folder-view-actions{display:flex;gap:10px;margin-top:16px}
+.folder-view-actions .admin-btn{flex:1}
+
+/* ⭐ NEW: Image preview modal (folder view ke andar) */
+.img-preview-modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10200;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
+.img-preview-modal img,.img-preview-modal video{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.img-preview-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+.img-preview-info{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:50px;letter-spacing:.3px;backdrop-filter:blur(10px);text-align:center;max-width:90%}
+
+/* ⭐ NEW: Gift picker info folder tiles (like images) */
+.gift-folder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px}
+.gift-folder-tile{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid rgba(168,85,247,.25);box-shadow:0 6px 16px rgba(168,85,247,.15)}
+.gift-folder-tile-img{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.gift-folder-tile-img img{width:42px;height:42px;object-fit:contain}
+.gift-folder-tile-num{position:absolute;top:-4px;left:-4px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(251,191,36,.5)}
+.gift-folder-tile-name{font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;color:#1a202c;text-align:center;line-height:1.2;letter-spacing:.2px}
+
 .password-gate{position:absolute;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 30%,#2a1560 0%,#150830 45%,#08021a 100%);overflow-y:auto}
-.pg-lock{font-size:72px;line-height:1;margin-bottom:18px;animation:lockPulse 2.5s ease-in-out infinite;display:block}
+.pg-lock{font-size:72px;margin-bottom:18px;animation:lockPulse 2.5s ease-in-out infinite;display:block}
 .pg-title{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:10px}
-.pg-sub{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:28px;line-height:1.5;max-width:300px}
+.pg-sub{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;margin-bottom:28px;line-height:1.5;max-width:300px}
 .pg-input-wrap{width:100%;max-width:320px;position:relative;margin-bottom:16px}
-.pg-input{width:100%;padding:16px 50px 16px 20px;border-radius:50px;border:2px solid rgba(168,85,247,.4);background:rgba(255,255,255,.08);color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;outline:none;transition:all .25s;text-align:center;letter-spacing:1px}
-.pg-input::placeholder{color:rgba(255,255,255,.4);font-weight:600}
+.pg-input{width:100%;padding:16px 50px 16px 20px;border-radius:50px;border:2px solid rgba(168,85,247,.4);background:rgba(255,255,255,.08);color:#fff;font-family:'Nunito',sans-serif;font-size:18px;font-weight:700;outline:none;text-align:center;letter-spacing:8px}
 .pg-input:focus{border-color:#ec4899;background:rgba(236,72,153,.12);box-shadow:0 0 0 4px rgba(236,72,153,.15)}
 .pg-input.shake{animation:inputShake .5s ease}
 .pg-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.2);color:#e9d5ff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .pg-error{color:#fca5a5;font-size:12px;font-weight:700;margin-bottom:14px;min-height:18px}
-.pg-btn{width:100%;max-width:320px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.5);transition:all .25s}
-.pg-btn:active{transform:scale(.97)}
-.pg-hint{color:rgba(255,255,255,.35);font-size:11px;font-weight:600;margin-top:20px;line-height:1.5}
+.pg-btn{width:100%;max-width:320px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.5)}
+.pg-hint{color:rgba(255,255,255,.35);font-size:11px;font-weight:600;margin-top:20px}
 
 .welcome-screen{position:absolute;inset:0;z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 40%,#4a1d96 0%,#2a1560 45%,#0d0620 100%);overflow:hidden}
 .welcome-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .welcome-sparkle{position:absolute;font-size:22px;animation:sparkleRain linear forwards}
-.welcome-emoji{font-size:88px;line-height:1;margin-bottom:20px;display:block;animation:welcomeZoom 1s cubic-bezier(.34,1.56,.64,1) forwards}
-.welcome-title{font-family:'Dancing Script',cursive;font-size:clamp(40px,12vw,56px);font-weight:700;color:#fff;animation:welcomeGlow 2s ease-in-out infinite;margin-bottom:14px;letter-spacing:1px}
+.welcome-emoji{font-size:88px;margin-bottom:20px;display:block;animation:welcomeZoom 1s cubic-bezier(.34,1.56,.64,1) forwards}
+.welcome-title{font-family:'Dancing Script',cursive;font-size:clamp(40px,12vw,56px);font-weight:700;color:#fff;animation:welcomeGlow 2s ease-in-out infinite;margin-bottom:14px}
 .welcome-name{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7,#fde047);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:22px}
-.welcome-sub{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;letter-spacing:.5px;line-height:1.6;max-width:300px;margin-bottom:32px}
-.welcome-btn{padding:16px 40px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899,#a855f7);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(236,72,153,.5);transition:all .25s;animation:doorOpen 1s ease-out .3s both}
-.welcome-btn:active{transform:scale(.97)}
+.welcome-sub{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;line-height:1.6;max-width:300px;margin-bottom:32px}
+.welcome-btn{padding:16px 40px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899,#a855f7);cursor:pointer;box-shadow:0 10px 30px rgba(236,72,153,.5);animation:doorOpen 1s ease-out .3s both}
 </style>
 </head>
 <body>
@@ -397,33 +422,159 @@ body{background:#0d0620;display:flex;align-items:center;justify-content:center}
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ⭐⭐⭐  YAHAN SE SAB KUCH CHANGE KARO  ⭐⭐⭐
+   ⭐⭐⭐  SECTION 1: USER CONFIGURATION (SIRF YAHAN CHANGE KARO)  ⭐⭐⭐
+   ═══════════════════════════════════════════════════════════════════════════
+   👇 Har config ke saath likha hai "kya hai" aur "kahan use hota hai"
+   👇 Sirf quotes "" ke andar apni value paste karo
    ═══════════════════════════════════════════════════════════════════════════ */
 
-const ACCESS_PASSWORD = "Mahnoor@2";
+/* ─────────────────────────────────────────────────────────────────────────
+   🔐 ACCESS PASSWORD
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: Website kholte hi jo password maangta hai
+   KAHAN DIKHEGA: Pehli screen par (lock 🔐 icon ke saath)
+   ───────────────────────────────────────────────────────────────────────── */
+const ACCESS_PASSWORD = "1234";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   📸 INSTAGRAM QR CODE IMAGE
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: Instagram QR code ka image (jo "Create birthday card" button se khulta hai)
+   KAHAN DIKHEGA: Last page (Gifts page) → "📸 Create your birthday card" button → modal
+   ⚠️ ZAROORI: Direct image URL hona chahiye (.png / .jpg me khatam ho)
+   ───────────────────────────────────────────────────────────────────────── */
 const INSTAGRAM_QR_IMAGE = "https://plain-apac-prod-public.komododecks.com/202609/15/GaED9XL07402ZbZKsgD3/image.png";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   🖼️ PAGE 1 IMAGE (Intro screen par)
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: Birthday boy ki photo (pehli screen par dikhti hai)
+   KAHAN DIKHEGA: "For You, Mahnoor Alam" heading ke neeche, chhoti frame me
+   ───────────────────────────────────────────────────────────────────────── */
 const PAGE_1_IMAGE = "https://cdn.phototourl.com/free/2026-09-15-7122d3ef-ec20-49ea-b718-2443a3595eb2.jpg";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   🎂 CAKE IMAGE (Wish page par)
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: Birthday cake ki image (candle blow karne wali page)
+   KAHAN DIKHEGA: "Make a Wish!" page par, cake ke upar tap karke candle bujhao
+   ───────────────────────────────────────────────────────────────────────── */
 const CAKE_IMAGE = "https://kommodo.ai/i/N5iJvBYKEVUT6iXVHFEF";
 
-const MEMORY_1  = "https://kommodo.ai/i/V843RjGjGr8D8BbNhsTE";
-const MEMORY_2  = "https://kommodo.ai/i/84G6U7pFnUVvAlrSV1Oq";
-const MEMORY_3  = "https://kommodo.ai/i/Ad02PqsX6Hqsqx4Kec2W";
-const MEMORY_4  = "https://kommodo.ai/i/WXbymmNWnSE9rym9fZpj";
-const MEMORY_5  = "https://kommodo.ai/i/mXis4f60iQPYCH16oILO";
-const MEMORY_6  = "https://kommodo.ai/i/3p3MSnp6FAgLhGxvhyD8";
-const MEMORY_7  = "https://kommodo.ai/i/3PDBgxwjU02CtofIr4uZ";
-const MEMORY_8  = "https://kommodo.ai/i/Syfv3yedtvLg8zDnA7w2";
-const MEMORY_9  = "https://kommodo.ai/i/L5ptgx19O3HfbglqF3gP";
-const MEMORY_10 = "https://kommodo.ai/i/VTh6FrfbS8F7FyUN0yLY";
+/* ─────────────────────────────────────────────────────────────────────────
+   📸 10 MEMORY IMAGES (Beautiful Memories page par)
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: 10 yaadein (photos) jo carousel me dikhti hain
+   KAHAN DIKHEGA: "Beautiful Memories 📸" page par, ek ek karke dikhega
+   ───────────────────────────────────────────────────────────────────────── */
+const MEMORY_1  = "https://kommodo.ai/i/V843RjGjGr8D8BbNhsTE"; // Memory 1 - pehli photo
+const MEMORY_2  = "https://kommodo.ai/i/84G6U7pFnUVvAlrSV1Oq"; // Memory 2 - dusri photo
+const MEMORY_3  = "https://kommodo.ai/i/Ad02PqsX6Hqsqx4Kec2W"; // Memory 3 - teesri photo
+const MEMORY_4  = "https://kommodo.ai/i/WXbymmNWnSE9rym9fZpj"; // Memory 4 - chauthi photo
+const MEMORY_5  = "https://kommodo.ai/i/mXis4f60iQPYCH16oILO"; // Memory 5 - paanchvi photo
+const MEMORY_6  = "https://kommodo.ai/i/3p3MSnp6FAgLhGxvhyD8"; // Memory 6 - chhati photo
+const MEMORY_7  = "https://kommodo.ai/i/3PDBgxwjU02CtofIr4uZ"; // Memory 7 - saatvi photo
+const MEMORY_8  = "https://kommodo.ai/i/Syfv3yedtvLg8zDnA7w2"; // Memory 8 - aathvi photo
+const MEMORY_9  = "https://kommodo.ai/i/L5ptgx19O3HfbglqF3gP"; // Memory 9 - nauvi photo
+const MEMORY_10 = "https://kommodo.ai/i/VTh6FrfbS8F7FyUN0yLY"; // Memory 10 - dasvi photo
 
-const MAX_IMAGE_SIZE = 4 * 1024 * 1024;
-const MAX_VIDEO_SIZE = 200 * 1024 * 1024;
-const MAX_FILES_AT_ONCE = 20;
+/* ─────────────────────────────────────────────────────────────────────────
+   📤 SHARE MEMORY FILE SIZE LIMITS
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: User max kitni badi image/video upload kar sakta hai
+   KAHAN USE: "Share Your Memory" button (Reach Me section me camera icon)
+   ───────────────────────────────────────────────────────────────────────── */
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024;      // 4 MB per image
+const MAX_VIDEO_SIZE = 200 * 1024 * 1024;    // 200 MB per video
+const MAX_FILES_AT_ONCE = 20;                 // Ek baar me max 20 files
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ⭐ 10 GIFT PICKER ITEMS — GIFT PICKING PAGE KE LIYE
+   ─────────────────────────────────────────────────────────────────────────
+   KYA HAI: 10 gifts jo carousel me ghoomte hain (arrow tap karne par)
+   KAHAN DIKHEGA: Candle blow karne ke baad "Pick Your Gift!" page par
+   
+   🔧 HAR GIFT KE FIELDS:
+   ─ name: Gift ka naam (jo result me dikhta hai)
+   ─ emoji: Fallback emoji (agar image load na ho)
+   ─ color: Gift ki theme color (circle background)
+   ─ img: Gift ki REAL IMAGE ka URL (Twemoji SVG — yahan apna bhi laga sakte ho)
+   ───────────────────────────────────────────────────────────────────────── */
+const GIFT_PICKER_LIST = [
+  {
+    name: "Remote Control Car",                              // 🚗 Gift ka naam
+    emoji: "🚗",                                              // Fallback emoji
+    color: "#ef4444",                                         // Red color
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f697.svg" // 🚗 Car icon
+  },
+  {
+    name: "Teddy Bear",                                       // 🧸 Gift ka naam
+    emoji: "🧸",
+    color: "#f59e0b",                                         // Orange-gold
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f8.svg" // 🧸 Teddy bear icon
+  },
+  {
+    name: "Dinosaur Toy",                                     // 🦕 Gift ka naam
+    emoji: "🦕",
+    color: "#10b981",                                         // Green
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f995.svg" // 🦕 Dinosaur icon
+  },
+  {
+    name: "Building Blocks",                                  // 🧱 Gift ka naam
+    emoji: "🧱",
+    color: "#f97316",                                         // Orange
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9f1.svg" // 🧱 Bricks icon
+  },
+  {
+    name: "Drawing Kit",                                      // 🎨 Gift ka naam
+    emoji: "🎨",
+    color: "#8b5cf6",                                         // Purple
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3a8.svg" // 🎨 Palette icon
+  },
+  {
+    name: "Mini Basketball",                                  // 🏀 Gift ka naam
+    emoji: "🏀",
+    color: "#fb923c",                                         // Orange
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3c0.svg" // 🏀 Basketball icon
+  },
+  {
+    name: "Toy JCB",                                          // 🚜 Gift ka naam
+    emoji: "🚜",
+    color: "#eab308",                                         // Yellow
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f69c.svg" // 🚜 Tractor/JCB icon
+  },
+  {
+    name: "Puzzle Game",                                      // 🧩 Gift ka naam
+    emoji: "🧩",
+    color: "#06b6d4",                                         // Cyan
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e9.svg" // 🧩 Puzzle icon
+  },
+  {
+    name: "Balloon Set",                                      // 🎈 Gift ka naam
+    emoji: "🎈",
+    color: "#ec4899",                                         // Pink
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f388.svg" // 🎈 Balloon icon
+  },
+  {
+    name: "Surprise Gift Box",                                // 🎁 Gift ka naam
+    emoji: "🎁",
+    color: "#a855f7",                                         // Purple
+    img: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f381.svg" // 🎁 Gift box icon
+  },
+];
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ⚙️ CONSTANTS — CHANGE MAT KARO
+   ───────────────────────────────────────────────────────────────────────── */
+const GIFT_RESULT_KEY = "bday_gift_result_v1";   // localStorage key (gift result save)
+const GIFT_CARD_WIDTH = 260;                       // Carousel card ki width (px)
+const AUTO_ADVANCE_SECONDS = 20;                   // Gift result page → 20 sec me auto next
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   🛑  NEECHE CHANGE MAT KARO
+   🛑  SECTION 2: YAHAN SE NEECHE CHANGE MAT KARO
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* 📞 Reach Me — contact info (admin panel me bhi change kar sakte ho) */
 const REACH_ME = {
   whatsappNumber: "919304940805", whatsappDisplay: "WhatsApp",
   email: "mdjishancse@gmail.com", emailDisplay: "Email",
@@ -436,10 +587,11 @@ const REACH_ME = {
   emailLink: "mdjishancse@gmail.com",
 };
 
-const ADMIN_PASSWORD = "admin123";
-const SECRET_TAPS_NEEDED = 6;
-const SECRET_TAP_WINDOW = 4000;
+const ADMIN_PASSWORD = "admin123";                  // Admin panel ka password
+const SECRET_TAPS_NEEDED = 6;                        // Intro page par 6 tap = admin khule
+const SECRET_TAP_WINDOW = 4000;                      // 4 second window
 
+/* 📅 Calendar cells — dates + emojis (Calendar page ke liye) */
 const CALENDAR_CELLS = [
   { empty: true, dayClass: 'sun-box' },{ empty: true, dayClass: 'mon-box' },
   { num: 1, icon: '☀️', dayClass: 'tue-box' },{ num: 2, icon: '🌱', dayClass: 'wed-box' },
@@ -449,7 +601,7 @@ const CALENDAR_CELLS = [
   { num: 9, icon: '🌿', dayClass: 'wed-box' },{ num: 10, icon: '🦋', dayClass: 'thu-box' },
   { num: 11, icon: '🎧', dayClass: 'fri-box' },{ num: 12, icon: '👑', dayClass: 'sat-box' },
   { num: 13, icon: '🌷', dayClass: 'sun-box', sunday: true },{ num: 14, icon: '📖', dayClass: 'mon-box' },
-  { num: 15, icon: '☀️', dayClass: 'tue-box' },{ num: 16, icon: '📷', dayClass: 'wed-box' },
+  { num: 15, icon: '🎂', dayClass: 'tue-box' },{ num: 16, icon: '📷', dayClass: 'wed-box' },
   { num: 17, icon: '☁️', dayClass: 'thu-box' },{ num: 18, icon: '💗', dayClass: 'fri-box' },
   { num: 19, icon: '🍀', dayClass: 'sat-box' },{ num: 20, icon: '❤️', dayClass: 'sun-box', sunday: true },
   { num: 21, icon: '🌿', dayClass: 'mon-box' },{ num: 22, icon: '🎀', dayClass: 'tue-box' },
@@ -472,12 +624,12 @@ const DEFAULT_CALENDAR = {
   month: "September", year: "2026", title: "Find your special date ✨",
   hint: "Tap on the correct date 👇", quoteLine1: "Same Crazy Bhanja 💕",
   quoteLine2: "Same Beautiful Memories ✨", Bhanja1: "Bhanja 💗",
-  Bhanja2: "Forever 💜", specialDate: 14,
+  Bhanja2: "Forever 💜", specialDate: 15,
   messages: ["💕 Lots of Hugs", "✨ Lots of Smiles", "💗 Keep Being Happy", "🦋 Make Happy Memories"],
 };
 
 const DEFAULT_CONFIG = {
-  name: "Mehnoor Alam",
+  name: "Mahnoor Alam",
   messages: [
     { icon: "🎂", text: "Happy Birthday, mere pyare champ! 💕 Allah tumhe hamesha khush aur muskurata rakhe. 🤲✨" },
     { icon: "🌟", text: "Aaj ka din sirf tumhare naam! Allah tumhari har khushi poori kare aur tumhe hamesha salamat rakhe. 🌸🤲" },
@@ -487,34 +639,25 @@ const DEFAULT_CONFIG = {
   letterSign: "With all my love 💛",
   memories: DEFAULT_MEMORIES.map(m => ({ img: m.src, id: null, caption: m.caption, zoom: 1, x: 50, y: 50 })),
   gifts: [
-    { title: "Unlimited Hugs", sub: "Redeemable anytime", icon: "🤗", c1: "#8b5cf6", c2: "#6d28d9", waMsg: "🤗 I want to redeem my gift: Unlimited Hugs!", mailMsg: "🤗 I want to redeem my gift: Unlimited Hugs!" },
-    { title: "Toy Time", sub: "Pick your favourite toy!", icon: "🧸", c1: "#f59e0b", c2: "#d97706", waMsg: "🧸 I want to redeem my gift: Toy Time!", mailMsg: "🧸 I want to redeem my gift: Toy Time!" },
-    { title: "Ice Cream Treat", sub: "Your favourite flavour!", icon: "🍦", c1: "#ec4899", c2: "#db2777", waMsg: "🍦 I want to redeem my gift: Ice Cream Treat!", mailMsg: "🍦 I want to redeem my gift: Ice Cream Treat!" },
-    { title: "Fun Day", sub: "A day full of fun!", icon: "🎈", c1: "#06b6d4", c2: "#0891b2", waMsg: "🎈 I want to redeem my gift: Fun Day!", mailMsg: "🎈 I want to redeem my gift: Fun Day!" },
+    { title: "Unlimited Hugs", sub: "Redeemable anytime", icon: "🤗", c1: "#8b5cf6", c2: "#6d28d9", waMsg: "🤗 Unlimited Hugs!", mailMsg: "🤗 Unlimited Hugs!" },
+    { title: "Toy Time", sub: "Pick your favourite toy!", icon: "🧸", c1: "#f59e0b", c2: "#d97706", waMsg: "🧸 Toy Time!", mailMsg: "🧸 Toy Time!" },
+    { title: "Ice Cream Treat", sub: "Your favourite flavour!", icon: "🍦", c1: "#ec4899", c2: "#db2777", waMsg: "🍦 Ice Cream Treat!", mailMsg: "🍦 Ice Cream Treat!" },
+    { title: "Fun Day", sub: "A day full of fun!", icon: "🎈", c1: "#06b6d4", c2: "#0891b2", waMsg: "🎈 Fun Day!", mailMsg: "🎈 Fun Day!" },
   ],
   cakeImage: CAKE_IMAGE, page1Image: PAGE_1_IMAGE, calendar: { ...DEFAULT_CALENDAR },
 };
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   🎵 MUSIC ENGINE
+   🎵 MUSIC ENGINE — Har page ke liye alag melody
    ═══════════════════════════════════════════════════════════════════════════ */
 let _audioCtx = null;
 const getAudioCtx = () => {
   if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return _audioCtx;
 };
-
-const N = {
-  C3:130.81,D3:146.83,E3:164.81,F3:174.61,G3:196,A3:220,B3:246.94,
-  C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,
-  C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,A5:880,B5:987.77,
-  C6:1046.5,D6:1174.66,E6:1318.51,F6:1396.91,G6:1567.98,
-};
-
+const N = { C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,A5:880,B5:987.77,C6:1046.5,D6:1174.66,E6:1318.51,F6:1396.91,G6:1567.98,A3:220,B3:246.94,C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,C3:130.81,D3:146.83,E3:164.81,F3:174.61,G3:196 };
 let _melodyTimeouts = [];
-
 const stopMelody = () => { _melodyTimeouts.forEach(t => clearTimeout(t)); _melodyTimeouts = []; };
-
 const playNote = (freq, dur, vol = .1, type = 'triangle', delay = 0) => {
   try {
     const ctx = getAudioCtx();
@@ -531,7 +674,6 @@ const playNote = (freq, dur, vol = .1, type = 'triangle', delay = 0) => {
     osc.start(t); osc.stop(t + dur + .05);
   } catch (e) {}
 };
-
 const playMelody = (melody) => {
   stopMelody();
   if (!melody || !melody.length) return;
@@ -544,7 +686,6 @@ const playMelody = (melody) => {
     time += dur;
   });
 };
-
 const MELODY_PAGE_1 = [[N.C5,.3],[N.E5,.3],[N.G5,.3],[N.C6,.5],[N.G5,.25],[N.C6,.7]];
 const MELODY_PAGE_2 = [[N.A3,.5,.08],[N.C4,.5,.08],[N.E4,.5,.08],[N.A3,.7,.08],[N.G3,.4,.07],[N.E3,.6,.07]];
 const MELODY_PAGE_3 = [[N.G4,.2],[N.B4,.2],[N.D5,.3],[N.G4,.2],[N.B4,.2],[N.D5,.4],[N.C5,.2],[N.E5,.2],[N.G5,.5]];
@@ -559,57 +700,47 @@ const MELODY_HAPPY_BIRTHDAY = [
 const MELODY_PAGE_7 = [[N.F5,.3,.09],[N.E5,.3,.09],[N.D5,.35,.09],[N.C5,.35,.09],[N.D5,.3,.09],[N.E5,.3,.09],[N.F5,.7,.1]];
 const MELODY_PAGE_8 = [[N.G4,.4,.08],[N.C5,.4,.08],[N.E5,.5,.09],[N.G5,.6,.1],[N.E5,.4,.09],[N.C5,.7,.08]];
 const MELODY_PAGE_9 = [[N.C5,.2,.12],[N.C5,.15,.12],[N.D5,.25,.12],[N.E5,.25,.12],[N.E5,.2,.12],[N.D5,.25,.12],[N.C5,.25,.12],[N.G4,.5,.13]];
+const MELODY_PAGE_GIFT = [[N.C5,.2,.13],[N.D5,.2,.13],[N.E5,.2,.13],[N.G5,.3,.14],[N.E5,.15,.12],[N.G5,.5,.14]];
 
-const PAGE_MELODIES = { 1: MELODY_PAGE_1, 2: MELODY_PAGE_2, 3: MELODY_PAGE_3, 4: MELODY_PAGE_4, 5: MELODY_PAGE_5, 6: MELODY_HAPPY_BIRTHDAY, 7: MELODY_PAGE_7, 8: MELODY_PAGE_8, 9: MELODY_PAGE_9 };
+const PAGE_MELODIES = {
+  1: MELODY_PAGE_1,     // Intro - magical
+  2: MELODY_PAGE_2,     // Dark - eerie
+  3: MELODY_PAGE_3,     // Calendar - playful
+  4: MELODY_PAGE_4,     // Surprise - fanfare
+  5: MELODY_PAGE_5,     // Messages - warm
+  6: MELODY_HAPPY_BIRTHDAY, // Candle blow - HAPPY BIRTHDAY 🎵
+  7: MELODY_PAGE_GIFT,  // Gift picker
+  8: MELODY_PAGE_7,     // Memories - nostalgic
+  9: MELODY_PAGE_8,     // Letter - romantic
+  10: MELODY_PAGE_9,    // Gifts - celebratory
+};
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   💾 STORAGE — IndexedDB with in-memory fallback
+   💾 STORAGE — IndexedDB + memory fallback (Shared Memories ke liye)
    ═══════════════════════════════════════════════════════════════════════════ */
 const DB_NAME = 'BirthdaySharedMemories';
 const DB_VERSION = 1;
 const STORE_NAME = 'memories';
-
-// In-memory fallback (session only)
 const _memStore = new Map();
 let _idbAvailable = null;
 let _idbReason = '';
-
 const checkIDB = async () => {
   if (_idbAvailable !== null) return _idbAvailable;
   try {
-    if (typeof window === 'undefined' || !window.indexedDB) {
-      _idbAvailable = false;
-      _idbReason = 'IndexedDB not supported in this browser';
-      return false;
-    }
-    if (window.location.protocol === 'file:') {
-      _idbAvailable = false;
-      _idbReason = 'Page is opened via file:// — IndexedDB blocked by browser security. Open via http:// or https:// to enable permanent storage.';
-      return false;
-    }
+    if (typeof window === 'undefined' || !window.indexedDB) { _idbAvailable = false; _idbReason = 'Is browser me IndexedDB support nahi hai.'; return false; }
+    if (window.location.protocol === 'file:') { _idbAvailable = false; _idbReason = 'Page file:// se khula hai — IndexedDB browser security se blocked hai. Permanent storage ke liye page ko http:// ya https:// se kholo.'; return false; }
     const test = await new Promise((resolve, reject) => {
       const req = indexedDB.open('__bdaytest__', 1);
-      req.onsuccess = () => {
-        try { req.result.close(); } catch (e) {}
-        try { indexedDB.deleteDatabase('__bdaytest__'); } catch (e) {}
-        resolve(true);
-      };
+      req.onsuccess = () => { try { req.result.close(); } catch (e) {} try { indexedDB.deleteDatabase('__bdaytest__'); } catch (e) {} resolve(true); };
       req.onerror = () => reject(req.error || new Error('IndexedDB blocked'));
-      req.onblocked = () => reject(new Error('IndexedDB blocked'));
       setTimeout(() => reject(new Error('IndexedDB timeout')), 2500);
     });
     _idbAvailable = test === true;
-    if (!_idbAvailable) _idbReason = 'IndexedDB access denied';
-  } catch (e) {
-    _idbAvailable = false;
-    _idbReason = e.message || 'IndexedDB access denied by browser';
-  }
+    if (!_idbAvailable) _idbReason = 'IndexedDB access browser ne deny kar diya.';
+  } catch (e) { _idbAvailable = false; _idbReason = e.message || 'IndexedDB access browser ne deny kar diya.'; }
   return _idbAvailable;
 };
-
-const isIDBAvailable = () => _idbAvailable === true;
 const getIDBReason = () => _idbReason;
-
 const openDB = () => new Promise((resolve, reject) => {
   const req = indexedDB.open(DB_NAME, DB_VERSION);
   req.onupgradeneeded = (e) => {
@@ -622,23 +753,13 @@ const openDB = () => new Promise((resolve, reject) => {
   req.onsuccess = () => resolve(req.result);
   req.onerror = () => reject(req.error);
 });
-
 const saveSharedMemory = async (file) => {
   const ok = await checkIDB();
-  const record = {
-    name: file.name || 'file',
-    type: file.type || 'application/octet-stream',
-    size: file.size,
-    blob: file,
-    timestamp: Date.now(),
-    isVideo: (file.type || '').startsWith('video/'),
-    isImage: (file.type || '').startsWith('image/'),
-  };
+  const record = { name: file.name || 'file', type: file.type || 'application/octet-stream', size: file.size, blob: file, timestamp: Date.now(), isVideo: (file.type || '').startsWith('video/'), isImage: (file.type || '').startsWith('image/') };
   if (ok) {
     const db = await openDB();
     return new Promise((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readwrite');
-      const req = tx.objectStore(STORE_NAME).add(record);
+      const req = db.transaction(STORE_NAME, 'readwrite').objectStore(STORE_NAME).add(record);
       req.onsuccess = () => resolve(req.result);
       req.onerror = () => reject(req.error);
     });
@@ -648,54 +769,44 @@ const saveSharedMemory = async (file) => {
     return id;
   }
 };
-
 const getAllSharedMemories = async () => {
   const ok = await checkIDB();
   if (ok) {
     try {
       const db = await openDB();
       return new Promise((resolve, reject) => {
-        const tx = db.transaction(STORE_NAME, 'readonly');
-        const req = tx.objectStore(STORE_NAME).getAll();
+        const req = db.transaction(STORE_NAME, 'readonly').objectStore(STORE_NAME).getAll();
         req.onsuccess = () => resolve(req.result || []);
         req.onerror = () => reject(req.error);
       });
-    } catch (e) { /* fall through to memory */ }
+    } catch (e) {}
   }
   return Array.from(_memStore.values());
 };
-
 const deleteSharedMemory = async (id) => {
-  if (typeof id === 'string' && id.startsWith('mem_')) {
-    _memStore.delete(id);
-    return;
-  }
+  if (typeof id === 'string' && id.startsWith('mem_')) { _memStore.delete(id); return; }
   const ok = await checkIDB();
   if (ok) {
     const db = await openDB();
     return new Promise((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readwrite');
-      const req = tx.objectStore(STORE_NAME).delete(id);
+      const req = db.transaction(STORE_NAME, 'readwrite').objectStore(STORE_NAME).delete(id);
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
   }
 };
-
 const clearAllSharedMemories = async () => {
   _memStore.clear();
   const ok = await checkIDB();
   if (ok) {
     const db = await openDB();
     return new Promise((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readwrite');
-      const req = tx.objectStore(STORE_NAME).clear();
+      const req = db.transaction(STORE_NAME, 'readwrite').objectStore(STORE_NAME).clear();
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
   }
 };
-
 const formatBytes = (bytes) => {
   if (bytes < 1024) return bytes + ' B';
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
@@ -715,7 +826,6 @@ function extractKomodoId(src) {
   if (/^[A-Za-z0-9_-]{15,}$/.test(str)) return str;
   return null;
 }
-
 function buildImageCandidates(src, id) {
   const list = [];
   if (!src) return list;
@@ -738,13 +848,11 @@ function buildImageCandidates(src, id) {
   if (src.startsWith('http') && !list.includes(src)) list.push(src);
   return list.length ? list : [src];
 }
-
 function decodeConfig() {
   try {
     const hash = window.location.hash.slice(1);
     if (!hash) return null;
-    const params = new URLSearchParams(hash);
-    const data = params.get('c');
+    const data = new URLSearchParams(hash).get('c');
     if (!data) return null;
     return JSON.parse(decodeURIComponent(escape(atob(data))));
   } catch (e) { return null; }
@@ -759,7 +867,6 @@ function mergeConfig(base, override) {
   out.calendar = { ...DEFAULT_CALENDAR, ...(override.calendar || {}) };
   return out;
 }
-
 let CONFIG = (() => {
   const urlCfg = decodeConfig();
   if (urlCfg) return mergeConfig(DEFAULT_CONFIG, urlCfg);
@@ -783,7 +890,6 @@ function SmartImage({ src, id, alt, style, className }) {
   }
   return (<img src={candidates[idx]} alt={alt} className={className} style={style} onError={handleError} draggable={false} />);
 }
-
 function Balloons({ count = 10 }) {
   const colors = [['#ef4444','#fca5a5'],['#f97316','#fdba74'],['#eab308','#fde047'],['#22c55e','#86efac'],['#3b82f6','#93c5fd'],['#a855f7','#c4b5fd'],['#ec4899','#f9a8d4'],['#14b8a6','#5eead4']];
   const balloons = useMemo(() => Array.from({ length: count }, (_, i) => {
@@ -800,22 +906,19 @@ function Balloons({ count = 10 }) {
     </svg>
   </div>))}</>);
 }
-
 function Stars({ count = 50 }) {
   const stars = useMemo(() => Array.from({ length: count }, () => ({ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, size: 1 + Math.random() * 2.5, dur: 2 + Math.random() * 4, delay: Math.random() * 5 })), [count]);
   return (<div className="bg-layer">{stars.map((s, i) => (<div key={i} className="star" style={{ left: s.left, top: s.top, width: s.size, height: s.size, animationDuration: `${s.dur}s`, animationDelay: `${s.delay}s` }} />))}</div>);
 }
-
 function Confetti({ active, count = 70 }) {
   const pieces = useMemo(() => {
     if (!active) return [];
-    const cols = ['#a855f7','#ec4899','#f97316','#eab308','#3b82f6','#10b981','#ef4444','#8b5cf6'];
+    const cols = ['#a855f7','#ec4899','#f97316','#eab308','#3b82f6','#10b981','#ef4444','#8b5cf6','#fbbf24','#fde047'];
     return Array.from({ length: count }, (_, i) => ({ id: i, x: Math.random() * 100, c: cols[i % cols.length], shape: i % 3, size: 6 + Math.random() * 8, delay: Math.random() * 1.2, dur: 2 + Math.random() * 2, rot: Math.random() * 360 }));
   }, [active, count]);
   if (!active) return null;
   return (<>{pieces.map(p => (<div key={p.id} className="confetti-piece" style={{ left: `${p.x}%`, width: p.shape === 1 ? p.size * .5 : p.size, height: p.size, background: p.c, borderRadius: p.shape === 0 ? '50%' : p.shape === 1 ? '2px' : '0', animationDuration: `${p.dur}s`, animationDelay: `${p.delay}s`, transform: `rotate(${p.rot}deg)`, zIndex: 20 }} />))}</>);
 }
-
 function RippleButton({ children, onClick, className = 'btn btn-gradient', style, disabled }) {
   const [ripples, setRipples] = useState([]);
   const handleClick = (e) => {
@@ -831,45 +934,43 @@ function RippleButton({ children, onClick, className = 'btn btn-gradient', style
     {ripples.map(r => (<span key={r.id} className="ripple" style={{ left: r.x - 30, top: r.y - 30, width: 60, height: 60 }} />))}
   </button>);
 }
-
 function MusicIndicator() {
   return (<div className="music-indicator"><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /></div>);
 }
-
+function CameraIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+      <circle cx="12" cy="13" r="4"/>
+    </svg>
+  );
+}
 function FullscreenViewer({ src, id, onClose }) {
   const [scale, setScale] = useState(1);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
   const zoomIn = () => setScale(s => Math.min(5, s + 0.5));
-  const zoomOut = () => setScale(s => { const ns = Math.max(1, s - 0.5); if (ns === 1) setPos({ x: 0, y: 0 }); return ns; });
-  const reset = () => { setScale(1); setPos({ x: 0, y: 0 }); };
+  const zoomOut = () => setScale(s => Math.max(1, s - 0.5));
   return (
     <div className="fullscreen-viewer" onClick={onClose}>
       <div className="fs-hint">Pinch / Scroll to zoom</div>
       <button className="fs-close" onClick={(e) => { e.stopPropagation(); onClose(); }}>✕</button>
-      <SmartImage src={src} id={id} alt="Full" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transform: `scale(${scale}) translate(${pos.x / scale}px, ${pos.y / scale}px)`, transition: 'transform .1s', userSelect: 'none' }} />
+      <SmartImage src={src} id={id} alt="Full" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transform: `scale(${scale})`, transition: 'transform .1s', userSelect: 'none' }} />
       <div className="fs-controls" onClick={(e) => e.stopPropagation()}>
         <button className="fs-btn" onClick={zoomOut}>−</button>
-        <button className="fs-btn" onClick={reset} style={{ width: 'auto', padding: '0 14px', fontSize: 12, fontWeight: 800 }}>RESET</button>
+        <button className="fs-btn" onClick={() => setScale(1)} style={{ width: 'auto', padding: '0 14px', fontSize: 12, fontWeight: 800 }}>RESET</button>
         <button className="fs-btn" onClick={zoomIn}>+</button>
       </div>
     </div>
   );
 }
-
 function CelebrationBurst({ active }) {
   const particles = useMemo(() => {
     if (!active) return [];
     const emojis = ['🎉', '🎊', '✨', '⭐', '💖', '🌟', '🎈', '💫'];
-    return Array.from({ length: 12 }, (_, i) => {
-      const angle = (Math.PI * 2 * i) / 12;
-      const distance = 100 + Math.random() * 80;
-      return { id: i, emoji: emojis[i % emojis.length], left: 40 + Math.random() * 20, top: 40 + Math.random() * 20, delay: Math.random() * 0.3 };
-    });
+    return Array.from({ length: 12 }, (_, i) => ({ id: i, emoji: emojis[i % emojis.length], left: 40 + Math.random() * 20, top: 40 + Math.random() * 20, delay: Math.random() * 0.3 }));
   }, [active]);
   if (!active) return null;
   return (<><div className="celebration-overlay" />{particles.map(p => (<div key={p.id} className="celebration-emoji" style={{ left: `${p.left}%`, top: `${p.top}%`, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
 }
-
 function GiftEmojiBurst({ active, emoji }) {
   const particles = useMemo(() => {
     if (!active) return [];
@@ -883,10 +984,9 @@ function GiftEmojiBurst({ active, emoji }) {
   if (!active) return null;
   return (<>{particles.map(p => (<div key={p.id} className="gift-emoji-burst" style={{ '--ex': p.ex, '--ey': p.ey, '--er': p.er, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
 }
-
 function GiftSendModal({ gift, onClose }) {
-  const sendWhatsApp = () => { const msg = encodeURIComponent(gift.waMsg || ''); window.open(`https://wa.me/${REACH_ME.whatsappNumber}?text=${msg}`, '_blank'); onClose(); };
-  const sendEmail = () => { const subject = encodeURIComponent(`🎁 Gift Redeem: ${gift.title}`); const body = encodeURIComponent(gift.mailMsg || ''); window.location.href = `mailto:${REACH_ME.email}?subject=${subject}&body=${body}`; onClose(); };
+  const sendWhatsApp = () => { window.open(`https://wa.me/${REACH_ME.whatsappNumber}?text=${encodeURIComponent(gift.waMsg || '')}`, '_blank'); onClose(); };
+  const sendEmail = () => { window.location.href = `mailto:${REACH_ME.email}?subject=${encodeURIComponent(`🎁 Gift Redeem: ${gift.title}`)}&body=${encodeURIComponent(gift.mailMsg || '')}`; onClose(); };
   return (
     <div className="gift-modal-overlay" onClick={(e) => { if (e.target.classList.contains('gift-modal-overlay')) onClose(); }}>
       <div className="gift-modal">
@@ -903,7 +1003,6 @@ function GiftSendModal({ gift, onClose }) {
     </div>
   );
 }
-
 function QRModal({ onClose }) {
   useEffect(() => { document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = ''; }; }, []);
   return (
@@ -914,16 +1013,12 @@ function QRModal({ onClose }) {
         <h2 className="qr-modal-title">My Instagram</h2>
         <p className="qr-modal-sub">Scan this QR code to follow me 💜</p>
         <div className="qr-image-wrap"><SmartImage src={INSTAGRAM_QR_IMAGE} alt="Instagram QR" style={{ width: 200, height: 200, borderRadius: 14, objectFit: 'cover', display: 'block', background: '#fff' }} /></div>
-        <div className="qr-instagram-tag"><span>📸</span>@JISHAN_2K_K</div>
+        <div className="qr-instagram-tag"><span>📸</span> @Instagram</div>
         <p className="qr-hint">📱 Open your phone camera & point at the QR</p>
       </div>
     </div>
   );
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   📤 SHARE MEMORY MODAL (with IDB fallback warning)
-   ═══════════════════════════════════════════════════════════════════════════ */
 function ShareMemoryModal({ onClose }) {
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -931,64 +1026,43 @@ function ShareMemoryModal({ onClose }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [idbReady, setIdbReady] = useState(null);
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     checkIDB().then(ok => setIdbReady(ok));
-    return () => {
-      document.body.style.overflow = '';
-      files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); });
-    };
+    return () => { document.body.style.overflow = ''; files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); }); };
   }, []);
-
   const handleFiles = (selected) => {
     setError('');
     const arr = Array.from(selected);
     if (arr.length === 0) return;
     const remaining = MAX_FILES_AT_ONCE - files.length;
-    if (remaining <= 0) { setError(`Maximum ${MAX_FILES_AT_ONCE} files allowed`); return; }
+    if (remaining <= 0) { setError(`Ek baar me sirf ${MAX_FILES_AT_ONCE} files hi add kar sakte ho.`); return; }
     const toAdd = [];
     let errMsg = '';
     for (const file of arr) {
-      if (toAdd.length >= remaining) { errMsg = `Only ${MAX_FILES_AT_ONCE} files at a time`; break; }
+      if (toAdd.length >= remaining) { errMsg = `Ek baar me sirf ${MAX_FILES_AT_ONCE} files allowed hain.`; break; }
       const isImage = file.type.startsWith('image/');
       const isVideo = file.type.startsWith('video/');
-      if (!isImage && !isVideo) { errMsg = `Skip ${file.name} — only images/videos`; continue; }
-      if (isImage && file.size > MAX_IMAGE_SIZE) { errMsg = `Image too big: ${file.name} (max 4MB)`; continue; }
-      if (isVideo && file.size > MAX_VIDEO_SIZE) { errMsg = `Video too big: ${file.name} (max 200MB)`; continue; }
+      if (!isImage && !isVideo) { errMsg = `${file.name} skip kiya — sirf images/videos allowed hain.`; continue; }
+      if (isImage && file.size > MAX_IMAGE_SIZE) { errMsg = `${file.name} bahut badi hai — image max 4MB tak allowed hai.`; continue; }
+      if (isVideo && file.size > MAX_VIDEO_SIZE) { errMsg = `${file.name} bahut badi hai — video max 200MB tak allowed hai.`; continue; }
       toAdd.push({ file, previewUrl: URL.createObjectURL(file), type: isImage ? 'image' : 'video', size: file.size, name: file.name });
     }
     if (toAdd.length) setFiles(prev => [...prev, ...toAdd]);
     if (errMsg) setError(errMsg);
   };
-
-  const removeFile = (idx) => {
-    setFiles(prev => {
-      const f = prev[idx];
-      if (f && f.previewUrl) URL.revokeObjectURL(f.previewUrl);
-      return prev.filter((_, i) => i !== idx);
-    });
-  };
-
+  const removeFile = (idx) => { setFiles(prev => { const f = prev[idx]; if (f && f.previewUrl) URL.revokeObjectURL(f.previewUrl); return prev.filter((_, i) => i !== idx); }); };
   const handleUpload = async () => {
     if (!files.length) return;
     setUploading(true); setProgress(0); setError('');
     try {
       const total = files.length;
-      for (let i = 0; i < total; i++) {
-        await saveSharedMemory(files[i].file);
-        setProgress(Math.round(((i + 1) / total) * 100));
-      }
+      for (let i = 0; i < total; i++) { await saveSharedMemory(files[i].file); setProgress(Math.round(((i + 1) / total) * 100)); }
       setSuccess(true);
-      setTimeout(() => {
-        files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); });
-        onClose();
-      }, 1800);
-    } catch (e) {
-      setError('Upload failed: ' + (e.message || 'unknown error'));
-    } finally { setUploading(false); }
+      setTimeout(() => { files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); }); onClose(); }, 1800);
+    } catch (e) { setError('Upload fail ho gaya: ' + (e.message || 'kuch error aaya hai.')); }
+    finally { setUploading(false); }
   };
-
   return (
     <div className="share-modal-overlay" onClick={(e) => { if (e.target.classList.contains('share-modal-overlay')) onClose(); }}>
       <div className="share-modal">
@@ -996,73 +1070,45 @@ function ShareMemoryModal({ onClose }) {
         {success ? (
           <div className="share-success">
             <span className="share-success-emoji">🎉</span>
-            <div className="share-success-text">Memory Shared!</div>
-            <div className="share-success-sub">Thank you for sharing your beautiful moments 💖</div>
+            <div className="share-success-text">Memory Share Ho Gayi!</div>
+            <div className="share-success-sub">Aapke pyare moments share karne ke liye shukriya 💖</div>
           </div>
         ) : (
           <>
             <span className="share-modal-emoji">📸</span>
             <h2 className="share-modal-title">Share Your Memory</h2>
-            <p className="share-modal-sub">Add your photos or videos to make this day special 💜</p>
-            <p className="share-modal-hint">Up to {MAX_FILES_AT_ONCE} files · Images ≤ 4MB · Videos ≤ 200MB</p>
-
-            {/* Storage warning */}
-            {idbReady === false && (
-              <div className="share-warn share-warn-warn">
-                ⚠️ <b>Storage Warning:</b> {getIDBReason()}<br />
-                Files will only stay until you refresh the page. Permanent storage ke liye page ko <b>http://</b> ya <b>https://</b> se kholo.
-              </div>
-            )}
-            {idbReady === true && (
-              <div className="share-warn share-warn-ok">
-                ✅ Permanent storage active — files safe rahenge
-              </div>
-            )}
-
+            <p className="share-modal-sub">Photos ya videos add karo 💜</p>
+            <p className="share-modal-hint">{MAX_FILES_AT_ONCE} files tak · Images ≤ 4MB · Videos ≤ 200MB</p>
+            {idbReady === false && (<div className="share-warn share-warn-warn">⚠️ <b>Storage Ki Warning:</b> {getIDBReason()}<br />Ye files sirf tab tak rahengi jab tak aap page refresh nahi karte.</div>)}
+            {idbReady === true && (<div className="share-warn share-warn-ok">✅ Permanent storage ON hai — aapki files hamesha safe rahengi.</div>)}
             <label className="share-file-btn">
               <span style={{ fontSize: 18 }}>📁</span>
-              {files.length ? `Add more (${files.length}/${MAX_FILES_AT_ONCE})` : 'Choose Photos / Videos'}
+              {files.length ? `Aur add karo (${files.length}/${MAX_FILES_AT_ONCE})` : 'Photos / Videos Choose Karo'}
               <input type="file" accept="image/*,video/*" multiple onChange={(e) => { handleFiles(e.target.files); e.target.value = ''; }} disabled={uploading} />
             </label>
-
             {error && <div style={{ color: '#dc2626', fontSize: 11, fontWeight: 700, marginBottom: 10, padding: 8, background: 'rgba(239,68,68,.1)', borderRadius: 8 }}>{error}</div>}
-
             {files.length > 0 && (<>
               <div style={{ fontSize: 11, color: '#7c3aed', fontWeight: 800, marginBottom: 6, textAlign: 'left' }}>SELECTED ({files.length})</div>
               <div className="share-list">
-                {files.map((f, i) => (
-                  <div key={i} className="share-thumb">
-                    {f.type === 'video' ? <video src={f.previewUrl} muted playsInline /> : <img src={f.previewUrl} alt={f.name} />}
-                    <div className="share-thumb-badge">{formatBytes(f.size)}</div>
-                    <button className="share-thumb-remove" onClick={() => removeFile(i)}>✕</button>
-                  </div>
-                ))}
+                {files.map((f, i) => (<div key={i} className="share-thumb">
+                  {f.type === 'video' ? <video src={f.previewUrl} muted playsInline /> : <img src={f.previewUrl} alt={f.name} />}
+                  <div className="share-thumb-badge">{formatBytes(f.size)}</div>
+                  <button className="share-thumb-remove" onClick={() => removeFile(i)}>✕</button>
+                </div>))}
               </div>
             </>)}
-
             {uploading && (<div className="share-progress-bar" style={{ marginTop: 14 }}><div className="share-progress-fill" style={{ width: `${progress}%` }} /></div>)}
-
-            {files.length > 0 && (
-              <button className="share-upload-btn" onClick={handleUpload} disabled={uploading}>
-                {uploading ? `Uploading ${progress}%...` : `📤 Upload ${files.length} File${files.length > 1 ? 's' : ''}`}
-              </button>
-            )}
+            {files.length > 0 && (<button className="share-upload-btn" onClick={handleUpload} disabled={uploading}>{uploading ? `Upload ho raha hai ${progress}%...` : `📤 Upload ${files.length} File${files.length > 1 ? 's' : ''}`}</button>)}
           </>
         )}
       </div>
     </div>
   );
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   📞 REACH ME + SHARE MEMORY (same cream panel)
-   ═══════════════════════════════════════════════════════════════════════════ */
 function ReachMe({ onOpenShare }) {
   return (
     <div className="reachme-wrap">
       <h2 className="reachme-title">Reach me</h2>
-
-      {/* Main contact circles */}
       <div className="reachme-circles">
         <a className="reachme-item" href={`https://wa.me/${REACH_ME.whatsappNumber}`} target="_blank" rel="noopener noreferrer">
           <div className="reachme-circle">W</div>
@@ -1076,23 +1122,13 @@ function ReachMe({ onOpenShare }) {
           <div className="reachme-circle">P</div>
           <div className="reachme-label">{REACH_ME.phoneDisplay}</div>
         </a>
-      </div>
-
-      {/* Divider */}
-      <div className="reachme-share-divider" />
-
-      {/* Share Memory — same style as reach me circles */}
-      <div className="reachme-share-title"></div>
-      <div className="reachme-share-row">
         <button className="reachme-item" onClick={onOpenShare} type="button">
-          <div className="reachme-circle" style={{ fontSize: 28, borderColor: '#c9a961', background: 'linear-gradient(145deg, rgba(245,222,179,.3), rgba(212,175,110,.15))' }}>📸</div>
+          <div className="reachme-circle"><CameraIcon /></div>
           <div className="reachme-label">Share Your Memory</div>
         </button>
       </div>
-
       <p className="reachme-made">{REACH_ME.madeLine}</p>
       <p className="reachme-dev">{REACH_ME.devLine}</p>
-
       <div className="reachme-socials">
         <a className="reachme-social" href={REACH_ME.github} target="_blank" rel="noopener noreferrer">G</a>
         <a className="reachme-social" href={REACH_ME.linkedin} target="_blank" rel="noopener noreferrer">L</a>
@@ -1104,7 +1140,7 @@ function ReachMe({ onOpenShare }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   🔐 PASSWORD GATE
+   📄 PAGE COMPONENTS
    ═══════════════════════════════════════════════════════════════════════════ */
 function PasswordGate({ onSuccess }) {
   const [pw, setPw] = useState('');
@@ -1112,7 +1148,6 @@ function PasswordGate({ onSuccess }) {
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
   const [unlocking, setUnlocking] = useState(false);
-
   const tryUnlock = () => {
     if (unlocking) return;
     if (pw === ACCESS_PASSWORD) {
@@ -1122,33 +1157,28 @@ function PasswordGate({ onSuccess }) {
       setTimeout(() => onSuccess(), 1200);
     } else {
       playNote(220, .18, .14, 'sawtooth'); setTimeout(() => playNote(165, .22, .14, 'sawtooth'), 150);
-      setError('❌ Galat password! Dobara try karo.');
+      setError('❌ Password galat hai! Dobara try karo.');
       setShake(true); setTimeout(() => setShake(false), 600); setPw('');
     }
   };
-
   return (
     <div className="password-gate">
       <Stars count={50} />
       <span className="pg-lock">{unlocking ? '🔓' : '🔐'}</span>
-      <h1 className="pg-title">{unlocking ? 'Unlocking...' : 'Secret Surprise'}</h1>
-      <p className="pg-sub">{unlocking ? 'Get ready...' : 'This birthday card is locked. Enter the password ✨'}</p>
+      <h1 className="pg-title">{unlocking ? 'Khul raha hai...' : 'Secret Surprise'}</h1>
+      <p className="pg-sub">{unlocking ? 'Kuch khaas aane wala hai...' : 'Ye birthday card locked hai. Password daalo ✨'}</p>
       <div className="pg-input-wrap">
-        <input type={showPw ? 'text' : 'password'} className={`pg-input ${shake ? 'shake' : ''}`} value={pw}
-          onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryUnlock(); }}
-          placeholder="Enter password..." autoFocus disabled={unlocking} />
+        <input type={showPw ? 'text' : 'password'} className={`pg-input ${shake ? 'shake' : ''}`} value={pw} maxLength={4}
+          onChange={(e) => setPw(e.target.value.replace(/\D/g, ''))} onKeyDown={(e) => { if (e.key === 'Enter') tryUnlock(); }}
+          placeholder="••••" autoFocus disabled={unlocking} />
         <button className="pg-eye" onClick={() => setShowPw(!showPw)} type="button">{showPw ? '🙈' : '👁️'}</button>
       </div>
       <div className="pg-error">{error}</div>
-      <button className="pg-btn" onClick={tryUnlock} disabled={unlocking || !pw}>{unlocking ? '✨ Opening...' : 'Unlock 🔓'}</button>
-      <p className="pg-hint">💡 Hint: Sirf khaas logon ke liye 💜</p>
+      <button className="pg-btn" onClick={tryUnlock} disabled={unlocking || pw.length < 4}>{unlocking ? '✨ Khul raha hai...' : 'Unlock 🔓'}</button>
+      <p className="pg-hint">💡 Hint: 4 digit ka number</p>
     </div>
   );
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   🎉 WELCOME SCREEN
-   ═══════════════════════════════════════════════════════════════════════════ */
 function WelcomeScreen({ onContinue }) {
   const [showBtn, setShowBtn] = useState(false);
   const sparkles = useMemo(() => {
@@ -1171,10 +1201,6 @@ function WelcomeScreen({ onContinue }) {
     </div>
   );
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   📄 PAGES
-   ═══════════════════════════════════════════════════════════════════════════ */
 function PageIntro({ onNext, onSecretUnlock }) {
   const tapTimesRef = useRef([]);
   const handleTap = () => {
@@ -1192,7 +1218,7 @@ function PageIntro({ onNext, onSecretUnlock }) {
         <p style={{ color: 'rgba(255,255,255,.75)', fontSize: 14, fontWeight: 600, marginBottom: 32 }}>Someone special made this just for you...</p>
         <div className="anim-float" style={{ marginBottom: 36 }}>
           <div style={{ width: 200, height: 260, background: 'linear-gradient(145deg,#fde2e7,#fbcfe8)', borderRadius: 22, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 50px rgba(236,72,153,.35),0 0 80px rgba(236,72,153,.2)', border: '4px solid rgba(255,255,255,.4)' }}>
-            <SmartImage src={CONFIG.page1Image} alt="Birthday Girl" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <SmartImage src={CONFIG.page1Image} alt="Birthday Boy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
         <RippleButton onClick={(e) => { e.stopPropagation(); onNext(); }} className="btn btn-gradient" style={{ padding: '18px 40px', fontSize: 17 }}>Tap to open your surprise! 🎁</RippleButton>
@@ -1200,7 +1226,6 @@ function PageIntro({ onNext, onSecretUnlock }) {
     </div>
   );
 }
-
 function PageDark({ onNext }) {
   const [lighting, setLighting] = useState(false);
   const handle = () => {
@@ -1215,13 +1240,12 @@ function PageDark({ onNext }) {
       <Stars count={70} />
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '20px 0' }}>
         <div style={{ width: 80, height: 80, margin: '0 auto 26px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 56, opacity: lighting ? 1 : .35, transition: 'opacity .8s, transform .8s', transform: lighting ? 'scale(1.2)' : 'scale(1)', filter: lighting ? 'drop-shadow(0 0 40px #facc15)' : 'none' }}>🌤️</div>
-        <p style={{ color: '#fff', fontSize: 17, fontWeight: 700, marginBottom: 10, opacity: lighting ? 1 : .75 }}>It's a bit dark in here...</p>
-        <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>Tap anywhere to turn on the lights 💡</p>
+        <p style={{ color: '#fff', fontSize: 17, fontWeight: 700, marginBottom: 10, opacity: lighting ? 1 : .75 }}>Yahan thoda andhera hai...</p>
+        <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>Lights on karne ke liye kahin bhi tap karo 💡</p>
       </div>
     </div>
   );
 }
-
 function PageBirthdayDate({ onCorrect }) {
   const [wrongShake, setWrongShake] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
@@ -1276,12 +1300,11 @@ function PageBirthdayDate({ onCorrect }) {
           </div>
           <div className="bc-bottom"><div className="bc-messages">{cal.messages.map((msg, i) => (<div key={i} className="bc-message">{msg}</div>))}</div></div>
         </div>
-        <p style={{ color: '#9c3c72', fontSize: 11, fontWeight: 700, letterSpacing: 1, marginTop: 14, textTransform: 'uppercase' }}>{wrongShake ? '❌ Try again' : '✨ Tap the correct date ✨'}</p>
+        <p style={{ color: '#9c3c72', fontSize: 11, fontWeight: 700, letterSpacing: 1, marginTop: 14, textTransform: 'uppercase' }}>{wrongShake ? '❌ Dobara try karo' : '✨ Sahi date par tap karo ✨'}</p>
       </div>
     </div>
   );
 }
-
 function PageSurprise({ onNext }) {
   useEffect(() => { playMelody(MELODY_PAGE_4); const t = setTimeout(onNext, 2400); return () => clearTimeout(t); }, [onNext]);
   return (
@@ -1291,7 +1314,6 @@ function PageSurprise({ onNext }) {
     </div>
   );
 }
-
 function PageMessages({ onNext }) {
   const [confetti, setConfetti] = useState(true);
   useEffect(() => { const t = setTimeout(() => setConfetti(false), 3500); return () => clearTimeout(t); }, []);
@@ -1302,7 +1324,7 @@ function PageMessages({ onNext }) {
         <MusicIndicator />
         <Balloons count={5} />
         <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
-          <div className="anim-pop" style={{ width: 110, height: 110, margin: '0 auto 16px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, boxShadow: '0 12px 30px rgba(244,114,182,.3)', border: '3px solid rgba(255,255,255,.7)' }}>🧸</div>
+          <div className="anim-pop" style={{ width: 110, height: 110, margin: '0 auto 16px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, border: '3px solid rgba(255,255,255,.7)' }}>🧸</div>
           <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday,<br />{CONFIG.name}! 🎈</h1>
           <div className="stack mt-md" style={{ gap: 14 }}>
             {CONFIG.messages.map((m, i) => (<div key={i} className="msg-card anim-fadeUp" style={{ animationDelay: `${.15 + i * .12}s` }}><div className="msg-icon">{m.icon}</div><div className="msg-text">{m.text}</div></div>))}
@@ -1313,21 +1335,17 @@ function PageMessages({ onNext }) {
     </>
   );
 }
-
 function PageWish({ onNext }) {
   const [isCandleLit, setIsCandleLit] = useState(true);
   const [allBlown, setAllBlown] = useState(false);
   const [confetti, setConfetti] = useState(false);
-
   const extinguishCandle = () => {
     if (!isCandleLit || allBlown) return;
     playNote(200, .5, .1, 'sawtooth');
     setIsCandleLit(false); setAllBlown(true); setConfetti(true);
-    // ⭐ Happy Birthday song plays after candle blow
     setTimeout(() => playMelody(MELODY_HAPPY_BIRTHDAY), 400);
     setTimeout(onNext, 6200);
   };
-
   return (
     <>
       <Confetti active={confetti} count={100} />
@@ -1337,7 +1355,7 @@ function PageWish({ onNext }) {
         <Balloons count={6} />
         <div style={{ position: 'relative', zIndex: 2, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#f0abfc', textShadow: '0 0 30px rgba(240,171,252,.6)', marginBottom: 8 }}>Make a Wish! ✨</h1>
-          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, fontWeight: 600, marginBottom: 22 }}>Touch the flame to blow it out 🕯️</p>
+          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, fontWeight: 600, marginBottom: 22 }}>Candle bujhane ke liye flame par tap karo 🕯️</p>
           <div className="cake-image-wrap" onClick={extinguishCandle}>
             <SmartImage src={CONFIG.cakeImage} alt="Birthday Cake" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 18, boxShadow: '0 15px 40px rgba(0,0,0,.5)' }} />
             <div className="flame-position" onClick={(e) => { e.stopPropagation(); extinguishCandle(); }}>
@@ -1345,16 +1363,152 @@ function PageWish({ onNext }) {
             </div>
           </div>
           {allBlown ? (
-            <p className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 24, color: '#fde047', textShadow: '0 0 20px rgba(253,224,71,.7)', textAlign: 'center' }}>🎵 Happy Birthday to You! 🎵<br /><span style={{ fontSize: 18 }}>Your wish is on its way ✨</span></p>
+            <p className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 24, color: '#fde047', textShadow: '0 0 20px rgba(253,224,71,.7)', textAlign: 'center' }}>🎵 Happy Birthday to You! 🎵<br /><span style={{ fontSize: 18 }}>Tumhari wish poori ho ✨</span></p>
           ) : (
-            <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>1 candle lit</p>
+            <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>1 candle jalti hui hai</p>
           )}
         </div>
       </div>
     </>
   );
 }
+function PageGiftPicker({ onComplete }) {
+  const [offset, setOffset] = useState(0);
+  const [spinning, setSpinning] = useState(false);
+  const [selectedIdx, setSelectedIdx] = useState(-1);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [confetti, setConfetti] = useState(false);
+  const [autoTimer, setAutoTimer] = useState(AUTO_ADVANCE_SECONDS);
+  const autoTimerRef = useRef(null);
+  const autoAdvanceRef = useRef(null);
 
+  const startAutoTimer = (result) => {
+    if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    setAutoTimer(AUTO_ADVANCE_SECONDS);
+    let remaining = AUTO_ADVANCE_SECONDS;
+    autoTimerRef.current = setInterval(() => {
+      remaining -= 1;
+      setAutoTimer(remaining);
+      if (remaining <= 0) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
+    }, 1000);
+    autoAdvanceRef.current = setTimeout(() => { onComplete(result); }, AUTO_ADVANCE_SECONDS * 1000);
+  };
+
+  const handleContinue = () => {
+    if (autoTimerRef.current) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
+    if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null; }
+    try {
+      const saved = localStorage.getItem(GIFT_RESULT_KEY);
+      if (saved) onComplete(JSON.parse(saved));
+      else onComplete({ giftIndex: selectedIdx, giftName: GIFT_PICKER_LIST[selectedIdx]?.name || '' });
+    } catch (e) { onComplete({ giftIndex: selectedIdx, giftName: GIFT_PICKER_LIST[selectedIdx]?.name || '' }); }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    };
+  }, []);
+
+  const handleSpin = () => {
+    if (spinning || selectedIdx >= 0) return;
+    setSpinning(true);
+    playNote(440, .12, .12, 'square');
+    setTimeout(() => playNote(494, .12, .12, 'square'), 100);
+    setTimeout(() => playNote(523, .12, .12, 'square'), 200);
+    const winner = Math.floor(Math.random() * GIFT_PICKER_LIST.length);
+    const laps = 3;
+    const finalOffset = (laps * GIFT_PICKER_LIST.length + winner) * GIFT_CARD_WIDTH;
+    setOffset(finalOffset);
+    for (let i = 0; i < 20; i++) { setTimeout(() => { if (i < 20) playNote(800 - i * 20, .04, .05, 'square'); }, 300 + i * 150); }
+    setTimeout(() => {
+      setSpinning(false);
+      setOffset(winner * GIFT_CARD_WIDTH);
+      setSelectedIdx(winner);
+      setShowCelebration(true);
+      setConfetti(true);
+      playMelody([[N.C5,.15,.14],[N.E5,.15,.14],[N.G5,.15,.14],[N.C6,.35,.15],[N.E5,.15,.13],[N.G5,.15,.14],[N.C6,.5,.15]]);
+      const result = {
+        giftIndex: winner,
+        giftName: GIFT_PICKER_LIST[winner].name,
+        giftEmoji: GIFT_PICKER_LIST[winner].emoji,
+        giftColor: GIFT_PICKER_LIST[winner].color,
+        giftImg: GIFT_PICKER_LIST[winner].img,
+        boyName: CONFIG.name,
+        timestamp: Date.now(),
+      };
+      try { localStorage.setItem(GIFT_RESULT_KEY, JSON.stringify(result)); } catch (e) {}
+      startAutoTimer(result);
+    }, 3600);
+  };
+
+  if (showCelebration && selectedIdx >= 0) {
+    const g = GIFT_PICKER_LIST[selectedIdx];
+    const progress = autoTimer / AUTO_ADVANCE_SECONDS;
+    const dashOffset = 88 - (88 * progress);
+    return (
+      <div className="page-container gift-result-page">
+        <Confetti active={confetti} count={120} />
+        <MusicIndicator />
+        <div className="gift-result-sparkles">
+          {Array.from({ length: 14 }).map((_, i) => {
+            const emojis = ['✨', '⭐', '💖', '🌟', '💫'];
+            return (<span key={i} className="gift-sparkle" style={{ left: `${5 + Math.random() * 90}%`, top: `${5 + Math.random() * 90}%`, animationDelay: `${Math.random() * 1.8}s`, animationDuration: `${1.2 + Math.random()}s` }}>{emojis[i % emojis.length]}</span>);
+          })}
+        </div>
+        <div className="gift-result-content">
+          <div className="gift-result-ribbon">🎉 You Got 🎉</div>
+          <div className="gift-result-card">
+            <div className="gift-result-img-wrap" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
+              <img className="gift-result-img" src={g.img} alt={g.name} draggable={false} />
+            </div>
+            <div className="gift-result-name">{g.name}</div>
+          </div>
+          <div className="gift-result-boy">🎀 <b>{CONFIG.name}</b> ka pyara gift</div>
+          <button className="gift-continue-btn" onClick={handleContinue}>Continue → Memories</button>
+          <div className="gift-auto-timer">
+            <div className="gift-timer-ring">
+              <svg viewBox="0 0 34 34">
+                <circle className="bg-circle" cx="17" cy="17" r="14" />
+                <circle className="fg-circle" cx="17" cy="17" r="14" style={{ strokeDashoffset: dashOffset }} />
+              </svg>
+              <span className="gift-timer-num">{autoTimer}</span>
+            </div>
+            <span>{autoTimer > 0 ? `sec me agla page khulega...` : '✨ Khul raha hai...'}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="page-container gift-picker-page" style={{ padding: '16px' }}>
+      <MusicIndicator />
+      <h1 className="gift-picker-title">🎁 Pick Your Gift!</h1>
+      <p className="gift-picker-sub">Arrow par tap karo aur dekho kaunsa gift milega!</p>
+      <div className="gift-carousel-viewport">
+        <div className="gift-carousel-top-bar" />
+        <div className="gift-carousel-bottom-bar" />
+        <div className={`gift-carousel-track ${spinning ? 'spinning' : 'settled'}`} style={{ transform: `translateX(-${offset}px)` }}>
+          {GIFT_PICKER_LIST.map((g, i) => (
+            <div className="gift-slide" key={i}>
+              <div className="gift-slide-img-wrap" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
+                <img className="gift-slide-img" src={g.img} alt={g.name} draggable={false} />
+              </div>
+              <div className="gift-slide-name">{g.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className={`gift-picker-arrow ${spinning ? 'spinning' : ''}`} onClick={handleSpin} disabled={spinning} aria-label="Spin for gift">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+      </button>
+      <p className="gift-picker-hint">{spinning ? '🎡 Gifts chal rahe hain...' : '👉 Arrow par tap karo!'}</p>
+    </div>
+  );
+}
 function PageMemories({ onNext }) {
   const [idx, setIdx] = useState(0);
   const [fade, setFade] = useState(true);
@@ -1377,19 +1531,18 @@ function PageMemories({ onNext }) {
         <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
           <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#a21caf', marginBottom: 22, textAlign: 'center' }}>Beautiful Memories 📸</h1>
           <div className="mem-frame" onClick={() => setViewerOpen(true)}><div className="mem-frame-inner"><SmartImage key={idx} src={mem.img} id={mem.id} alt={mem.caption || `Memory ${idx + 1}`} className="mem-img" style={imgStyle} /></div></div>
-          <p className="mem-hint" style={{ textAlign: 'center' }}>👆 Tap image for fullscreen</p>
+          <p className="mem-hint" style={{ textAlign: 'center' }}>👆 Fullscreen ke liye image par tap karo</p>
           <div className="mem-dots">{CONFIG.memories.map((_, i) => (<button key={i} className={`mem-dot ${i === idx ? 'active' : ''}`} onClick={() => goDot(i)} />))}</div>
           <div className="mt-md" style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {idx > 0 && <RippleButton onClick={goPrev} className="btn btn-purple" style={{ padding: '14px 24px', fontSize: 14 }}>← Prev</RippleButton>}
-            <RippleButton onClick={goNext} className="btn btn-purple" style={{ padding: '14px 30px', fontSize: 14, minWidth: 160 }}>{idx < total - 1 ? 'Next Memory →' : 'Continue →'}</RippleButton>
+            {idx > 0 && <RippleButton onClick={goPrev} className="btn btn-purple" style={{ padding: '14px 24px', fontSize: 14 }}>← Pichli</RippleButton>}
+            <RippleButton onClick={goNext} className="btn btn-purple" style={{ padding: '14px 30px', fontSize: 14, minWidth: 160 }}>{idx < total - 1 ? 'Agli Memory →' : 'Aage Badho →'}</RippleButton>
           </div>
-          <p style={{ marginTop: 14, fontSize: 12, color: '#a855f7', fontWeight: 700, textAlign: 'center' }}>{idx + 1} of {total}</p>
+          <p style={{ marginTop: 14, fontSize: 12, color: '#a855f7', fontWeight: 700, textAlign: 'center' }}>{idx + 1} / {total}</p>
         </div>
       </div>
     </>
   );
 }
-
 function PageLetter({ onNext }) {
   return (
     <div className="page-container" style={{ background: 'linear-gradient(160deg,#fff8e8 0%,#ffefd5 100%)' }}>
@@ -1406,7 +1559,7 @@ function PageLetter({ onNext }) {
     </div>
   );
 }
-
+/* ⭐ UPDATED: Last gifts page with "Available Gifts" showcase */
 function PageGifts() {
   const [confetti, setConfetti] = useState(true);
   const [qrModalOpen, setQrModalOpen] = useState(false);
@@ -1430,10 +1583,10 @@ function PageGifts() {
         <MusicIndicator />
         <Balloons count={7} />
         <div className="last-page-inner">
-          <div className="anim-float" style={{ width: 110, height: 110, margin: '0 auto 14px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, boxShadow: '0 14px 34px rgba(244,114,182,.3)', border: '3px solid rgba(255,255,255,.8)' }}>🧸</div>
+          <div className="anim-float" style={{ width: 110, height: 110, margin: '0 auto 14px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, border: '3px solid rgba(255,255,255,.8)' }}>🧸</div>
           <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday!</h1>
-          <p style={{ color: '#7c3aed', fontSize: 13, fontWeight: 700, marginBottom: 8 }}>Here are some gifts from the heart 🎁</p>
-          <p style={{ color: '#a855f7', fontSize: 11, fontWeight: 700, marginBottom: 22 }}>👆 Tap any gift to redeem & send</p>
+          <p style={{ color: '#7c3aed', fontSize: 13, fontWeight: 700, marginBottom: 8 }}>Yeh kuch gifts hain dil se 🎁</p>
+          <p style={{ color: '#a855f7', fontSize: 11, fontWeight: 700, marginBottom: 22 }}>👆 Kisi bhi gift par tap karo</p>
           <div className="stack" style={{ gap: 12 }}>
             {CONFIG.gifts.map((g, i) => (
               <div key={i} className={`gift-card anim-fadeUp ${celebratingIdx === i ? 'celebrating' : ''}`} style={{ background: `linear-gradient(135deg,${g.c1},${g.c2})`, animationDelay: `${.1 + i * .1}s` }} onClick={() => handleGiftTap(g, i)}>
@@ -1441,13 +1594,30 @@ function PageGifts() {
                 <div className="gift-info">
                   <div className="gift-title">{g.title}</div>
                   <div className="gift-sub">{g.sub}</div>
-                  <div className="gift-tap-hint">Tap to redeem ✨</div>
+                  <div className="gift-tap-hint">Redeem karne ke liye tap karo ✨</div>
                 </div>
                 {celebratingIdx === i && <GiftEmojiBurst active={true} emoji={g.icon} />}
               </div>
             ))}
           </div>
-          <div className="mt-lg"><RippleButton onClick={() => setQrModalOpen(true)} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 15 }}>📸 Create your birthday card ✨</RippleButton></div>
+
+          {/* ⭐ NEW: Available Gifts showcase section — yahan dikhte hain saare 10 gift options */}
+          <div className="available-gifts-section">
+            <h2 className="available-gifts-title">🎁 Available Gifts</h2>
+            <p className="available-gifts-sub">Ye sab gifts mein se koi bhi choose kar sakte ho!</p>
+            <div className="available-gifts-grid">
+              {GIFT_PICKER_LIST.map((g, i) => (
+                <div key={i} className="available-gift-tile">
+                  <div className="available-gift-icon" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
+                    <img src={g.img} alt={g.name} draggable={false} />
+                  </div>
+                  <div className="available-gift-name">{g.name}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-lg"><RippleButton onClick={() => setQrModalOpen(true)} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 15 }}>📸 Apna birthday card banao ✨</RippleButton></div>
           <ReachMe onOpenShare={() => setShareModalOpen(true)} />
         </div>
       </div>
@@ -1456,7 +1626,7 @@ function PageGifts() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   🔐 ADMIN PANEL
+   🔐 ADMIN PANEL + FOLDER VIEWS
    ═══════════════════════════════════════════════════════════════════════════ */
 function MemoryEditor({ mem, index, onChange }) {
   const fileRef = useRef(null);
@@ -1480,11 +1650,45 @@ function MemoryEditor({ mem, index, onChange }) {
   );
 }
 
-function SharedMemoriesAdmin() {
+/* ⭐ NEW: Gift Images Folder View — 10 gift images ka folder page */
+function GiftImagesFolderView({ onClose }) {
+  return (
+    <div className="folder-view">
+      <div className="folder-view-panel">
+        <div className="folder-view-header">
+          <button className="folder-back-btn" onClick={onClose}>←</button>
+          <div className="folder-view-title">
+            <h2>🎁 Gift Images Folder</h2>
+            <p>{GIFT_PICKER_LIST.length} gifts · Carousel me use hote hain</p>
+          </div>
+        </div>
+        <div className="gift-folder-grid">
+          {GIFT_PICKER_LIST.map((g, i) => (
+            <div key={i} className="gift-folder-tile">
+              <div className="gift-folder-tile-img" style={{ background: `linear-gradient(135deg, ${g.color}, ${g.color}cc)` }}>
+                <span className="gift-folder-tile-num">{i + 1}</span>
+                <img src={g.img} alt={g.name} draggable={false} />
+              </div>
+              <div className="gift-folder-tile-name">{g.name}</div>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: 11, color: 'rgba(233,213,255,.5)', textAlign: 'center', marginTop: 16, lineHeight: 1.5 }}>
+          💡 Yeh 10 gifts carousel me use hote hain. Images change karne ke liye code me<br />
+          <b>GIFT_PICKER_LIST</b> array me har gift ka <b>img</b> URL badlo.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ⭐ NEW: Shared Memories Folder View — alag page par saari shared images */
+function SharedMemoriesFolderView({ onClose }) {
   const [memories, setMemories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [idbStatus, setIdbStatus] = useState(null);
   const [urlCache, setUrlCache] = useState({});
+  const [previewItem, setPreviewItem] = useState(null);
 
   const load = async () => {
     setLoading(true);
@@ -1502,41 +1706,88 @@ function SharedMemoriesAdmin() {
   };
 
   useEffect(() => { load(); }, []);
+  useEffect(() => {
+    return () => { Object.values(urlCache).forEach(u => { try { URL.revokeObjectURL(u); } catch (e) {} }); };
+  }, []);
 
-  const handleDelete = async (id) => { if (!confirm('Delete permanently?')) return; await deleteSharedMemory(id); await load(); };
-  const handleClearAll = async () => { if (!confirm('Delete ALL shared memories?')) return; await clearAllSharedMemories(); await load(); };
-  const totalSize = memories.reduce((s, m) => s + (m.size || 0), 0);
+  const handleDelete = async (id) => {
+    if (!confirm('Ye memory delete karni hai?')) return;
+    await deleteSharedMemory(id);
+    await load();
+  };
+  const handleClearAll = async () => {
+    if (!confirm('Saari shared memories delete karni hain? Ye undo nahi hoga.')) return;
+    await clearAllSharedMemories();
+    await load();
+  };
 
   return (
-    <div className="admin-section">
-      <h3>📤 Shared Memories ({memories.length})</h3>
-      {idbStatus === false && (
-        <div style={{ background: 'rgba(251,191,36,.15)', border: '1px solid rgba(251,191,36,.4)', color: '#fbbf24', fontSize: 11, fontWeight: 700, padding: 10, borderRadius: 8, marginBottom: 10, lineHeight: 1.5 }}>
-          ⚠️ IndexedDB blocked — memories memory-only (session).<br />Page ko http:// ya https:// se kholo.
+    <div className="folder-view">
+      <div className="folder-view-panel">
+        <div className="folder-view-header">
+          <button className="folder-back-btn" onClick={onClose}>←</button>
+          <div className="folder-view-title">
+            <h2>📤 Shared Memories</h2>
+            <p>{memories.length} files · IndexedDB me saved</p>
+          </div>
         </div>
-      )}
-      {idbStatus === true && (
-        <div style={{ background: 'rgba(16,185,129,.15)', border: '1px solid rgba(16,185,129,.4)', color: '#34d399', fontSize: 11, fontWeight: 700, padding: 8, borderRadius: 8, marginBottom: 10 }}>
-          ✅ Permanent storage active
-        </div>
-      )}
-      {loading ? (<div className="shared-empty">⏳ Loading...</div>) : memories.length === 0 ? (
-        <div className="shared-empty">✨ No memories yet</div>
-      ) : (
-        <>
-          <div className="shared-grid">
-            {memories.map(m => (
-              <div key={m.id} className="shared-tile">
-                {m.isVideo ? (<video src={urlCache[m.id] || ''} muted playsInline />) : (<img src={urlCache[m.id] || ''} alt={m.name} />)}
-                <div className="shared-tile-badge">{m.isVideo ? '🎬' : '🖼️'}</div>
-                <button className="shared-tile-del" onClick={() => handleDelete(m.id)}>✕</button>
-                <div className="shared-tile-info">{formatBytes(m.size)}</div>
+
+        {idbStatus === false && (
+          <div style={{ background: 'rgba(251,191,36,.15)', border: '1px solid rgba(251,191,36,.4)', color: '#fbbf24', fontSize: 11, fontWeight: 700, padding: 10, borderRadius: 8, marginBottom: 14, lineHeight: 1.5 }}>
+            ⚠️ IndexedDB blocked hai — memories sirf session me rahengi (refresh par gayab ho jayengi).
+          </div>
+        )}
+        {idbStatus === true && (
+          <div style={{ background: 'rgba(16,185,129,.15)', border: '1px solid rgba(16,185,129,.4)', color: '#34d399', fontSize: 11, fontWeight: 700, padding: 8, borderRadius: 8, marginBottom: 14 }}>
+            ✅ Permanent storage ON hai — files safe hain
+          </div>
+        )}
+
+        {loading ? (
+          <div className="folder-view-empty"><span className="folder-view-empty-icon">⏳</span>Loading...</div>
+        ) : memories.length === 0 ? (
+          <div className="folder-view-empty">
+            <span className="folder-view-empty-icon">📭</span>
+            Abhi tak koi memory share nahi ki gayi.<br />
+            <span style={{ fontSize: 11, opacity: .7 }}>Reach Me section me "Share Your Memory" par jaake add karo.</span>
+          </div>
+        ) : (
+          <div className="folder-view-grid">
+            {memories.map((m, i) => (
+              <div key={m.id} className="folder-view-tile" onClick={() => setPreviewItem(m)}>
+                <span className="folder-view-tile-num">#{i + 1}</span>
+                {m.isVideo ? (
+                  <video src={urlCache[m.id] || ''} muted playsInline />
+                ) : (
+                  <img src={urlCache[m.id] || ''} alt={m.name} />
+                )}
+                <div className="folder-view-tile-name">{formatBytes(m.size)}</div>
+                <button className="folder-view-tile-del" onClick={(e) => { e.stopPropagation(); handleDelete(m.id); }}>✕</button>
               </div>
             ))}
           </div>
-          <div className="shared-stats">Total: {formatBytes(totalSize)}</div>
-          <button className="admin-btn admin-btn-danger" onClick={handleClearAll} style={{ marginTop: 10, width: '100%' }}>🗑 Clear All</button>
-        </>
+        )}
+
+        {memories.length > 0 && (
+          <div className="folder-view-actions">
+            <button className="admin-btn admin-btn-danger" onClick={handleClearAll}>🗑 Clear All</button>
+          </div>
+        )}
+      </div>
+
+      {/* Image preview modal */}
+      {previewItem && (
+        <div className="img-preview-modal" onClick={() => setPreviewItem(null)}>
+          <button className="img-preview-close" onClick={(e) => { e.stopPropagation(); setPreviewItem(null); }}>✕</button>
+          {previewItem.isVideo ? (
+            <video src={urlCache[previewItem.id] || ''} controls autoPlay playsInline />
+          ) : (
+            <img src={urlCache[previewItem.id] || ''} alt={previewItem.name} />
+          )}
+          <div className="img-preview-info">
+            {previewItem.name} · {formatBytes(previewItem.size)}
+          </div>
+        </div>
       )}
     </div>
   );
@@ -1552,7 +1803,7 @@ function CalendarEditor({ cal, onChange }) {
         <div className="admin-field" style={{ marginBottom: 0 }}><label>Month</label><input value={cal.month || ''} onChange={(e) => updateField('month', e.target.value)} /></div>
         <div className="admin-field" style={{ marginBottom: 0 }}><label>Year</label><input value={cal.year || ''} onChange={(e) => updateField('year', e.target.value)} /></div>
       </div>
-      <div className="admin-field"><label>⭐ Special Date</label><input type="number" min="1" max="30" value={cal.specialDate || 22} onChange={(e) => updateField('specialDate', parseInt(e.target.value) || 22)} /></div>
+      <div className="admin-field"><label>⭐ Special Date</label><input type="number" min="1" max="30" value={cal.specialDate || 15} onChange={(e) => updateField('specialDate', parseInt(e.target.value) || 15)} /></div>
       <div className="admin-field"><label>Title</label><input value={cal.title || ''} onChange={(e) => updateField('title', e.target.value)} /></div>
       <div className="admin-field"><label>Hint</label><input value={cal.hint || ''} onChange={(e) => updateField('hint', e.target.value)} /></div>
       <div className="admin-field"><label>Quote 1</label><input value={cal.quoteLine1 || ''} onChange={(e) => updateField('quoteLine1', e.target.value)} /></div>
@@ -1571,11 +1822,55 @@ function CalendarEditor({ cal, onChange }) {
   );
 }
 
+function SavedGiftAdmin() {
+  const [saved, setSaved] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+  useEffect(() => {
+    try {
+      const data = localStorage.getItem(GIFT_RESULT_KEY);
+      if (data) setSaved(JSON.parse(data));
+      else setSaved(null);
+    } catch (e) { setSaved(null); }
+  }, [refreshKey]);
+  const handleClear = () => {
+    if (!confirm('Gift result clear karna hai? Is device par user dobara gift pick kar sakta hai.')) return;
+    try { localStorage.removeItem(GIFT_RESULT_KEY); } catch (e) {}
+    setRefreshKey(k => k + 1);
+  };
+  return (
+    <div className="admin-section">
+      <h3>🎁 Saved Gift Result</h3>
+      <p style={{ fontSize: 10.5, color: 'rgba(233,213,255,.55)', marginBottom: 10, lineHeight: 1.5 }}>
+        Ye result us device par save hota hai jis device se gift pick hua tha.
+      </p>
+      {saved ? (
+        <>
+          <div style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', borderRadius: 14, padding: 14, display: 'flex', gap: 12, alignItems: 'center', marginBottom: 10, boxShadow: '0 8px 22px rgba(251,191,36,.35)' }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              {saved.giftImg ? <img src={saved.giftImg} alt="" style={{ width: 44, height: 44, objectFit: 'contain' }} /> : (saved.giftEmoji || '🎁')}
+            </div>
+            <div style={{ flex: 1, textAlign: 'left', color: '#fff' }}>
+              <h4 style={{ fontSize: 16, fontWeight: 900, marginBottom: 2 }}>{saved.giftName || 'Unknown Gift'}</h4>
+              <p style={{ fontSize: 11, fontWeight: 700, opacity: .95, marginBottom: 2 }}>👦 <b>{saved.boyName || CONFIG.name}</b> ko ye gift dena hai</p>
+              <p style={{ fontSize: 10, opacity: .75, marginTop: 4 }}>🕐 {saved.timestamp ? new Date(saved.timestamp).toLocaleString() : 'N/A'}</p>
+            </div>
+          </div>
+          <button className="admin-btn admin-btn-danger" onClick={handleClear} style={{ width: '100%', marginTop: 6 }}>🗑 Clear Gift Result (Respin Allow)</button>
+        </>
+      ) : (
+        <div style={{ textAlign: 'center', padding: '16px 10px', color: 'rgba(233,213,255,.5)', fontSize: 12, fontWeight: 700, fontStyle: 'italic' }}>✨ Abhi tak {CONFIG.name} ne koi gift select nahi kiya is device par</div>
+      )}
+    </div>
+  );
+}
+
 function AdminPanel({ onClose, onApply }) {
   const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState('');
   const [err, setErr] = useState('');
   const [toast, setToast] = useState('');
+  const [showGiftFolder, setShowGiftFolder] = useState(false);       // ⭐ Gift folder view
+  const [showSharedFolder, setShowSharedFolder] = useState(false);   // ⭐ Shared memories folder view
   const [draft, setDraft] = useState(() => {
     try {
       const saved = localStorage.getItem('bdayDraft');
@@ -1592,86 +1887,143 @@ function AdminPanel({ onClose, onApply }) {
   });
   useEffect(() => { try { localStorage.setItem('bdayDraft', JSON.stringify(draft)); } catch (e) {} }, [draft]);
   const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(''), 2000); };
-  const tryLogin = () => { if (pw === ADMIN_PASSWORD) { setAuthed(true); setErr(''); } else setErr('Wrong password!'); };
+  const tryLogin = () => { if (pw === ADMIN_PASSWORD) { setAuthed(true); setErr(''); } else setErr('Password galat hai!'); };
   const updateField = (key, value) => setDraft(prev => ({ ...prev, [key]: value }));
   const updateMsg = (i, key, value) => setDraft(prev => { const messages = [...prev.messages]; messages[i] = { ...messages[i], [key]: value }; return { ...prev, messages }; });
   const updateMem = (i, newMem) => setDraft(prev => { const memories = [...prev.memories]; memories[i] = newMem; return { ...prev, memories }; });
-  const updateGift = (i, key, value) => setDraft(prev => { const gifts = [...prev.gifts]; gifts[i] = { ...gifts[i], [key]: value }; return { ...prev, gifts }; });
   const updateCalendar = (newCal) => setDraft(prev => ({ ...prev, calendar: newCal }));
-  const applyPreview = () => { Object.assign(CONFIG, draft); onApply(draft); showToast('Preview applied! 🎉'); };
+  const applyPreview = () => { Object.assign(CONFIG, draft); onApply(draft); showToast('Preview lagaya gaya! 🎉'); };
   const generateLink = () => {
     const encoded = encodeConfig(draft);
     const url = `${window.location.origin + window.location.pathname}#c=${encoded}`;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => showToast('Link copied! 📋')).catch(() => prompt('Copy:', url));
-    } else prompt('Copy:', url);
+      navigator.clipboard.writeText(url).then(() => showToast('Link copy ho gaya! 📋')).catch(() => prompt('Yeh link copy karo:', url));
+    } else prompt('Yeh link copy karo:', url);
   };
-  const resetForm = () => { if (!confirm('Reset?')) return; setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); showToast('Reset done ✅'); };
-  const clearDraft = () => { if (!confirm('Clear draft?')) return; localStorage.removeItem('bdayDraft'); setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); };
+  const resetForm = () => { if (!confirm('Default par reset karna hai?')) return; setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); showToast('Reset ho gaya ✅'); };
+  const clearDraft = () => { if (!confirm('Draft clear karna hai?')) return; localStorage.removeItem('bdayDraft'); setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); };
 
   if (!authed) {
     return (
       <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
         <div className="admin-panel" style={{ maxWidth: 340, position: 'relative' }}>
           <button className="admin-close" onClick={onClose}>✕</button>
-          <h2>Admin Login</h2><p className="sub">Enter password</p>
+          <h2>Admin Login</h2><p className="sub">Password daalo</p>
           <div className="admin-field">
             <label>Password</label>
-            <input type="password" value={pw} autoFocus onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryLogin(); }} placeholder="Enter admin password" />
+            <input type="password" value={pw} autoFocus onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryLogin(); }} placeholder="Admin password daalo" />
             {err && <div style={{ color: '#f87171', fontSize: 12, marginTop: 6, fontWeight: 700 }}>{err}</div>}
           </div>
           <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={tryLogin}>Login</button><button className="admin-btn admin-btn-secondary" onClick={onClose}>Cancel</button></div>
-          <p className="admin-hint">Default: <b>admin123</b></p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
-      <div className="admin-panel" style={{ position: 'relative' }}>
-        <button className="admin-close" onClick={onClose}>✕</button>
-        <h2>Admin Panel 🎂</h2>
-        <p className="sub">Customize & share</p>
+    <>
+      {/* ⭐ FOLDER VIEWS — open in full screen when clicked */}
+      {showGiftFolder && <GiftImagesFolderView onClose={() => setShowGiftFolder(false)} />}
+      {showSharedFolder && <SharedMemoriesFolderView onClose={() => setShowSharedFolder(false)} />}
 
-        <SharedMemoriesAdmin />
-        <CalendarEditor cal={draft.calendar || DEFAULT_CALENDAR} onChange={updateCalendar} />
+      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
+        <div className="admin-panel">
+          <button className="admin-close" onClick={onClose}>✕</button>
+          <h2>Admin Panel 🎂</h2>
+          <p className="sub">Customize karo aur link share karo</p>
 
-        <div className="admin-section"><h3>👤 Name</h3><div className="admin-field"><input value={draft.name} onChange={(e) => updateField('name', e.target.value)} /></div></div>
+          {/* ⭐ FOLDER BUTTONS — click karke full page kholta hai */}
+          <div className="admin-section">
+            <h3>📁 Folders</h3>
 
-        <div className="admin-section"><h3>💬 Messages (3)</h3>
-          {draft.messages.map((m, i) => (<div key={i} className="admin-row"><input value={m.icon} onChange={(e) => updateMsg(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={m.text} onChange={(e) => updateMsg(i, 'text', e.target.value)} /></div>))}
+            {/* Gift Images Folder */}
+            <button className="folder-btn" onClick={() => setShowGiftFolder(true)}>
+              <div className="folder-icon">🎁</div>
+              <div className="folder-info">
+                <div className="folder-title">Gift Images Folder</div>
+                <div className="folder-sub">{GIFT_PICKER_LIST.length} gifts · Carousel images</div>
+              </div>
+              <div className="folder-arrow">›</div>
+            </button>
+
+            {/* Shared Memories Folder */}
+            <SharedMemoriesFolderButton onOpen={() => setShowSharedFolder(true)} />
+          </div>
+
+          <SavedGiftAdmin />
+          <CalendarEditor cal={draft.calendar || DEFAULT_CALENDAR} onChange={updateCalendar} />
+
+          <div className="admin-section"><h3>👤 Birthday Boy ka Naam</h3><div className="admin-field"><input value={draft.name} onChange={(e) => updateField('name', e.target.value)} /></div></div>
+
+          <div className="admin-section"><h3>💬 Messages (3)</h3>
+            {draft.messages.map((m, i) => (<div key={i} className="admin-row"><input value={m.icon} onChange={(e) => updateMsg(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={m.text} onChange={(e) => updateMsg(i, 'text', e.target.value)} /></div>))}
+          </div>
+
+          <div className="admin-section"><h3>💌 Letter</h3>
+            <div className="admin-field"><label>Body</label><textarea value={draft.letterBody} onChange={(e) => updateField('letterBody', e.target.value)} /></div>
+            <div className="admin-field"><label>Sign</label><input value={draft.letterSign} onChange={(e) => updateField('letterSign', e.target.value)} /></div>
+          </div>
+
+          <div className="admin-section"><h3>🖼️ Images</h3>
+            <div className="admin-field"><label>Page 1</label><input value={draft.page1Image} onChange={(e) => updateField('page1Image', e.target.value)} /></div>
+            <div className="admin-field"><label>Cake</label><input value={draft.cakeImage} onChange={(e) => updateField('cakeImage', e.target.value)} /></div>
+          </div>
+
+          <div className="admin-section"><h3>📸 Memories ({draft.memories.length})</h3>
+            {draft.memories.map((m, i) => (<MemoryEditor key={i} mem={m} index={i} onChange={(nm) => updateMem(i, nm)} />))}
+          </div>
+
+          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={applyPreview}>👁 Lagao</button><button className="admin-btn admin-btn-primary" onClick={generateLink}>🔗 Link</button></div>
+          <div className="admin-actions"><button className="admin-btn admin-btn-secondary" onClick={resetForm}>♻ Reset</button><button className="admin-btn admin-btn-danger" onClick={clearDraft}>🗑 Clear</button></div>
+          <p className="admin-hint">💡 Gift result har device par alag save hota hai · Access Password: <b>1234</b></p>
+          {toast && <div className="admin-toast">{toast}</div>}
         </div>
-
-        <div className="admin-section"><h3>💌 Letter</h3>
-          <div className="admin-field"><label>Body</label><textarea value={draft.letterBody} onChange={(e) => updateField('letterBody', e.target.value)} /></div>
-          <div className="admin-field"><label>Sign</label><input value={draft.letterSign} onChange={(e) => updateField('letterSign', e.target.value)} /></div>
-        </div>
-
-        <div className="admin-section"><h3>🖼️ Images</h3>
-          <div className="admin-field"><label>Page 1</label><input value={draft.page1Image} onChange={(e) => updateField('page1Image', e.target.value)} /></div>
-          <div className="admin-field"><label>Cake</label><input value={draft.cakeImage} onChange={(e) => updateField('cakeImage', e.target.value)} /></div>
-        </div>
-
-        <div className="admin-section"><h3>📸 Memories ({draft.memories.length})</h3>
-          {draft.memories.map((m, i) => (<MemoryEditor key={i} mem={m} index={i} onChange={(nm) => updateMem(i, nm)} />))}
-        </div>
-
-        <div className="admin-section"><h3>🎁 Gifts (4)</h3>
-          {draft.gifts.map((g, i) => (
-            <div key={i} style={{ marginBottom: 14, paddingBottom: 12, borderBottom: '1px solid rgba(168,85,247,.15)' }}>
-              <div className="admin-row"><input value={g.icon} onChange={(e) => updateGift(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={g.title} onChange={(e) => updateGift(i, 'title', e.target.value)} /></div>
-              <input value={g.sub} onChange={(e) => updateGift(i, 'sub', e.target.value)} placeholder="Subtitle" style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(168,85,247,.25)', borderRadius: 10, padding: '10px 12px', color: '#fff', fontFamily: 'Nunito', fontSize: 14, outline: 'none', marginBottom: 6 }} />
-            </div>
-          ))}
-        </div>
-
-        <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={applyPreview}>👁 Apply</button><button className="admin-btn admin-btn-primary" onClick={generateLink}>🔗 Link</button></div>
-        <div className="admin-actions"><button className="admin-btn admin-btn-secondary" onClick={resetForm}>♻ Reset</button><button className="admin-btn admin-btn-danger" onClick={clearDraft}>🗑 Clear</button></div>
-        <p className="admin-hint">💡 Password: <b>Mahnoor@2</b></p>
-        {toast && <div className="admin-toast">{toast}</div>}
       </div>
-    </div>
+    </>
+  );
+}
+
+/* ⭐ NEW: Shared Memories Folder Button — count ke saath */
+function SharedMemoriesFolderButton({ onOpen }) {
+  const [count, setCount] = useState(null);
+  const [idbStatus, setIdbStatus] = useState(null);
+  const [size, setSize] = useState(0);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const ok = await checkIDB();
+      if (!mounted) return;
+      setIdbStatus(ok);
+      try {
+        const all = await getAllSharedMemories();
+        if (!mounted) return;
+        setCount(all.length);
+        setSize(all.reduce((s, m) => s + (m.size || 0), 0));
+      } catch (e) { setCount(0); }
+    };
+    load();
+    // Refresh every 3 seconds
+    const iv = setInterval(load, 3000);
+    return () => { mounted = false; clearInterval(iv); };
+  }, []);
+
+  return (
+    <button className="folder-btn" onClick={onOpen}>
+      <div className="folder-icon" style={{ background: 'linear-gradient(135deg,#a855f7,#ec4899)' }}>📤</div>
+      <div className="folder-info">
+        <div className="folder-title">
+          Shared Memories ({count === null ? '...' : count})
+        </div>
+        <div className="folder-sub">
+          {count === 0 || count === null
+            ? 'Abhi kuch share nahi hua'
+            : `${formatBytes(size)} · Tap to view all`}
+          {idbStatus === false && ' · ⚠️ session only'}
+        </div>
+      </div>
+      <div className="folder-arrow">›</div>
+    </button>
   );
 }
 
@@ -1688,7 +2040,6 @@ function App() {
   const [adminOpen, setAdminOpen] = useState(false);
   const [, forceUpdate] = useState(0);
 
-  // ⭐ Check IDB on mount
   useEffect(() => { checkIDB(); }, []);
 
   useEffect(() => {
@@ -1719,9 +2070,10 @@ function App() {
       case 4: return <PageSurprise onNext={() => go(5)} />;
       case 5: return <PageMessages onNext={() => go(6)} />;
       case 6: return <PageWish onNext={() => go(7)} />;
-      case 7: return <PageMemories onNext={() => go(8)} />;
-      case 8: return <PageLetter onNext={() => go(9)} />;
-      case 9: return <PageGifts />;
+      case 7: return <PageGiftPicker onComplete={() => go(8)} />;
+      case 8: return <PageMemories onNext={() => go(9)} />;
+      case 9: return <PageLetter onNext={() => go(10)} />;
+      case 10: return <PageGifts />;
       default: return null;
     }
   };
@@ -1730,11 +2082,11 @@ function App() {
     <>
       {adminOpen && <AdminPanel onClose={() => setAdminOpen(false)} onApply={handleApply} />}
       <div className="app">
-        {showBalloons && page !== 5 && page !== 7 && page !== 9 && (<div className="bg-layer" style={{ zIndex: 1 }}><Balloons count={8} /></div>)}
+        {showBalloons && page !== 5 && page !== 7 && page !== 8 && page !== 10 && (<div className="bg-layer" style={{ zIndex: 1 }}><Balloons count={8} /></div>)}
         <div key={page} style={{ position: 'absolute', inset: 0, animation: 'fadeIn .5s ease' }}>{renderPage()}</div>
-        {page > 1 && page < 9 && (
+        {page > 1 && page < 10 && (
           <div style={{ position: 'absolute', bottom: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6, zIndex: 100, pointerEvents: 'none' }}>
-            {[1,2,3,4,5,6,7,8,9].map(n => (<div key={n} style={{ width: n === page ? 20 : 6, height: 6, borderRadius: 3, background: n === page ? 'linear-gradient(90deg,#a855f7,#ec4899)' : 'rgba(255,255,255,.25)', transition: 'all .4s' }} />))}
+            {[1,2,3,4,5,6,7,8,9,10].map(n => (<div key={n} style={{ width: n === page ? 20 : 6, height: 6, borderRadius: 3, background: n === page ? 'linear-gradient(90deg,#a855f7,#ec4899)' : 'rgba(255,255,255,.25)', transition: 'all .4s' }} />))}
           </div>
         )}
       </div>
