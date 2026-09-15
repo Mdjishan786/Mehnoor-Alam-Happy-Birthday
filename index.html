@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Birthday 🎂</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   🎨 GLOBAL RESET & BASE STYLES
+   ═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:'Nunito',sans-serif}
+body{background:#0d0620;display:flex;align-items:center;justify-content:center}
+#root{width:100%;height:100%;max-width:460px;position:relative;overflow:hidden;background:#0d0620}
+@media(min-width:500px){#root{height:900px;max-height:96vh;border-radius:38px;box-shadow:0 40px 120px rgba(120,60,200,.35),0 0 0 1px rgba(255,255,255,.06)}}
+
+/* ═══════════════════════════════════════════════════════════
+   ✨ ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+@keyframes balloonUp{0%{transform:translateY(120vh) scale(.7);opacity:0}10%{opacity:.9}90%{opacity:.85}100%{transform:translateY(-130vh) scale(1);opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.5)}50%{opacity:1;transform:scale(1.3)}}
+@keyframes flicker{0%,100%{transform:scaleY(1) scaleX(1);opacity:1}50%{transform:scaleY(1.15) scaleX(.9);opacity:.85}}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(900deg);opacity:0}}
+@keyframes smokeUp{0%{opacity:.7;transform:translateY(0) scale(.8)}100%{opacity:0;transform:translateY(-40px) scale(2)}}
+@keyframes rippleOut{0%{transform:scale(0);opacity:.7}100%{transform:scale(4);opacity:0}}
+@keyframes heartBeat{0%,70%,100%{transform:scale(1)}20%{transform:scale(1.25)}40%{transform:scale(1)}60%{transform:scale(1.15)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+@keyframes celebratePop{
+  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(180,100,255,.7)}
+  40%{transform:scale(1.35) rotate(-6deg);box-shadow:0 0 0 12px rgba(180,100,255,.4),0 0 40px 20px rgba(236,72,153,.6)}
+  70%{transform:scale(1.5) rotate(6deg);box-shadow:0 0 0 20px rgba(180,100,255,.2),0 0 60px 30px rgba(236,72,153,.4)}
+  100%{transform:scale(1.2) rotate(0);box-shadow:0 0 0 30px rgba(180,100,255,0),0 0 80px 40px rgba(236,72,153,0)}
+}
+@keyframes sparkleBurst{0%{transform:translate(0,0) scale(0);opacity:1}50%{transform:translate(var(--sx),var(--sy)) scale(1.4);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
+@keyframes ringExpand{0%{transform:scale(.5);opacity:1;border-width:6px}100%{transform:scale(2.8);opacity:0;border-width:1px}}
+@keyframes bgFlash{0%{opacity:0}30%{opacity:.6}100%{opacity:0}}
+@keyframes floatUpFade{0%{transform:translateY(0) scale(.5);opacity:0}20%{opacity:1}100%{transform:translateY(-200px) scale(1.4);opacity:0}}
+@keyframes giftPop{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.08) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}75%{transform:scale(1.05) rotate(-2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes giftEmojiBurst{0%{transform:translate(0,0) scale(0) rotate(0);opacity:0}30%{opacity:1}100%{transform:translate(var(--ex),var(--ey)) scale(1.6) rotate(var(--er));opacity:0}}
+@keyframes modalIn{0%{opacity:0;transform:scale(.85) translateY(30px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes overlayIn{from{opacity:0;backdrop-filter:blur(0px)}to{opacity:1;backdrop-filter:blur(6px)}}
+@keyframes lockPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px rgba(168,85,247,.5))}50%{transform:scale(1.08);filter:drop-shadow(0 0 40px rgba(236,72,153,.7))}}
+@keyframes welcomeGlow{0%,100%{text-shadow:0 0 20px rgba(250,204,21,.6)}50%{text-shadow:0 0 40px rgba(250,204,21,.9),0 0 80px rgba(236,72,153,.7)}}
+@keyframes doorOpen{0%{opacity:0;transform:perspective(800px) rotateY(-90deg)}100%{opacity:1;transform:perspective(800px) rotateY(0)}}
+@keyframes sparkleRain{0%{transform:translateY(-100vh) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes inputShake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-10px)}30%,60%,90%{transform:translateX(10px)}}
+@keyframes welcomeZoom{0%{transform:scale(0) rotate(-180deg);opacity:0}60%{transform:scale(1.2) rotate(10deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes qrModalIn{0%{opacity:0;transform:scale(.5) translateY(40px) rotate(-8deg)}60%{transform:scale(1.05) translateY(-5px) rotate(3deg)}100%{opacity:1;transform:scale(1) translateY(0) rotate(0)}}
+@keyframes qrBorderSpin{to{transform:rotate(360deg)}}
+@keyframes qrPulse{0%,100%{box-shadow:0 0 40px rgba(168,85,247,.6),0 0 80px rgba(236,72,153,.4)}50%{box-shadow:0 0 60px rgba(236,72,153,.8),0 0 120px rgba(168,85,247,.6)}}
+@keyframes memoryPop{0%{opacity:0;transform:scale(.8) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes musicIndicator{0%,100%{transform:scaleY(1);opacity:.9}50%{transform:scaleY(1.8);opacity:1}}
+
+.gift-card.celebrating{animation:giftPop 1.1s cubic-bezier(.34,1.56,.64,1) forwards}
+.gift-emoji-burst{position:absolute;font-size:26px;pointer-events:none;left:50%;top:50%;animation:giftEmojiBurst 1.1s ease-out forwards;z-index:50}
+.anim-fadeUp{animation:fadeUp .6s cubic-bezier(.2,.8,.2,1) both}
+.anim-pop{animation:pop .55s cubic-bezier(.34,1.56,.64,1) both}
+.anim-float{animation:floatY 4s ease-in-out infinite}
+.anim-heartBeat{animation:heartBeat 1.4s ease-in-out infinite}
+.celebrate-pop{animation:celebratePop 1s cubic-bezier(.34,1.56,.64,1) forwards !important}
+.celebrate-ring{position:absolute;inset:0;border:6px solid #ec4899;border-radius:16px;pointer-events:none;animation:ringExpand .9s ease-out forwards}
+.celebrate-sparkle{position:absolute;top:50%;left:50%;font-size:20px;pointer-events:none;animation:sparkleBurst .9s ease-out forwards;z-index:50}
+.celebration-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,215,80,.8),rgba(236,72,153,.5) 40%,transparent 70%);pointer-events:none;z-index:9999;animation:bgFlash 1s ease-out forwards}
+.celebration-emoji{position:fixed;font-size:36px;pointer-events:none;z-index:10000;animation:floatUpFade 1s ease-out forwards}
+
+/* ═══════════════════════════════════════════════════════════
+   🏗️  LAYOUT
+   ═══════════════════════════════════════════════════════════ */
+.app{position:absolute;inset:0;overflow:hidden}
+.bg-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
+.balloon{position:absolute;bottom:-140px;animation:balloonUp linear infinite;pointer-events:none}
+.balloon svg{filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+.page-container{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 26px;z-index:5;text-align:center;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.page-container::-webkit-scrollbar{display:none}
+.last-page{position:absolute;inset:0;z-index:5;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:44px 20px 60px;text-align:center;background:linear-gradient(160deg,#fdf1ff 0%,#f8e6ff 50%,#ffe9f2 100%)}
+.last-page::-webkit-scrollbar{display:none}
+.last-page-inner{max-width:360px;margin:0 auto;position:relative;z-index:2}
+.script{font-family:'Dancing Script',cursive;font-weight:700;line-height:1.15}
+.hand{font-family:'Caveat',cursive;font-weight:500;line-height:1.4}
+
+.music-indicator{position:absolute;top:14px;right:14px;display:flex;gap:3px;align-items:flex-end;height:16px;z-index:500;pointer-events:none;opacity:.85}
+.music-bar{width:3px;background:linear-gradient(180deg,#a855f7,#ec4899);border-radius:2px;animation:musicIndicator .6s ease-in-out infinite}
+.music-bar:nth-child(1){height:60%;animation-delay:0s}
+.music-bar:nth-child(2){height:100%;animation-delay:.15s}
+.music-bar:nth-child(3){height:70%;animation-delay:.3s}
+.music-bar:nth-child(4){height:90%;animation-delay:.45s}
+
+/* ═══════════════════════════════════════════════════════════
+   🔘 BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;letter-spacing:.3px;cursor:pointer;position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;user-select:none}
+.btn:active{transform:scale(.96);transition-duration:.08s}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn-gradient{background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#f97316 100%);color:#fff;box-shadow:0 8px 28px rgba(168,85,247,.45)}
+.btn-purple{background:linear-gradient(135deg,#8b5cf6,#a855f7);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.45)}
+.btn-pink{background:linear-gradient(135deg,#ec4899,#f97316);color:#fff;box-shadow:0 8px 24px rgba(236,72,153,.5)}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);pointer-events:none;animation:rippleOut .7s ease-out forwards}
+
+/* ═══════════════════════════════════════════════════════════
+   💬 MESSAGE CARD
+   ═══════════════════════════════════════════════════════════ */
+.msg-card{background:#fff;border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;text-align:left;box-shadow:0 8px 24px rgba(120,60,200,.12),0 2px 6px rgba(0,0,0,.04);border:1px solid rgba(200,160,255,.15);transition:transform .25s}
+.msg-card:hover{transform:translateY(-3px)}
+.msg-icon{font-size:26px;line-height:1;flex-shrink:0}
+.msg-text{font-size:15px;color:#3a2a5c;font-weight:600;line-height:1.55}
+
+/* ═══════════════════════════════════════════════════════════
+   🎂 CAKE & CANDLE
+   ═══════════════════════════════════════════════════════════ */
+.cake-image-wrap{position:relative;width:100%;max-width:340px;margin:0 auto 26px;cursor:pointer;display:block}
+.cake-image-wrap img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.5)}
+.flame-position{position:absolute;left:47%;top:4%;transform:translate(-50%,-100%);cursor:pointer;pointer-events:auto;z-index:10;transition:transform .2s}
+.flame-position:active{transform:translate(-50%,-100%) scale(.9)}
+.real-flame{width:18px;height:32px;background:radial-gradient(ellipse at 50% 80%,#ffffff 0%,#fffbeb 20%,#fde047 50%,#f97316 80%,#dc2626 100%);border-radius:50% 50% 20% 20%/60% 60% 40% 40%;box-shadow:0 0 15px rgba(253,224,71,.9),0 0 30px rgba(249,115,22,.6),0 0 45px rgba(220,38,38,.4);animation:flicker .15s infinite alternate;transform-origin:center bottom;position:relative}
+.real-flame::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#333;border-radius:1px;z-index:-1}
+.flame-glow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.4),transparent 70%);pointer-events:none}
+.candle-smoke-small{width:12px;height:12px;border-radius:50%;background:rgba(220,220,220,.7);animation:smokeUp 1.4s ease-out forwards;pointer-events:none;position:absolute;bottom:0;left:50%;transform:translateX(-50%)}
+
+/* ═══════════════════════════════════════════════════════════
+   📸 MEMORIES
+   ═══════════════════════════════════════════════════════════ */
+.mem-frame{width:100%;max-width:320px;aspect-ratio:1/1;border-radius:22px;padding:4px;background:linear-gradient(135deg,#f0abfc,#c084fc,#a855f7,#ec4899);box-shadow:0 14px 42px rgba(168,85,247,.35);position:relative;overflow:hidden;cursor:pointer;margin:0 auto}
+.mem-frame-inner{width:100%;height:100%;border-radius:18px;overflow:hidden;background:#f3e8ff;position:relative}
+.mem-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s}
+.mem-dots{display:flex;gap:8px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.mem-dot{width:9px;height:9px;border-radius:50%;background:#d8b4fe;transition:all .3s;border:none;cursor:pointer;padding:0}
+.mem-dot.active{width:26px;border-radius:5px;background:linear-gradient(90deg,#a855f7,#ec4899)}
+.mem-hint{font-size:11px;color:#a855f7;font-weight:700;letter-spacing:.5px;margin-top:8px;opacity:.75}
+.fullscreen-viewer{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:20000;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:pinch-zoom}
+.fullscreen-viewer img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .1s;user-select:none;-webkit-user-drag:none}
+.fs-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);z-index:20001}
+.fs-controls{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:10px;background:rgba(255,255,255,.1);padding:10px 16px;border-radius:50px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);z-index:20001}
+.fs-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:800}
+.fs-btn:active{transform:scale(.9)}
+.fs-hint{position:absolute;top:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;font-weight:700;letter-spacing:1px;background:rgba(0,0,0,.4);padding:6px 16px;border-radius:50px}
+
+/* ═══════════════════════════════════════════════════════════
+   💌 LETTER
+   ═══════════════════════════════════════════════════════════ */
+.letter{width:100%;max-width:340px;background:linear-gradient(180deg,#fffef7 0%,#fff8e7 100%);border-radius:18px;padding:28px 24px;box-shadow:0 20px 50px rgba(180,140,80,.25),0 4px 12px rgba(0,0,0,.06);position:relative;text-align:left;border:1px solid rgba(220,200,160,.4);background-image:repeating-linear-gradient(180deg,transparent 0 34px,rgba(200,180,150,.18) 34px 35px);background-position:0 22px;margin:0 auto}
+.letter-stamp{position:absolute;top:16px;right:16px;width:44px;height:52px;border-radius:6px;background:#fff;border:2px dashed #f4a6c0;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 8px rgba(0,0,0,.06);transform:rotate(6deg)}
+.letter-bear{width:64px;height:64px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:48px;filter:drop-shadow(0 4px 8px rgba(180,140,80,.3))}
+.letter-greet{font-family:'Dancing Script',cursive;font-weight:700;font-size:26px;color:#a0522d;margin-bottom:14px;text-align:center}
+.letter-body{font-family:'Caveat',cursive;font-size:20px;line-height:1.55;color:#4a3a2a;font-weight:500}
+.letter-sign{font-family:'Caveat',cursive;font-size:22px;color:#b45309;text-align:right;margin-top:22px;font-weight:600}
+
+/* ═══════════════════════════════════════════════════════════
+   🎁 GIFTS
+   ═══════════════════════════════════════════════════════════ */
+.gift-card{width:100%;border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:14px;color:#fff;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.15);transition:transform .25s;cursor:pointer;position:relative;overflow:hidden}
+.gift-card:hover{transform:translateY(-4px) scale(1.02)}
+.gift-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.gift-info{flex:1}
+.gift-title{font-size:15px;font-weight:800;margin-bottom:2px}
+.gift-sub{font-size:12px;opacity:.85;font-weight:500}
+.gift-tap-hint{font-size:9px;opacity:.7;font-weight:700;letter-spacing:.5px;margin-top:3px;text-transform:uppercase}
+.gift-modal-overlay{position:fixed;inset:0;z-index:25000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.7);animation:overlayIn .3s ease-out forwards}
+.gift-modal{background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 100%);border-radius:24px;padding:28px 22px 24px;width:100%;max-width:340px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(168,85,247,.4),0 0 0 1px rgba(255,255,255,.6);animation:modalIn .45s cubic-bezier(.34,1.56,.64,1) forwards}
+.gift-modal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(168,85,247,.12);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gift-modal-emoji{font-size:58px;line-height:1;margin-bottom:8px;display:block;animation:floatY 3s ease-in-out infinite}
+.gift-modal-title{font-family:'Dancing Script',cursive;font-size:26px;font-weight:700;color:#a21caf;margin-bottom:4px}
+.gift-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;margin-bottom:6px}
+.gift-modal-question{font-size:13px;color:#4a3a5c;font-weight:700;margin:14px 0 16px;line-height:1.5}
+.gift-modal-btns{display:flex;flex-direction:column;gap:10px}
+.gift-send-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;color:#fff;transition:transform .18s,box-shadow .18s;letter-spacing:.3px}
+.gift-send-btn:active{transform:scale(.97)}
+.gift-send-btn:hover{transform:translateY(-2px)}
+.gift-send-wa{background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 8px 22px rgba(37,211,102,.45)}
+.gift-send-mail{background:linear-gradient(135deg,#a855f7,#ec4899);box-shadow:0 8px 22px rgba(168,85,247,.45)}
+.gift-send-icon{font-size:20px}
+.gift-modal-note{font-size:10.5px;color:#a89580;font-weight:700;margin-top:14px;letter-spacing:.3px}
+
+/* ═══════════════════════════════════════════════════════════
+   📱 QR MODAL
+   ═══════════════════════════════════════════════════════════ */
+.qr-modal-overlay{position:fixed;inset:0;z-index:26000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(13,6,32,.88);animation:overlayIn .35s ease-out forwards}
+.qr-modal{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:28px;padding:32px 22px 26px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5),0 0 0 1px rgba(255,255,255,.6),inset 0 0 60px rgba(168,85,247,.06);animation:qrModalIn .55s cubic-bezier(.34,1.56,.64,1) forwards;overflow:hidden}
+.qr-modal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:30px;padding:2px;background:conic-gradient(from 0deg,#a855f7,#ec4899,#f97316,#fde047,#a855f7);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:qrBorderSpin 4s linear infinite;pointer-events:none;opacity:.85}
+.qr-modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:transform .2s,background .2s}
+.qr-modal-close:hover{background:rgba(236,72,153,.25);color:#ec4899;transform:rotate(90deg)}
+.qr-modal-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#a855f7;background:rgba(168,85,247,.12);padding:6px 14px;border-radius:50px;margin-bottom:14px}
+.qr-modal-title{font-family:'Dancing Script',cursive;font-size:30px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899,#f97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;line-height:1.1}
+.qr-modal-sub{font-size:12px;color:#7c3aed;font-weight:700;letter-spacing:.5px;margin-bottom:22px}
+.qr-image-wrap{position:relative;display:inline-block;padding:14px;background:#fff;border-radius:22px;box-shadow:0 12px 40px rgba(168,85,247,.3),0 0 0 1px rgba(168,85,247,.2);animation:qrPulse 3s ease-in-out infinite}
+.qr-image-wrap img{display:block;width:200px;height:200px;border-radius:14px;object-fit:cover;background:#fff}
+.qr-instagram-tag{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:8px 16px;border-radius:50px;background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;box-shadow:0 8px 22px rgba(220,39,67,.4)}
+.qr-instagram-tag span{font-size:14px}
+.qr-hint{font-size:11px;color:#a89580;font-weight:700;margin-top:16px;letter-spacing:.3px;line-height:1.5}
+
+/* ═══════════════════════════════════════════════════════════
+   🎊 CONFETTI
+   ═══════════════════════════════════════════════════════════ */
+.confetti-piece{position:absolute;top:-20px;animation:confettiFall linear forwards;pointer-events:none}
+.stack{display:flex;flex-direction:column;gap:12px}
+.mt-sm{margin-top:14px}.mt-md{margin-top:22px}.mt-lg{margin-top:36px}
+
+/* ═══════════════════════════════════════════════════════════
+   📞 REACH ME (cream panel with circles)
+   ═══════════════════════════════════════════════════════════ */
+.reachme-wrap{width:100%;margin:36px auto 0;background:linear-gradient(180deg,#faf3e0 0%,#f5ead2 100%);border-radius:22px;padding:36px 20px 28px;position:relative;overflow:hidden;box-shadow:0 16px 44px rgba(140,100,50,.18),0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(190,155,95,.25);font-family:'Playfair Display',serif}
+.reachme-wrap::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 12% 18%,rgba(200,165,100,.55) 3px,transparent 4px),radial-gradient(circle at 88% 12%,rgba(200,165,100,.35) 2px,transparent 3px),radial-gradient(circle at 22% 82%,rgba(200,165,100,.4) 2.5px,transparent 3.5px),radial-gradient(circle at 78% 88%,rgba(180,120,100,.45) 3px,transparent 4px),radial-gradient(circle at 8% 55%,rgba(200,165,100,.3) 2px,transparent 3px),radial-gradient(circle at 92% 55%,rgba(200,165,100,.3) 2px,transparent 3px);pointer-events:none;opacity:.9}
+.reachme-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:28px;color:#7a2e3e;text-align:center;margin-bottom:30px;letter-spacing:.5px;position:relative}
+.reachme-circles{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}
+.reachme-item{text-decoration:none;display:flex;flex-direction:column;align-items:center;width:88px;cursor:pointer;-webkit-tap-highlight-color:transparent;background:transparent;border:none;font-family:inherit;padding:0}
+.reachme-circle{width:74px;height:74px;border-radius:50%;border:1.8px solid #b8935a;display:flex;align-items:center;justify-content:center;background:transparent;font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:#7a2e3e;transition:transform .25s,background .25s,box-shadow .25s;box-shadow:0 2px 8px rgba(184,147,90,.12)}
+.reachme-item:hover .reachme-circle,.reachme-item:active .reachme-circle{transform:translateY(-3px) scale(1.04);background:rgba(184,147,90,.08);box-shadow:0 8px 20px rgba(184,147,90,.25)}
+.reachme-label{margin-top:12px;font-family:'Playfair Display',serif;font-size:12px;font-weight:500;color:#5a4636;text-align:center;line-height:1.3;letter-spacing:.2px;word-break:break-word}
+.reachme-made{text-align:center;margin-top:38px;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#8a7a6a;font-weight:400;letter-spacing:.3px;position:relative}
+.reachme-dev{text-align:center;margin-top:6px;font-family:'Playfair Display',serif;font-size:11.5px;color:#8a7a6a;font-weight:400;letter-spacing:.3px;position:relative}
+.reachme-socials{display:flex;justify-content:center;gap:22px;margin-top:30px;position:relative}
+.reachme-social{font-family:'Playfair Display',serif;font-size:18px;color:#a89580;text-decoration:none;font-weight:500;padding:2px 6px;border-bottom:1px solid transparent;transition:all .25s;letter-spacing:1px}
+.reachme-social:hover{color:#7a2e3e;border-bottom:1px solid #b8935a}
+
+/* ⭐ Share Memory — Reach Me style circles */
+.reachme-share-divider{margin:26px auto 20px;width:70%;height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,90,.4),transparent);position:relative}
+.reachme-share-title{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:#8a7a6a;text-align:center;margin-bottom:14px;letter-spacing:.5px;position:relative}
+.reachme-share-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}
+
+/* ═══════════════════════════════════════════════════════════
+   📤 SHARE MEMORY MODAL
+   ═══════════════════════════════════════════════════════════ */
+.share-modal-overlay{position:fixed;inset:0;z-index:27000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,6,32,.9);animation:overlayIn .3s ease-out forwards;overflow-y:auto}
+.share-modal{position:relative;width:100%;max-width:400px;background:linear-gradient(160deg,#fffefb 0%,#fdf1ff 60%,#ffe9f2 100%);border-radius:26px;padding:26px 22px 22px;text-align:center;box-shadow:0 30px 80px rgba(168,85,247,.5),0 0 0 1px rgba(255,255,255,.6);animation:qrModalIn .5s cubic-bezier(.34,1.56,.64,1) forwards;max-height:90vh;overflow-y:auto}
+.share-modal::-webkit-scrollbar{width:6px}
+.share-modal::-webkit-scrollbar-thumb{background:rgba(168,85,247,.4);border-radius:3px}
+.share-modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(168,85,247,.15);color:#a855f7;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5}
+.share-modal-close:active{transform:scale(.9)}
+.share-modal-emoji{font-size:54px;line-height:1;margin-bottom:8px;display:block;animation:floatY 3s ease-in-out infinite}
+.share-modal-title{font-family:'Dancing Script',cursive;font-size:28px;font-weight:700;background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;line-height:1.1}
+.share-modal-sub{font-size:12.5px;color:#7c3aed;font-weight:700;margin-bottom:6px;line-height:1.5}
+.share-modal-hint{font-size:11px;color:#a89580;font-weight:700;margin-bottom:18px;line-height:1.5}
+.share-warn{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;margin-bottom:14px;line-height:1.5;text-align:left}
+.share-warn-warn{background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);color:#92400e}
+.share-warn-ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#065f46}
+.share-file-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:16px;border:2px dashed rgba(168,85,247,.4);background:rgba(168,85,247,.06);color:#a855f7;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .25s;margin-bottom:14px}
+.share-file-btn:hover{background:rgba(168,85,247,.15);border-color:#a855f7}
+.share-file-btn input{display:none}
+.share-progress-bar{width:100%;height:8px;background:rgba(168,85,247,.15);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.share-progress-fill{height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:4px;transition:width .3s}
+.share-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;max-height:240px;overflow-y:auto;padding:4px}
+.share-thumb{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#f3e8ff;animation:memoryPop .4s ease-out}
+.share-thumb img,.share-thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.share-thumb-badge{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px;letter-spacing:.3px}
+.share-thumb-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(239,68,68,.85);color:#fff;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.share-thumb-remove:active{transform:scale(.9)}
+.share-upload-btn{width:100%;padding:16px;border-radius:16px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.45);margin-top:16px;letter-spacing:.3px;transition:all .25s}
+.share-upload-btn:hover{transform:translateY(-2px);background-position:right center}
+.share-upload-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.share-success{text-align:center;padding:20px 0}
+.share-success-emoji{font-size:64px;display:block;margin-bottom:12px;animation:welcomeZoom .8s ease-out}
+.share-success-text{font-family:'Dancing Script',cursive;font-size:24px;font-weight:700;color:#a21caf;margin-bottom:6px}
+.share-success-sub{font-size:12px;color:#7c3aed;font-weight:700}
+
+/* ═══════════════════════════════════════════════════════════
+   📅 CALENDAR PAGE
+   ═══════════════════════════════════════════════════════════ */
+.date-page-bg{background:linear-gradient(135deg, #fff0f7, #fffafc);padding:12px 8px;justify-content:flex-start;overflow-y:auto}
+.date-page-title{font-family:'Dancing Script',cursive;font-size:clamp(22px,6vw,30px);color:#a21caf;text-shadow:0 2px 12px rgba(168,85,247,.3);margin-bottom:4px;margin-top:6px;line-height:1.15;text-align:center}
+.date-page-hint{color:#9c3c72;font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:14px;text-align:center}
+.date-wrong-tap{animation:shake .4s ease}
+.Bhanja-calendar{width:100%;max-width:100%;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(220,120,170,.25);font-family:"Comic Sans MS","Trebuchet MS",cursive;position:relative}
+.bc-header{padding:14px 10px 10px;text-align:center;background:linear-gradient(180deg,#fff4fa,#ffeaf5);position:relative}
+.bc-emojis{font-size:15px;letter-spacing:2px}
+.bc-title{font-size:36px;line-height:1;font-weight:bold;background:linear-gradient(90deg,#ef1670,#a937c9,#179ed5,#8d42d5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:2px}
+.bc-year{font-size:34px;font-weight:bold;margin-top:2px;background:linear-gradient(90deg,#222,#008fd0,#f2b600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bc-Bhanja-area{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px}
+.bc-girl{width:66px;height:66px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.bc-girl.one{background:#ffb8d5}
+.bc-girl.two{background:#c9b2ff}
+.bc-Bhanja-text{font-size:10px;font-weight:bold;text-align:center;margin-top:2px;color:#333}
+.bc-heart{font-size:24px}
+.bc-quote{margin:8px auto 4px;padding:8px;width:92%;background:#ffb9dc;border-radius:16px;font-size:13px;font-weight:bold;line-height:1.4;color:#222}
+.bc-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:5px 5px 0}
+.bc-weekday{text-align:center;padding:7px 2px;border-radius:12px;font-size:12px;font-weight:bold}
+.bc-sun{background:#ffb5d3}.bc-mon{background:#ffc1ae}.bc-tue{background:#ffe17b}.bc-wed{background:#a8e9ce}.bc-thu{background:#a9d9fa}.bc-fri{background:#d0b8f5}.bc-sat{background:#f5afd0}
+.bc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:5px}
+.bc-date{height:56px;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;border:1.5px solid #ddd;transition:0.2s;cursor:pointer}
+.bc-date:active{transform:scale(.95)}
+.bc-date.sun-box{background:#ffe2ee;border-color:#ff82b5}
+.bc-date.mon-box{background:#ffe8df;border-color:#ffad91}
+.bc-date.tue-box{background:#fff6d8;border-color:#f4ca38}
+.bc-date.wed-box{background:#e0faed;border-color:#62d7a4}
+.bc-date.thu-box{background:#e1f2ff;border-color:#62b8ef}
+.bc-date.fri-box{background:#f0e9ff;border-color:#a987eb}
+.bc-date.sat-box{background:#ffe6f2;border-color:#ee87b6}
+.bc-date-num{font-size:17px;font-weight:bold;line-height:1;color:#222}
+.bc-date-num.sunday-num{color:#e51f2a}
+.bc-date-icon{font-size:16px;margin-top:3px;line-height:1}
+.bc-special-22{background:#f0e5ff !important;border:2px dashed #8b32e8 !important;box-shadow:0 0 0 2px rgba(180,100,255,.08),inset 0 0 15px rgba(170,90,255,.08);position:relative;animation:bc-pulse 2s ease-in-out infinite;z-index:20}
+.bc-special-22 .bc-date-num{color:#7126c9}
+@keyframes bc-pulse{0%,100%{box-shadow:0 0 0 2px rgba(180,100,255,.08),inset 0 0 15px rgba(170,90,255,.08)}50%{box-shadow:0 0 0 4px rgba(180,100,255,.25),inset 0 0 20px rgba(170,90,255,.2)}}
+.bc-bottom{padding:10px 8px 14px}
+.bc-messages{display:grid;gap:5px;margin-bottom:10px}
+.bc-message{padding:7px 12px;border-radius:10px;font-size:13px;font-weight:bold;color:#222}
+.bc-message:nth-child(1){background:#ffe6a9}
+.bc-message:nth-child(2){background:#ffc4d7}
+.bc-message:nth-child(3){background:#ffd5dc}
+.bc-message:nth-child(4){background:#b9dcfa}
+
+/* ═══════════════════════════════════════════════════════════
+   🔐 ADMIN PANEL
+   ═══════════════════════════════════════════════════════════ */
+.admin-overlay{position:fixed;inset:0;background:rgba(13,6,32,.96);z-index:10000;overflow-y:auto;padding:20px;display:flex;justify-content:center;align-items:flex-start}
+.admin-panel{background:#1a0f3a;border:1px solid rgba(168,85,247,.3);border-radius:18px;padding:24px;width:100%;max-width:520px;color:#e9d5ff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.admin-panel h2{font-family:'Dancing Script',cursive;font-size:28px;color:#f0abfc;margin-bottom:6px;text-align:center}
+.admin-panel .sub{font-size:12px;color:rgba(233,213,255,.5);text-align:center;margin-bottom:20px}
+.admin-field{margin-bottom:14px}
+.admin-field label{display:block;font-size:11px;font-weight:800;color:#c4b5fd;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.admin-field input,.admin-field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:10px 12px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border .2s}
+.admin-field input:focus,.admin-field textarea:focus{border-color:#a855f7;background:rgba(168,85,247,.1)}
+.admin-field textarea{resize:vertical;min-height:70px;font-family:'Nunito',sans-serif}
+.admin-section{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.15);border-radius:12px;padding:14px;margin-bottom:16px}
+.admin-section h3{font-size:13px;color:#f0abfc;margin-bottom:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:800}
+.admin-row{display:grid;grid-template-columns:60px 1fr;gap:8px;margin-bottom:8px;align-items:center}
+.admin-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.admin-btn{flex:1;min-width:120px;padding:12px 16px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:transform .15s,box-shadow .15s;letter-spacing:.3px}
+.admin-btn:active{transform:scale(.97)}
+.admin-btn-primary{background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;box-shadow:0 6px 20px rgba(168,85,247,.4)}
+.admin-btn-secondary{background:rgba(255,255,255,.1);color:#e9d5ff;border:1px solid rgba(168,85,247,.3)}
+.admin-btn-danger{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
+.admin-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px}
+.admin-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;padding:12px 24px;border-radius:50px;font-weight:800;font-size:13px;z-index:10001;box-shadow:0 8px 30px rgba(168,85,247,.5);animation:pop .4s}
+.admin-hint{font-size:11px;color:rgba(233,213,255,.4);text-align:center;margin-top:14px;line-height:1.5}
+.mem-editor{background:rgba(255,255,255,.04);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:12px;margin-bottom:12px}
+.mem-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.mem-editor-head span{font-size:11px;font-weight:800;color:#f0abfc;letter-spacing:1px;text-transform:uppercase}
+.mem-preview{width:100%;height:100px;border-radius:8px;background:#0d0620 center/cover;margin-bottom:10px;border:1px solid rgba(168,85,247,.2);position:relative;overflow:hidden}
+.mem-preview img{width:100%;height:100%;object-fit:cover}
+.mem-file-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.4);color:#e9d5ff;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;margin-bottom:8px;font-family:'Nunito',sans-serif;letter-spacing:.3px}
+.mem-file-btn:hover{background:rgba(168,85,247,.4);color:#fff}
+.mem-file-btn input{display:none}
+.mem-slider-row{display:grid;grid-template-columns:60px 1fr 40px;gap:8px;align-items:center;margin-bottom:6px}
+.mem-slider-row label{font-size:10px;color:#c4b5fd;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.mem-slider-row input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:rgba(168,85,247,.3);border-radius:2px;outline:none}
+.mem-slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:linear-gradient(135deg,#a855f7,#ec4899);border-radius:50%;cursor:pointer}
+.mem-slider-row span{font-size:11px;color:#c4b5fd;font-weight:700;text-align:right}
+.mem-caption-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.25);border-radius:8px;padding:8px 10px;color:#fff;font-family:'Nunito',sans-serif;font-size:13px;outline:none;margin-top:4px}
+.shared-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.shared-tile{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#0d0620;border:1px solid rgba(168,85,247,.25)}
+.shared-tile img,.shared-tile video{width:100%;height:100%;object-fit:cover;display:block}
+.shared-tile-badge{position:absolute;top:4px;left:4px;background:rgba(168,85,247,.9);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px}
+.shared-tile-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(239,68,68,.9);color:#fff;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.shared-tile-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));color:#fff;font-size:9px;font-weight:700;padding:8px 6px 4px;text-align:center}
+.shared-stats{font-size:11px;color:#c4b5fd;font-weight:700;text-align:center;margin-top:8px}
+.shared-empty{text-align:center;padding:20px 10px;color:rgba(233,213,255,.4);font-size:12px;font-weight:700}
+
+/* ═══════════════════════════════════════════════════════════
+   🔐 PASSWORD GATE & WELCOME
+   ═══════════════════════════════════════════════════════════ */
+.password-gate{position:absolute;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 30%,#2a1560 0%,#150830 45%,#08021a 100%);overflow-y:auto}
+.pg-lock{font-size:72px;line-height:1;margin-bottom:18px;animation:lockPulse 2.5s ease-in-out infinite;display:block}
+.pg-title{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:10px}
+.pg-sub{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:28px;line-height:1.5;max-width:300px}
+.pg-input-wrap{width:100%;max-width:320px;position:relative;margin-bottom:16px}
+.pg-input{width:100%;padding:16px 50px 16px 20px;border-radius:50px;border:2px solid rgba(168,85,247,.4);background:rgba(255,255,255,.08);color:#fff;font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;outline:none;transition:all .25s;text-align:center;letter-spacing:1px}
+.pg-input::placeholder{color:rgba(255,255,255,.4);font-weight:600}
+.pg-input:focus{border-color:#ec4899;background:rgba(236,72,153,.12);box-shadow:0 0 0 4px rgba(236,72,153,.15)}
+.pg-input.shake{animation:inputShake .5s ease}
+.pg-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(168,85,247,.2);color:#e9d5ff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pg-error{color:#fca5a5;font-size:12px;font-weight:700;margin-bottom:14px;min-height:18px}
+.pg-btn{width:100%;max-width:320px;padding:16px 32px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#a855f7,#ec4899,#f97316);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(168,85,247,.5);transition:all .25s}
+.pg-btn:active{transform:scale(.97)}
+.pg-hint{color:rgba(255,255,255,.35);font-size:11px;font-weight:600;margin-top:20px;line-height:1.5}
+
+.welcome-screen{position:absolute;inset:0;z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;background:radial-gradient(ellipse at 50% 40%,#4a1d96 0%,#2a1560 45%,#0d0620 100%);overflow:hidden}
+.welcome-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.welcome-sparkle{position:absolute;font-size:22px;animation:sparkleRain linear forwards}
+.welcome-emoji{font-size:88px;line-height:1;margin-bottom:20px;display:block;animation:welcomeZoom 1s cubic-bezier(.34,1.56,.64,1) forwards}
+.welcome-title{font-family:'Dancing Script',cursive;font-size:clamp(40px,12vw,56px);font-weight:700;color:#fff;animation:welcomeGlow 2s ease-in-out infinite;margin-bottom:14px;letter-spacing:1px}
+.welcome-name{font-family:'Dancing Script',cursive;font-size:clamp(28px,8vw,38px);font-weight:700;background:linear-gradient(90deg,#fde047,#ec4899,#a855f7,#fde047);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;margin-bottom:22px}
+.welcome-sub{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;letter-spacing:.5px;line-height:1.6;max-width:300px;margin-bottom:32px}
+.welcome-btn{padding:16px 40px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899,#a855f7);background-size:200% auto;cursor:pointer;box-shadow:0 10px 30px rgba(236,72,153,.5);transition:all .25s;animation:doorOpen 1s ease-out .3s both}
+.welcome-btn:active{transform:scale(.97)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback, useMemo } = React;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ⭐⭐⭐  YAHAN SE SAB KUCH CHANGE KARO  ⭐⭐⭐
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const ACCESS_PASSWORD = "Mahnoor@2";
+const INSTAGRAM_QR_IMAGE = "https://plain-apac-prod-public.komododecks.com/202609/15/GaED9XL07402ZbZKsgD3/image.png";
+const PAGE_1_IMAGE = "https://cdn.phototourl.com/free/2026-09-15-7122d3ef-ec20-49ea-b718-2443a3595eb2.jpg";
+const CAKE_IMAGE = "https://kommodo.ai/i/N5iJvBYKEVUT6iXVHFEF";
+
+const MEMORY_1  = "https://kommodo.ai/i/V843RjGjGr8D8BbNhsTE";
+const MEMORY_2  = "https://kommodo.ai/i/84G6U7pFnUVvAlrSV1Oq";
+const MEMORY_3  = "https://kommodo.ai/i/Ad02PqsX6Hqsqx4Kec2W";
+const MEMORY_4  = "https://kommodo.ai/i/WXbymmNWnSE9rym9fZpj";
+const MEMORY_5  = "https://kommodo.ai/i/mXis4f60iQPYCH16oILO";
+const MEMORY_6  = "https://kommodo.ai/i/3p3MSnp6FAgLhGxvhyD8";
+const MEMORY_7  = "https://kommodo.ai/i/3PDBgxwjU02CtofIr4uZ";
+const MEMORY_8  = "https://kommodo.ai/i/Syfv3yedtvLg8zDnA7w2";
+const MEMORY_9  = "https://kommodo.ai/i/L5ptgx19O3HfbglqF3gP";
+const MEMORY_10 = "https://kommodo.ai/i/VTh6FrfbS8F7FyUN0yLY";
+
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024;
+const MAX_VIDEO_SIZE = 200 * 1024 * 1024;
+const MAX_FILES_AT_ONCE = 20;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🛑  NEECHE CHANGE MAT KARO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const REACH_ME = {
+  whatsappNumber: "919304940805", whatsappDisplay: "WhatsApp",
+  email: "mdjishancse@gmail.com", emailDisplay: "Email",
+  phoneNumber: "+919304940805", phoneDisplay: "+91 9304940805",
+  madeLine: "Made with care, for your birthday",
+  devLine: "Developed by Md Jishan · © 2026",
+  github: "https://github.com/dashboard",
+  linkedin: "https://www.linkedin.com/feed/",
+  instagram: "https://www.instagram.com/jishan_2k_7?igsh=MW5jMzNtaXg0Z3VueQ%3D%3D",
+  emailLink: "mdjishancse@gmail.com",
+};
+
+const ADMIN_PASSWORD = "admin123";
+const SECRET_TAPS_NEEDED = 6;
+const SECRET_TAP_WINDOW = 4000;
+
+const CALENDAR_CELLS = [
+  { empty: true, dayClass: 'sun-box' },{ empty: true, dayClass: 'mon-box' },
+  { num: 1, icon: '☀️', dayClass: 'tue-box' },{ num: 2, icon: '🌱', dayClass: 'wed-box' },
+  { num: 3, icon: '☁️', dayClass: 'thu-box' },{ num: 4, icon: '🌸', dayClass: 'fri-box' },
+  { num: 5, icon: '❤️', dayClass: 'sat-box' },{ num: 6, icon: '🍓', dayClass: 'sun-box', sunday: true },
+  { num: 7, icon: '⭐', dayClass: 'mon-box' },{ num: 8, icon: '❤️', dayClass: 'tue-box' },
+  { num: 9, icon: '🌿', dayClass: 'wed-box' },{ num: 10, icon: '🦋', dayClass: 'thu-box' },
+  { num: 11, icon: '🎧', dayClass: 'fri-box' },{ num: 12, icon: '👑', dayClass: 'sat-box' },
+  { num: 13, icon: '🌷', dayClass: 'sun-box', sunday: true },{ num: 14, icon: '📖', dayClass: 'mon-box' },
+  { num: 15, icon: '☀️', dayClass: 'tue-box' },{ num: 16, icon: '📷', dayClass: 'wed-box' },
+  { num: 17, icon: '☁️', dayClass: 'thu-box' },{ num: 18, icon: '💗', dayClass: 'fri-box' },
+  { num: 19, icon: '🍀', dayClass: 'sat-box' },{ num: 20, icon: '❤️', dayClass: 'sun-box', sunday: true },
+  { num: 21, icon: '🌿', dayClass: 'mon-box' },{ num: 22, icon: '🎀', dayClass: 'tue-box' },
+  { num: 23, icon: '⭐', dayClass: 'wed-box' },{ num: 24, icon: '🌱', dayClass: 'thu-box' },
+  { num: 25, icon: '🌸', dayClass: 'fri-box' },{ num: 26, icon: '🌙', dayClass: 'sat-box' },
+  { num: 27, icon: '🎈', dayClass: 'sun-box', sunday: true },{ num: 28, icon: '💎', dayClass: 'mon-box' },
+  { num: 29, icon: '❤️', dayClass: 'tue-box' },{ num: 30, icon: '🌿', dayClass: 'wed-box' },
+  { empty: true, dayClass: 'thu-box' },{ empty: true, dayClass: 'fri-box' },{ empty: true, dayClass: 'sat-box' },
+];
+
+const DEFAULT_MEMORIES = [
+  { src: MEMORY_1, caption: "Memory 1" },{ src: MEMORY_2, caption: "Memory 2" },
+  { src: MEMORY_3, caption: "Memory 3" },{ src: MEMORY_4, caption: "Memory 4" },
+  { src: MEMORY_5, caption: "Memory 5" },{ src: MEMORY_6, caption: "Memory 6" },
+  { src: MEMORY_7, caption: "Memory 7" },{ src: MEMORY_8, caption: "Memory 8" },
+  { src: MEMORY_9, caption: "Memory 9" },{ src: MEMORY_10, caption: "Memory 10" },
+];
+
+const DEFAULT_CALENDAR = {
+  month: "September", year: "2026", title: "Find your special date ✨",
+  hint: "Tap on the correct date 👇", quoteLine1: "Same Crazy Bhanja 💕",
+  quoteLine2: "Same Beautiful Memories ✨", Bhanja1: "Bhanja 💗",
+  Bhanja2: "Forever 💜", specialDate: 14,
+  messages: ["💕 Lots of Hugs", "✨ Lots of Smiles", "💗 Keep Being Happy", "🦋 Make Happy Memories"],
+};
+
+const DEFAULT_CONFIG = {
+  name: "Mehnoor Alam",
+  messages: [
+    { icon: "🎂", text: "Happy Birthday, mere pyare champ! 💕 Allah tumhe hamesha khush aur muskurata rakhe. 🤲✨" },
+    { icon: "🌟", text: "Aaj ka din sirf tumhare naam! Allah tumhari har khushi poori kare aur tumhe hamesha salamat rakhe. 🌸🤲" },
+    { icon: "🥳", text: "Tum meri zindagi ki ek bahut pyari khushi ho. Allah tumhari zindagi ko mohabbat, khushiyon aur kamyabi se bhar de. 💕✨" },
+  ],
+  letterBody: " Janamdin Mubarak, Allah tumhari zindagi ko hamesha khushiyon, hasi, masti, khilonon, tasty treats aur pyare surprises se bhar de! 🎈✨ Hamesha haste raho, khelte raho aur Allah ki rehmat se yunhi khush aur salamat raho! 🧸💗 Dher saari mohabbat aur duaaon ke saath 💛🤲",
+  letterSign: "With all my love 💛",
+  memories: DEFAULT_MEMORIES.map(m => ({ img: m.src, id: null, caption: m.caption, zoom: 1, x: 50, y: 50 })),
+  gifts: [
+    { title: "Unlimited Hugs", sub: "Redeemable anytime", icon: "🤗", c1: "#8b5cf6", c2: "#6d28d9", waMsg: "🤗 I want to redeem my gift: Unlimited Hugs!", mailMsg: "🤗 I want to redeem my gift: Unlimited Hugs!" },
+    { title: "Toy Time", sub: "Pick your favourite toy!", icon: "🧸", c1: "#f59e0b", c2: "#d97706", waMsg: "🧸 I want to redeem my gift: Toy Time!", mailMsg: "🧸 I want to redeem my gift: Toy Time!" },
+    { title: "Ice Cream Treat", sub: "Your favourite flavour!", icon: "🍦", c1: "#ec4899", c2: "#db2777", waMsg: "🍦 I want to redeem my gift: Ice Cream Treat!", mailMsg: "🍦 I want to redeem my gift: Ice Cream Treat!" },
+    { title: "Fun Day", sub: "A day full of fun!", icon: "🎈", c1: "#06b6d4", c2: "#0891b2", waMsg: "🎈 I want to redeem my gift: Fun Day!", mailMsg: "🎈 I want to redeem my gift: Fun Day!" },
+  ],
+  cakeImage: CAKE_IMAGE, page1Image: PAGE_1_IMAGE, calendar: { ...DEFAULT_CALENDAR },
+};
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🎵 MUSIC ENGINE
+   ═══════════════════════════════════════════════════════════════════════════ */
+let _audioCtx = null;
+const getAudioCtx = () => {
+  if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return _audioCtx;
+};
+
+const N = {
+  C3:130.81,D3:146.83,E3:164.81,F3:174.61,G3:196,A3:220,B3:246.94,
+  C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,
+  C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,A5:880,B5:987.77,
+  C6:1046.5,D6:1174.66,E6:1318.51,F6:1396.91,G6:1567.98,
+};
+
+let _melodyTimeouts = [];
+
+const stopMelody = () => { _melodyTimeouts.forEach(t => clearTimeout(t)); _melodyTimeouts = []; };
+
+const playNote = (freq, dur, vol = .1, type = 'triangle', delay = 0) => {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    osc.connect(gain); gain.connect(ctx.destination);
+    const t = ctx.currentTime + delay;
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(vol, t + .02);
+    gain.gain.setValueAtTime(vol, t + dur * .7);
+    gain.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    osc.start(t); osc.stop(t + dur + .05);
+  } catch (e) {}
+};
+
+const playMelody = (melody) => {
+  stopMelody();
+  if (!melody || !melody.length) return;
+  let time = 0;
+  melody.forEach(([freq, dur, vol, type]) => {
+    if (freq > 0) {
+      const t = setTimeout(() => playNote(freq, dur, vol || .09, type || 'triangle', 0), time * 1000);
+      _melodyTimeouts.push(t);
+    }
+    time += dur;
+  });
+};
+
+const MELODY_PAGE_1 = [[N.C5,.3],[N.E5,.3],[N.G5,.3],[N.C6,.5],[N.G5,.25],[N.C6,.7]];
+const MELODY_PAGE_2 = [[N.A3,.5,.08],[N.C4,.5,.08],[N.E4,.5,.08],[N.A3,.7,.08],[N.G3,.4,.07],[N.E3,.6,.07]];
+const MELODY_PAGE_3 = [[N.G4,.2],[N.B4,.2],[N.D5,.3],[N.G4,.2],[N.B4,.2],[N.D5,.4],[N.C5,.2],[N.E5,.2],[N.G5,.5]];
+const MELODY_PAGE_4 = [[N.C5,.15,.13],[N.E5,.15,.13],[N.G5,.15,.13],[N.C6,.4,.14],[N.G5,.15,.12],[N.C6,.7,.14]];
+const MELODY_PAGE_5 = [[N.E5,.25],[N.D5,.25],[N.C5,.3],[N.D5,.25],[N.E5,.25],[N.E5,.25],[N.E5,.6]];
+const MELODY_HAPPY_BIRTHDAY = [
+  [N.G4,.3,.12],[N.G4,.15,.12],[N.A4,.4,.12],[N.G4,.4,.12],[N.C5,.4,.12],[N.B4,.8,.13],
+  [N.G4,.3,.12],[N.G4,.15,.12],[N.A4,.4,.12],[N.G4,.4,.12],[N.D5,.4,.12],[N.C5,.8,.13],
+  [N.G4,.3,.12],[N.G4,.15,.12],[N.G5,.4,.13],[N.E5,.4,.12],[N.C5,.4,.12],[N.B4,.4,.12],[N.A4,.8,.12],
+  [N.F5,.3,.12],[N.F5,.15,.12],[N.E5,.4,.12],[N.C5,.4,.12],[N.D5,.4,.12],[N.C5,.9,.13],
+];
+const MELODY_PAGE_7 = [[N.F5,.3,.09],[N.E5,.3,.09],[N.D5,.35,.09],[N.C5,.35,.09],[N.D5,.3,.09],[N.E5,.3,.09],[N.F5,.7,.1]];
+const MELODY_PAGE_8 = [[N.G4,.4,.08],[N.C5,.4,.08],[N.E5,.5,.09],[N.G5,.6,.1],[N.E5,.4,.09],[N.C5,.7,.08]];
+const MELODY_PAGE_9 = [[N.C5,.2,.12],[N.C5,.15,.12],[N.D5,.25,.12],[N.E5,.25,.12],[N.E5,.2,.12],[N.D5,.25,.12],[N.C5,.25,.12],[N.G4,.5,.13]];
+
+const PAGE_MELODIES = { 1: MELODY_PAGE_1, 2: MELODY_PAGE_2, 3: MELODY_PAGE_3, 4: MELODY_PAGE_4, 5: MELODY_PAGE_5, 6: MELODY_HAPPY_BIRTHDAY, 7: MELODY_PAGE_7, 8: MELODY_PAGE_8, 9: MELODY_PAGE_9 };
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   💾 STORAGE — IndexedDB with in-memory fallback
+   ═══════════════════════════════════════════════════════════════════════════ */
+const DB_NAME = 'BirthdaySharedMemories';
+const DB_VERSION = 1;
+const STORE_NAME = 'memories';
+
+// In-memory fallback (session only)
+const _memStore = new Map();
+let _idbAvailable = null;
+let _idbReason = '';
+
+const checkIDB = async () => {
+  if (_idbAvailable !== null) return _idbAvailable;
+  try {
+    if (typeof window === 'undefined' || !window.indexedDB) {
+      _idbAvailable = false;
+      _idbReason = 'IndexedDB not supported in this browser';
+      return false;
+    }
+    if (window.location.protocol === 'file:') {
+      _idbAvailable = false;
+      _idbReason = 'Page is opened via file:// — IndexedDB blocked by browser security. Open via http:// or https:// to enable permanent storage.';
+      return false;
+    }
+    const test = await new Promise((resolve, reject) => {
+      const req = indexedDB.open('__bdaytest__', 1);
+      req.onsuccess = () => {
+        try { req.result.close(); } catch (e) {}
+        try { indexedDB.deleteDatabase('__bdaytest__'); } catch (e) {}
+        resolve(true);
+      };
+      req.onerror = () => reject(req.error || new Error('IndexedDB blocked'));
+      req.onblocked = () => reject(new Error('IndexedDB blocked'));
+      setTimeout(() => reject(new Error('IndexedDB timeout')), 2500);
+    });
+    _idbAvailable = test === true;
+    if (!_idbAvailable) _idbReason = 'IndexedDB access denied';
+  } catch (e) {
+    _idbAvailable = false;
+    _idbReason = e.message || 'IndexedDB access denied by browser';
+  }
+  return _idbAvailable;
+};
+
+const isIDBAvailable = () => _idbAvailable === true;
+const getIDBReason = () => _idbReason;
+
+const openDB = () => new Promise((resolve, reject) => {
+  const req = indexedDB.open(DB_NAME, DB_VERSION);
+  req.onupgradeneeded = (e) => {
+    const db = e.target.result;
+    if (!db.objectStoreNames.contains(STORE_NAME)) {
+      const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+      store.createIndex('timestamp', 'timestamp', { unique: false });
+    }
+  };
+  req.onsuccess = () => resolve(req.result);
+  req.onerror = () => reject(req.error);
+});
+
+const saveSharedMemory = async (file) => {
+  const ok = await checkIDB();
+  const record = {
+    name: file.name || 'file',
+    type: file.type || 'application/octet-stream',
+    size: file.size,
+    blob: file,
+    timestamp: Date.now(),
+    isVideo: (file.type || '').startsWith('video/'),
+    isImage: (file.type || '').startsWith('image/'),
+  };
+  if (ok) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const req = tx.objectStore(STORE_NAME).add(record);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  } else {
+    const id = 'mem_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    _memStore.set(id, { ...record, id, _memoryOnly: true });
+    return id;
+  }
+};
+
+const getAllSharedMemories = async () => {
+  const ok = await checkIDB();
+  if (ok) {
+    try {
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const req = tx.objectStore(STORE_NAME).getAll();
+        req.onsuccess = () => resolve(req.result || []);
+        req.onerror = () => reject(req.error);
+      });
+    } catch (e) { /* fall through to memory */ }
+  }
+  return Array.from(_memStore.values());
+};
+
+const deleteSharedMemory = async (id) => {
+  if (typeof id === 'string' && id.startsWith('mem_')) {
+    _memStore.delete(id);
+    return;
+  }
+  const ok = await checkIDB();
+  if (ok) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const req = tx.objectStore(STORE_NAME).delete(id);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+};
+
+const clearAllSharedMemories = async () => {
+  _memStore.clear();
+  const ok = await checkIDB();
+  if (ok) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const req = tx.objectStore(STORE_NAME).clear();
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+};
+
+const formatBytes = (bytes) => {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+};
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🛠️  UTILITIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+function extractKomodoId(src) {
+  if (!src) return null;
+  const str = String(src);
+  const m = str.match(/kommodo\.ai\/i\/([A-Za-z0-9_-]+)/);
+  if (m) return m[1];
+  const m2 = str.match(/komododecks\.com\/[^/]+\/([A-Za-z0-9_-]{15,})\//);
+  if (m2) return m2[1];
+  if (/^[A-Za-z0-9_-]{15,}$/.test(str)) return str;
+  return null;
+}
+
+function buildImageCandidates(src, id) {
+  const list = [];
+  if (!src) return list;
+  if (src.startsWith('data:') || src.startsWith('blob:')) return [src];
+  const komodoId = id || extractKomodoId(src);
+  const isKomodoPage = /kommodo\.ai\/i\//.test(src);
+  if (src.startsWith('http') && !isKomodoPage) list.push(src);
+  if (komodoId) {
+    const dates = [];
+    for (let m = 9; m <= 10; m++) {
+      const mm = String(m).padStart(2, '0');
+      const maxDay = m === 9 ? 30 : 31;
+      for (let d = 1; d <= maxDay; d++) dates.push(`2026${mm}/${String(d).padStart(2, '0')}`);
+    }
+    const priority = ['202609/15','202609/14','202609/16','202609/13','202609/17','202609/18','202609/12','202609/11','202609/10'];
+    const ordered = [...priority, ...dates.filter(d => !priority.includes(d))];
+    const exts = ['jpg', 'png', 'jpeg', 'webp'];
+    for (const d of ordered) for (const e of exts) list.push(`https://plain-apac-prod-public.komododecks.com/${d}/${komodoId}/image.${e}`);
+  }
+  if (src.startsWith('http') && !list.includes(src)) list.push(src);
+  return list.length ? list : [src];
+}
+
+function decodeConfig() {
+  try {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return null;
+    const params = new URLSearchParams(hash);
+    const data = params.get('c');
+    if (!data) return null;
+    return JSON.parse(decodeURIComponent(escape(atob(data))));
+  } catch (e) { return null; }
+}
+function encodeConfig(cfg) {
+  try { return btoa(unescape(encodeURIComponent(JSON.stringify(cfg)))); }
+  catch (e) { return ''; }
+}
+function mergeConfig(base, override) {
+  if (!override) return JSON.parse(JSON.stringify(base));
+  const out = { ...base, ...override };
+  out.calendar = { ...DEFAULT_CALENDAR, ...(override.calendar || {}) };
+  return out;
+}
+
+let CONFIG = (() => {
+  const urlCfg = decodeConfig();
+  if (urlCfg) return mergeConfig(DEFAULT_CONFIG, urlCfg);
+  return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🧩 UI COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+function SmartImage({ src, id, alt, style, className }) {
+  const candidates = useMemo(() => buildImageCandidates(src, id), [src, id]);
+  const [idx, setIdx] = useState(0);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => { setIdx(0); setFailed(false); }, [src, id]);
+  const handleError = () => {
+    if (idx < candidates.length - 1) setIdx(prev => prev + 1);
+    else setFailed(true);
+  };
+  if (failed || !candidates.length) {
+    return (<div className={className} style={{ ...style, background: 'linear-gradient(135deg,#c084fc,#ec4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 800, fontSize: 13, textAlign: 'center', padding: 16, minHeight: 200 }}>🖼️<br/>Image loading...</div>);
+  }
+  return (<img src={candidates[idx]} alt={alt} className={className} style={style} onError={handleError} draggable={false} />);
+}
+
+function Balloons({ count = 10 }) {
+  const colors = [['#ef4444','#fca5a5'],['#f97316','#fdba74'],['#eab308','#fde047'],['#22c55e','#86efac'],['#3b82f6','#93c5fd'],['#a855f7','#c4b5fd'],['#ec4899','#f9a8d4'],['#14b8a6','#5eead4']];
+  const balloons = useMemo(() => Array.from({ length: count }, (_, i) => {
+    const c = colors[i % colors.length];
+    return { id: i, left: 3 + (i * 9.3) % 92, size: 42 + (i * 11) % 26, dur: 8 + (i * 1.3) % 7, delay: (i * 0.8) % 8, c1: c[0], c2: c[1] };
+  }), [count]);
+  return (<>{balloons.map(b => (<div key={b.id} className="balloon" style={{ left: `${b.left}%`, animationDuration: `${b.dur}s`, animationDelay: `${b.delay}s` }}>
+    <svg width={b.size} height={b.size * 1.35} viewBox="0 0 60 80">
+      <defs><radialGradient id={`bg${b.id}`} cx="35%" cy="30%"><stop offset="0%" stopColor={b.c2} /><stop offset="100%" stopColor={b.c1} /></radialGradient></defs>
+      <ellipse cx="30" cy="28" rx="24" ry="27" fill={`url(#bg${b.id})`} />
+      <ellipse cx="22" cy="18" rx="6" ry="4" fill="rgba(255,255,255,.4)" transform="rotate(-25 22 18)" />
+      <path d="M30 55 Q28 64 31 71 Q33 74 30 78" stroke={b.c1} strokeWidth="1.4" fill="none" strokeLinecap="round" />
+      <circle cx="30" cy="55" r="2.4" fill={b.c1} />
+    </svg>
+  </div>))}</>);
+}
+
+function Stars({ count = 50 }) {
+  const stars = useMemo(() => Array.from({ length: count }, () => ({ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, size: 1 + Math.random() * 2.5, dur: 2 + Math.random() * 4, delay: Math.random() * 5 })), [count]);
+  return (<div className="bg-layer">{stars.map((s, i) => (<div key={i} className="star" style={{ left: s.left, top: s.top, width: s.size, height: s.size, animationDuration: `${s.dur}s`, animationDelay: `${s.delay}s` }} />))}</div>);
+}
+
+function Confetti({ active, count = 70 }) {
+  const pieces = useMemo(() => {
+    if (!active) return [];
+    const cols = ['#a855f7','#ec4899','#f97316','#eab308','#3b82f6','#10b981','#ef4444','#8b5cf6'];
+    return Array.from({ length: count }, (_, i) => ({ id: i, x: Math.random() * 100, c: cols[i % cols.length], shape: i % 3, size: 6 + Math.random() * 8, delay: Math.random() * 1.2, dur: 2 + Math.random() * 2, rot: Math.random() * 360 }));
+  }, [active, count]);
+  if (!active) return null;
+  return (<>{pieces.map(p => (<div key={p.id} className="confetti-piece" style={{ left: `${p.x}%`, width: p.shape === 1 ? p.size * .5 : p.size, height: p.size, background: p.c, borderRadius: p.shape === 0 ? '50%' : p.shape === 1 ? '2px' : '0', animationDuration: `${p.dur}s`, animationDelay: `${p.delay}s`, transform: `rotate(${p.rot}deg)`, zIndex: 20 }} />))}</>);
+}
+
+function RippleButton({ children, onClick, className = 'btn btn-gradient', style, disabled }) {
+  const [ripples, setRipples] = useState([]);
+  const handleClick = (e) => {
+    if (disabled) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const id = Date.now();
+    setRipples(prev => [...prev, { id, x: e.clientX - rect.left, y: e.clientY - rect.top }]);
+    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== id)), 700);
+    onClick && onClick(e);
+  };
+  return (<button className={className} style={style} onClick={handleClick} disabled={disabled}>
+    {children}
+    {ripples.map(r => (<span key={r.id} className="ripple" style={{ left: r.x - 30, top: r.y - 30, width: 60, height: 60 }} />))}
+  </button>);
+}
+
+function MusicIndicator() {
+  return (<div className="music-indicator"><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /><div className="music-bar" /></div>);
+}
+
+function FullscreenViewer({ src, id, onClose }) {
+  const [scale, setScale] = useState(1);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const zoomIn = () => setScale(s => Math.min(5, s + 0.5));
+  const zoomOut = () => setScale(s => { const ns = Math.max(1, s - 0.5); if (ns === 1) setPos({ x: 0, y: 0 }); return ns; });
+  const reset = () => { setScale(1); setPos({ x: 0, y: 0 }); };
+  return (
+    <div className="fullscreen-viewer" onClick={onClose}>
+      <div className="fs-hint">Pinch / Scroll to zoom</div>
+      <button className="fs-close" onClick={(e) => { e.stopPropagation(); onClose(); }}>✕</button>
+      <SmartImage src={src} id={id} alt="Full" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transform: `scale(${scale}) translate(${pos.x / scale}px, ${pos.y / scale}px)`, transition: 'transform .1s', userSelect: 'none' }} />
+      <div className="fs-controls" onClick={(e) => e.stopPropagation()}>
+        <button className="fs-btn" onClick={zoomOut}>−</button>
+        <button className="fs-btn" onClick={reset} style={{ width: 'auto', padding: '0 14px', fontSize: 12, fontWeight: 800 }}>RESET</button>
+        <button className="fs-btn" onClick={zoomIn}>+</button>
+      </div>
+    </div>
+  );
+}
+
+function CelebrationBurst({ active }) {
+  const particles = useMemo(() => {
+    if (!active) return [];
+    const emojis = ['🎉', '🎊', '✨', '⭐', '💖', '🌟', '🎈', '💫'];
+    return Array.from({ length: 12 }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / 12;
+      const distance = 100 + Math.random() * 80;
+      return { id: i, emoji: emojis[i % emojis.length], left: 40 + Math.random() * 20, top: 40 + Math.random() * 20, delay: Math.random() * 0.3 };
+    });
+  }, [active]);
+  if (!active) return null;
+  return (<><div className="celebration-overlay" />{particles.map(p => (<div key={p.id} className="celebration-emoji" style={{ left: `${p.left}%`, top: `${p.top}%`, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
+}
+
+function GiftEmojiBurst({ active, emoji }) {
+  const particles = useMemo(() => {
+    if (!active) return [];
+    const emojis = [emoji, '✨', '💖', '⭐', '🎉', '💫', emoji, '🌟'];
+    return Array.from({ length: 10 }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / 10 + Math.random() * .5;
+      const distance = 80 + Math.random() * 70;
+      return { id: i, emoji: emojis[i % emojis.length], ex: `${Math.cos(angle) * distance}px`, ey: `${Math.sin(angle) * distance}px`, er: `${Math.random() * 720 - 360}deg`, delay: Math.random() * .15 };
+    });
+  }, [active, emoji]);
+  if (!active) return null;
+  return (<>{particles.map(p => (<div key={p.id} className="gift-emoji-burst" style={{ '--ex': p.ex, '--ey': p.ey, '--er': p.er, animationDelay: `${p.delay}s` }}>{p.emoji}</div>))}</>);
+}
+
+function GiftSendModal({ gift, onClose }) {
+  const sendWhatsApp = () => { const msg = encodeURIComponent(gift.waMsg || ''); window.open(`https://wa.me/${REACH_ME.whatsappNumber}?text=${msg}`, '_blank'); onClose(); };
+  const sendEmail = () => { const subject = encodeURIComponent(`🎁 Gift Redeem: ${gift.title}`); const body = encodeURIComponent(gift.mailMsg || ''); window.location.href = `mailto:${REACH_ME.email}?subject=${subject}&body=${body}`; onClose(); };
+  return (
+    <div className="gift-modal-overlay" onClick={(e) => { if (e.target.classList.contains('gift-modal-overlay')) onClose(); }}>
+      <div className="gift-modal">
+        <button className="gift-modal-close" onClick={onClose}>✕</button>
+        <span className="gift-modal-emoji">{gift.icon}</span>
+        <div className="gift-modal-title">{gift.title}</div>
+        <div className="gift-modal-sub">{gift.sub}</div>
+        <p className="gift-modal-question">🎉 Kaise bhejna hai apna gift?</p>
+        <div className="gift-modal-btns">
+          <button className="gift-send-btn gift-send-wa" onClick={sendWhatsApp}><span className="gift-send-icon">💬</span>Send on WhatsApp</button>
+          <button className="gift-send-btn gift-send-mail" onClick={sendEmail}><span className="gift-send-icon">✉️</span>Send via Email</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QRModal({ onClose }) {
+  useEffect(() => { document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = ''; }; }, []);
+  return (
+    <div className="qr-modal-overlay" onClick={(e) => { if (e.target.classList.contains('qr-modal-overlay')) onClose(); }}>
+      <div className="qr-modal">
+        <button className="qr-modal-close" onClick={onClose}>✕</button>
+        <div className="qr-modal-badge">✦ SCAN & FOLLOW ✦</div>
+        <h2 className="qr-modal-title">My Instagram</h2>
+        <p className="qr-modal-sub">Scan this QR code to follow me 💜</p>
+        <div className="qr-image-wrap"><SmartImage src={INSTAGRAM_QR_IMAGE} alt="Instagram QR" style={{ width: 200, height: 200, borderRadius: 14, objectFit: 'cover', display: 'block', background: '#fff' }} /></div>
+        <div className="qr-instagram-tag"><span>📸</span>@JISHAN_2K_K</div>
+        <p className="qr-hint">📱 Open your phone camera & point at the QR</p>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📤 SHARE MEMORY MODAL (with IDB fallback warning)
+   ═══════════════════════════════════════════════════════════════════════════ */
+function ShareMemoryModal({ onClose }) {
+  const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+  const [idbReady, setIdbReady] = useState(null);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    checkIDB().then(ok => setIdbReady(ok));
+    return () => {
+      document.body.style.overflow = '';
+      files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); });
+    };
+  }, []);
+
+  const handleFiles = (selected) => {
+    setError('');
+    const arr = Array.from(selected);
+    if (arr.length === 0) return;
+    const remaining = MAX_FILES_AT_ONCE - files.length;
+    if (remaining <= 0) { setError(`Maximum ${MAX_FILES_AT_ONCE} files allowed`); return; }
+    const toAdd = [];
+    let errMsg = '';
+    for (const file of arr) {
+      if (toAdd.length >= remaining) { errMsg = `Only ${MAX_FILES_AT_ONCE} files at a time`; break; }
+      const isImage = file.type.startsWith('image/');
+      const isVideo = file.type.startsWith('video/');
+      if (!isImage && !isVideo) { errMsg = `Skip ${file.name} — only images/videos`; continue; }
+      if (isImage && file.size > MAX_IMAGE_SIZE) { errMsg = `Image too big: ${file.name} (max 4MB)`; continue; }
+      if (isVideo && file.size > MAX_VIDEO_SIZE) { errMsg = `Video too big: ${file.name} (max 200MB)`; continue; }
+      toAdd.push({ file, previewUrl: URL.createObjectURL(file), type: isImage ? 'image' : 'video', size: file.size, name: file.name });
+    }
+    if (toAdd.length) setFiles(prev => [...prev, ...toAdd]);
+    if (errMsg) setError(errMsg);
+  };
+
+  const removeFile = (idx) => {
+    setFiles(prev => {
+      const f = prev[idx];
+      if (f && f.previewUrl) URL.revokeObjectURL(f.previewUrl);
+      return prev.filter((_, i) => i !== idx);
+    });
+  };
+
+  const handleUpload = async () => {
+    if (!files.length) return;
+    setUploading(true); setProgress(0); setError('');
+    try {
+      const total = files.length;
+      for (let i = 0; i < total; i++) {
+        await saveSharedMemory(files[i].file);
+        setProgress(Math.round(((i + 1) / total) * 100));
+      }
+      setSuccess(true);
+      setTimeout(() => {
+        files.forEach(f => { if (f.previewUrl) URL.revokeObjectURL(f.previewUrl); });
+        onClose();
+      }, 1800);
+    } catch (e) {
+      setError('Upload failed: ' + (e.message || 'unknown error'));
+    } finally { setUploading(false); }
+  };
+
+  return (
+    <div className="share-modal-overlay" onClick={(e) => { if (e.target.classList.contains('share-modal-overlay')) onClose(); }}>
+      <div className="share-modal">
+        <button className="share-modal-close" onClick={onClose}>✕</button>
+        {success ? (
+          <div className="share-success">
+            <span className="share-success-emoji">🎉</span>
+            <div className="share-success-text">Memory Shared!</div>
+            <div className="share-success-sub">Thank you for sharing your beautiful moments 💖</div>
+          </div>
+        ) : (
+          <>
+            <span className="share-modal-emoji">📸</span>
+            <h2 className="share-modal-title">Share Your Memory</h2>
+            <p className="share-modal-sub">Add your photos or videos to make this day special 💜</p>
+            <p className="share-modal-hint">Up to {MAX_FILES_AT_ONCE} files · Images ≤ 4MB · Videos ≤ 200MB</p>
+
+            {/* Storage warning */}
+            {idbReady === false && (
+              <div className="share-warn share-warn-warn">
+                ⚠️ <b>Storage Warning:</b> {getIDBReason()}<br />
+                Files will only stay until you refresh the page. Permanent storage ke liye page ko <b>http://</b> ya <b>https://</b> se kholo.
+              </div>
+            )}
+            {idbReady === true && (
+              <div className="share-warn share-warn-ok">
+                ✅ Permanent storage active — files safe rahenge
+              </div>
+            )}
+
+            <label className="share-file-btn">
+              <span style={{ fontSize: 18 }}>📁</span>
+              {files.length ? `Add more (${files.length}/${MAX_FILES_AT_ONCE})` : 'Choose Photos / Videos'}
+              <input type="file" accept="image/*,video/*" multiple onChange={(e) => { handleFiles(e.target.files); e.target.value = ''; }} disabled={uploading} />
+            </label>
+
+            {error && <div style={{ color: '#dc2626', fontSize: 11, fontWeight: 700, marginBottom: 10, padding: 8, background: 'rgba(239,68,68,.1)', borderRadius: 8 }}>{error}</div>}
+
+            {files.length > 0 && (<>
+              <div style={{ fontSize: 11, color: '#7c3aed', fontWeight: 800, marginBottom: 6, textAlign: 'left' }}>SELECTED ({files.length})</div>
+              <div className="share-list">
+                {files.map((f, i) => (
+                  <div key={i} className="share-thumb">
+                    {f.type === 'video' ? <video src={f.previewUrl} muted playsInline /> : <img src={f.previewUrl} alt={f.name} />}
+                    <div className="share-thumb-badge">{formatBytes(f.size)}</div>
+                    <button className="share-thumb-remove" onClick={() => removeFile(i)}>✕</button>
+                  </div>
+                ))}
+              </div>
+            </>)}
+
+            {uploading && (<div className="share-progress-bar" style={{ marginTop: 14 }}><div className="share-progress-fill" style={{ width: `${progress}%` }} /></div>)}
+
+            {files.length > 0 && (
+              <button className="share-upload-btn" onClick={handleUpload} disabled={uploading}>
+                {uploading ? `Uploading ${progress}%...` : `📤 Upload ${files.length} File${files.length > 1 ? 's' : ''}`}
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📞 REACH ME + SHARE MEMORY (same cream panel)
+   ═══════════════════════════════════════════════════════════════════════════ */
+function ReachMe({ onOpenShare }) {
+  return (
+    <div className="reachme-wrap">
+      <h2 className="reachme-title">Reach me</h2>
+
+      {/* Main contact circles */}
+      <div className="reachme-circles">
+        <a className="reachme-item" href={`https://wa.me/${REACH_ME.whatsappNumber}`} target="_blank" rel="noopener noreferrer">
+          <div className="reachme-circle">W</div>
+          <div className="reachme-label">{REACH_ME.whatsappDisplay}</div>
+        </a>
+        <a className="reachme-item" href={`mailto:${REACH_ME.email}`}>
+          <div className="reachme-circle">E</div>
+          <div className="reachme-label">{REACH_ME.emailDisplay}</div>
+        </a>
+        <a className="reachme-item" href={`tel:${REACH_ME.phoneNumber}`}>
+          <div className="reachme-circle">P</div>
+          <div className="reachme-label">{REACH_ME.phoneDisplay}</div>
+        </a>
+      </div>
+
+      {/* Divider */}
+      <div className="reachme-share-divider" />
+
+      {/* Share Memory — same style as reach me circles */}
+      <div className="reachme-share-title"></div>
+      <div className="reachme-share-row">
+        <button className="reachme-item" onClick={onOpenShare} type="button">
+          <div className="reachme-circle" style={{ fontSize: 28, borderColor: '#c9a961', background: 'linear-gradient(145deg, rgba(245,222,179,.3), rgba(212,175,110,.15))' }}>📸</div>
+          <div className="reachme-label">Share Your Memory</div>
+        </button>
+      </div>
+
+      <p className="reachme-made">{REACH_ME.madeLine}</p>
+      <p className="reachme-dev">{REACH_ME.devLine}</p>
+
+      <div className="reachme-socials">
+        <a className="reachme-social" href={REACH_ME.github} target="_blank" rel="noopener noreferrer">G</a>
+        <a className="reachme-social" href={REACH_ME.linkedin} target="_blank" rel="noopener noreferrer">L</a>
+        <a className="reachme-social" href={REACH_ME.instagram} target="_blank" rel="noopener noreferrer">I</a>
+        <a className="reachme-social" href={`mailto:${REACH_ME.emailLink}`}>E</a>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔐 PASSWORD GATE
+   ═══════════════════════════════════════════════════════════════════════════ */
+function PasswordGate({ onSuccess }) {
+  const [pw, setPw] = useState('');
+  const [showPw, setShowPw] = useState(false);
+  const [error, setError] = useState('');
+  const [shake, setShake] = useState(false);
+  const [unlocking, setUnlocking] = useState(false);
+
+  const tryUnlock = () => {
+    if (unlocking) return;
+    if (pw === ACCESS_PASSWORD) {
+      setError(''); setUnlocking(true);
+      playNote(N.C5, .2, .13); setTimeout(() => playNote(N.E5, .2, .13), 150);
+      setTimeout(() => playNote(N.G5, .2, .13), 300); setTimeout(() => playNote(N.C6, .5, .15), 450);
+      setTimeout(() => onSuccess(), 1200);
+    } else {
+      playNote(220, .18, .14, 'sawtooth'); setTimeout(() => playNote(165, .22, .14, 'sawtooth'), 150);
+      setError('❌ Galat password! Dobara try karo.');
+      setShake(true); setTimeout(() => setShake(false), 600); setPw('');
+    }
+  };
+
+  return (
+    <div className="password-gate">
+      <Stars count={50} />
+      <span className="pg-lock">{unlocking ? '🔓' : '🔐'}</span>
+      <h1 className="pg-title">{unlocking ? 'Unlocking...' : 'Secret Surprise'}</h1>
+      <p className="pg-sub">{unlocking ? 'Get ready...' : 'This birthday card is locked. Enter the password ✨'}</p>
+      <div className="pg-input-wrap">
+        <input type={showPw ? 'text' : 'password'} className={`pg-input ${shake ? 'shake' : ''}`} value={pw}
+          onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryUnlock(); }}
+          placeholder="Enter password..." autoFocus disabled={unlocking} />
+        <button className="pg-eye" onClick={() => setShowPw(!showPw)} type="button">{showPw ? '🙈' : '👁️'}</button>
+      </div>
+      <div className="pg-error">{error}</div>
+      <button className="pg-btn" onClick={tryUnlock} disabled={unlocking || !pw}>{unlocking ? '✨ Opening...' : 'Unlock 🔓'}</button>
+      <p className="pg-hint">💡 Hint: Sirf khaas logon ke liye 💜</p>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🎉 WELCOME SCREEN
+   ═══════════════════════════════════════════════════════════════════════════ */
+function WelcomeScreen({ onContinue }) {
+  const [showBtn, setShowBtn] = useState(false);
+  const sparkles = useMemo(() => {
+    const emojis = ['✨', '⭐', '💖', '🌟', '💫', '🎉', '🎊', '🎈'];
+    return Array.from({ length: 24 }, (_, i) => ({ id: i, emoji: emojis[i % emojis.length], left: Math.random() * 100, delay: Math.random() * 2, dur: 3 + Math.random() * 3, size: 16 + Math.random() * 18 }));
+  }, []);
+  useEffect(() => {
+    playMelody([[N.C5,.25,.12],[N.E5,.25,.12],[N.G5,.25,.12],[N.C6,.4,.13],[N.A5,.25,.11],[N.G5,.25,.11],[N.E5,.25,.11],[N.G5,.6,.12]]);
+    const t = setTimeout(() => setShowBtn(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div className="welcome-screen">
+      <div className="welcome-sparkles">{sparkles.map(s => (<span key={s.id} className="welcome-sparkle" style={{ left: `${s.left}%`, fontSize: s.size, animationDuration: `${s.dur}s`, animationDelay: `${s.delay}s` }}>{s.emoji}</span>))}</div>
+      <span className="welcome-emoji">🎉</span>
+      <h1 className="welcome-title">Welcome!</h1>
+      <h2 className="welcome-name">{CONFIG.name} 💖</h2>
+      <p className="welcome-sub">Aaj tumhara special din hai ✨<br />Chalo shuru karein tumhari surprise journey! 🎁</p>
+      {showBtn && <button className="welcome-btn" onClick={() => { stopMelody(); onContinue(); }}>Let's Go! 🚀</button>}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📄 PAGES
+   ═══════════════════════════════════════════════════════════════════════════ */
+function PageIntro({ onNext, onSecretUnlock }) {
+  const tapTimesRef = useRef([]);
+  const handleTap = () => {
+    const now = Date.now();
+    tapTimesRef.current = tapTimesRef.current.filter(t => now - t < SECRET_TAP_WINDOW);
+    tapTimesRef.current.push(now);
+    if (tapTimesRef.current.length >= SECRET_TAPS_NEEDED) { tapTimesRef.current = []; onSecretUnlock(); }
+  };
+  return (
+    <div className="page-container anim-fadeUp" onClick={handleTap}>
+      <MusicIndicator />
+      <div style={{ position: 'relative', zIndex: 2, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,36px)', background: 'linear-gradient(90deg,#fde047,#facc15,#fde047)', backgroundSize: '200% auto', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 20px rgba(250,204,21,.55))', animation: 'shine 3s linear infinite', marginBottom: 12 }}>For You, {CONFIG.name}</h1>
+        <div className="anim-heartBeat" style={{ fontSize: 42, marginBottom: 8 }}>🌞</div>
+        <p style={{ color: 'rgba(255,255,255,.75)', fontSize: 14, fontWeight: 600, marginBottom: 32 }}>Someone special made this just for you...</p>
+        <div className="anim-float" style={{ marginBottom: 36 }}>
+          <div style={{ width: 200, height: 260, background: 'linear-gradient(145deg,#fde2e7,#fbcfe8)', borderRadius: 22, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 50px rgba(236,72,153,.35),0 0 80px rgba(236,72,153,.2)', border: '4px solid rgba(255,255,255,.4)' }}>
+            <SmartImage src={CONFIG.page1Image} alt="Birthday Girl" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        </div>
+        <RippleButton onClick={(e) => { e.stopPropagation(); onNext(); }} className="btn btn-gradient" style={{ padding: '18px 40px', fontSize: 17 }}>Tap to open your surprise! 🎁</RippleButton>
+      </div>
+    </div>
+  );
+}
+
+function PageDark({ onNext }) {
+  const [lighting, setLighting] = useState(false);
+  const handle = () => {
+    if (lighting) return;
+    setLighting(true);
+    playNote(180, .4, .1); setTimeout(() => playNote(360, .5, .08, 'triangle'), 150);
+    setTimeout(onNext, 1400);
+  };
+  return (
+    <div className="page-container" onClick={handle} style={{ background: '#000', cursor: 'pointer' }}>
+      <MusicIndicator />
+      <Stars count={70} />
+      <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '20px 0' }}>
+        <div style={{ width: 80, height: 80, margin: '0 auto 26px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 56, opacity: lighting ? 1 : .35, transition: 'opacity .8s, transform .8s', transform: lighting ? 'scale(1.2)' : 'scale(1)', filter: lighting ? 'drop-shadow(0 0 40px #facc15)' : 'none' }}>🌤️</div>
+        <p style={{ color: '#fff', fontSize: 17, fontWeight: 700, marginBottom: 10, opacity: lighting ? 1 : .75 }}>It's a bit dark in here...</p>
+        <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>Tap anywhere to turn on the lights 💡</p>
+      </div>
+    </div>
+  );
+}
+
+function PageBirthdayDate({ onCorrect }) {
+  const [wrongShake, setWrongShake] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
+  const cal = CONFIG.calendar || DEFAULT_CALENDAR;
+  const specialDate = parseInt(cal.specialDate, 10);
+  const handleWrongTap = (e) => { if (celebrating) return; e.stopPropagation(); playNote(200, .15, .12, 'sawtooth'); setTimeout(() => playNote(150, .18, .12, 'sawtooth'), 120); setWrongShake(true); setTimeout(() => setWrongShake(false), 500); };
+  const handleCorrectTap = (e) => { if (celebrating) return; e.stopPropagation(); setCelebrating(true); playMelody([[N.C5,.15,.14],[N.E5,.15,.14],[N.G5,.15,.14],[N.C6,.4,.15]]); setTimeout(() => { onCorrect(); }, 1000); };
+  return (
+    <div className="page-container date-page-bg" onClick={handleWrongTap}>
+      <CelebrationBurst active={celebrating} />
+      <div style={{ width: '100%', maxWidth: 400, margin: '0 auto', position: 'relative', zIndex: 2 }}>
+        <h1 className={`date-page-title ${wrongShake ? 'date-wrong-tap' : ''}`}>{cal.title}</h1>
+        <p className="date-page-hint">{cal.hint}</p>
+        <div className="Bhanja-calendar">
+          <div className="bc-header">
+            <div className="bc-emojis">💗 ✨ 👑 💗</div>
+            <div className="bc-title">{cal.month}</div>
+            <div className="bc-year">{cal.year}</div>
+            <div className="bc-Bhanja-area">
+              <div><div className="bc-girl one">🎀</div><div className="bc-Bhanja-text">{cal.Bhanja1}</div></div>
+              <div className="bc-heart">💕</div>
+              <div><div className="bc-girl two">🎀</div><div className="bc-Bhanja-text">{cal.Bhanja2}</div></div>
+            </div>
+            <div className="bc-quote">{cal.quoteLine1}<br />{cal.quoteLine2}</div>
+          </div>
+          <div className="bc-weekdays">
+            <div className="bc-weekday bc-sun">Sun</div><div className="bc-weekday bc-mon">Mon</div>
+            <div className="bc-weekday bc-tue">Tue</div><div className="bc-weekday bc-wed">Wed</div>
+            <div className="bc-weekday bc-thu">Thu</div><div className="bc-weekday bc-fri">Fri</div>
+            <div className="bc-weekday bc-sat">Sat</div>
+          </div>
+          <div className="bc-grid">
+            {CALENDAR_CELLS.map((cell, i) => {
+              if (cell.empty) return <div key={i} className={`bc-date ${cell.dayClass}`} onClick={handleWrongTap} />;
+              const isSpecial = cell.num === specialDate;
+              if (isSpecial) {
+                return (
+                  <div key={i} className={`bc-date ${cell.dayClass} bc-special-22 ${celebrating ? 'celebrate-pop' : ''}`} onClick={handleCorrectTap}>
+                    <div className="bc-date-num">{cell.num}</div><div className="bc-date-icon">{cell.icon}</div>
+                    {celebrating && <div className="celebrate-ring" />}
+                    {celebrating && (<>
+                      <div className="celebrate-sparkle" style={{ '--sx': '-60px', '--sy': '-50px' }}>✨</div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '60px', '--sy': '-50px', animationDelay: '.1s' }}>⭐</div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '-70px', '--sy': '30px', animationDelay: '.15s' }}>💫</div>
+                      <div className="celebrate-sparkle" style={{ '--sx': '70px', '--sy': '30px', animationDelay: '.2s' }}>✨</div>
+                    </>)}
+                  </div>
+                );
+              }
+              return (<div key={i} className={`bc-date ${cell.dayClass}`} onClick={handleWrongTap}><div className={`bc-date-num ${cell.sunday ? 'sunday-num' : ''}`}>{cell.num}</div><div className="bc-date-icon">{cell.icon}</div></div>);
+            })}
+          </div>
+          <div className="bc-bottom"><div className="bc-messages">{cal.messages.map((msg, i) => (<div key={i} className="bc-message">{msg}</div>))}</div></div>
+        </div>
+        <p style={{ color: '#9c3c72', fontSize: 11, fontWeight: 700, letterSpacing: 1, marginTop: 14, textTransform: 'uppercase' }}>{wrongShake ? '❌ Try again' : '✨ Tap the correct date ✨'}</p>
+      </div>
+    </div>
+  );
+}
+
+function PageSurprise({ onNext }) {
+  useEffect(() => { playMelody(MELODY_PAGE_4); const t = setTimeout(onNext, 2400); return () => clearTimeout(t); }, [onNext]);
+  return (
+    <div className="page-container" style={{ background: 'radial-gradient(circle at 50% 50%,#ffd54a 0%,#ffb347 40%,#ff8c42 75%,#ff6b1a 100%)' }}>
+      <MusicIndicator />
+      <div className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 44, fontWeight: 700, color: '#7c2d12', textShadow: '0 4px 20px rgba(255,255,255,.6)', zIndex: 2, position: 'relative' }}>Surprise! 🎉</div>
+    </div>
+  );
+}
+
+function PageMessages({ onNext }) {
+  const [confetti, setConfetti] = useState(true);
+  useEffect(() => { const t = setTimeout(() => setConfetti(false), 3500); return () => clearTimeout(t); }, []);
+  return (
+    <>
+      <Confetti active={confetti} />
+      <div className="page-container" style={{ background: 'linear-gradient(160deg,#fdf1ff 0%,#f8e6ff 50%,#ffe9f2 100%)' }}>
+        <MusicIndicator />
+        <Balloons count={5} />
+        <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
+          <div className="anim-pop" style={{ width: 110, height: 110, margin: '0 auto 16px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, boxShadow: '0 12px 30px rgba(244,114,182,.3)', border: '3px solid rgba(255,255,255,.7)' }}>🧸</div>
+          <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday,<br />{CONFIG.name}! 🎈</h1>
+          <div className="stack mt-md" style={{ gap: 14 }}>
+            {CONFIG.messages.map((m, i) => (<div key={i} className="msg-card anim-fadeUp" style={{ animationDelay: `${.15 + i * .12}s` }}><div className="msg-icon">{m.icon}</div><div className="msg-text">{m.text}</div></div>))}
+          </div>
+          <div className="mt-lg"><RippleButton onClick={onNext} className="btn btn-pink" style={{ padding: '16px 34px', fontSize: 16 }}>Cake Time! 🎂 →</RippleButton></div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function PageWish({ onNext }) {
+  const [isCandleLit, setIsCandleLit] = useState(true);
+  const [allBlown, setAllBlown] = useState(false);
+  const [confetti, setConfetti] = useState(false);
+
+  const extinguishCandle = () => {
+    if (!isCandleLit || allBlown) return;
+    playNote(200, .5, .1, 'sawtooth');
+    setIsCandleLit(false); setAllBlown(true); setConfetti(true);
+    // ⭐ Happy Birthday song plays after candle blow
+    setTimeout(() => playMelody(MELODY_HAPPY_BIRTHDAY), 400);
+    setTimeout(onNext, 6200);
+  };
+
+  return (
+    <>
+      <Confetti active={confetti} count={100} />
+      <div className="page-container" style={{ background: 'radial-gradient(ellipse at 50% 20%,#2a1560 0%,#150830 45%,#08021a 100%)' }}>
+        <MusicIndicator />
+        <Stars count={60} />
+        <Balloons count={6} />
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#f0abfc', textShadow: '0 0 30px rgba(240,171,252,.6)', marginBottom: 8 }}>Make a Wish! ✨</h1>
+          <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, fontWeight: 600, marginBottom: 22 }}>Touch the flame to blow it out 🕯️</p>
+          <div className="cake-image-wrap" onClick={extinguishCandle}>
+            <SmartImage src={CONFIG.cakeImage} alt="Birthday Cake" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 18, boxShadow: '0 15px 40px rgba(0,0,0,.5)' }} />
+            <div className="flame-position" onClick={(e) => { e.stopPropagation(); extinguishCandle(); }}>
+              {isCandleLit ? (<><div className="flame-glow" /><div className="real-flame" /></>) : (<div className="candle-smoke-small" />)}
+            </div>
+          </div>
+          {allBlown ? (
+            <p className="anim-pop" style={{ fontFamily: "'Dancing Script',cursive", fontSize: 24, color: '#fde047', textShadow: '0 0 20px rgba(253,224,71,.7)', textAlign: 'center' }}>🎵 Happy Birthday to You! 🎵<br /><span style={{ fontSize: 18 }}>Your wish is on its way ✨</span></p>
+          ) : (
+            <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 13, fontWeight: 600 }}>1 candle lit</p>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function PageMemories({ onNext }) {
+  const [idx, setIdx] = useState(0);
+  const [fade, setFade] = useState(true);
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const total = CONFIG.memories.length;
+  const goNext = () => { if (idx < total - 1) { setFade(false); setTimeout(() => { setIdx(idx + 1); setFade(true); }, 180); } else { onNext(); } };
+  const goPrev = () => { if (idx > 0) { setFade(false); setTimeout(() => { setIdx(idx - 1); setFade(true); }, 180); } };
+  const goDot = (i) => { if (i === idx) return; setFade(false); setTimeout(() => { setIdx(i); setFade(true); }, 180); };
+  const mem = CONFIG.memories[idx] || {};
+  const zoom = mem.zoom || 1;
+  const px = mem.x == null ? 50 : mem.x;
+  const py = mem.y == null ? 50 : mem.y;
+  const imgStyle = { opacity: fade ? 1 : 0, objectFit: 'cover', objectPosition: `${px}% ${py}%`, transform: `scale(${zoom})`, transformOrigin: `${px}% ${py}%`, transition: 'opacity .4s, transform .3s', width: '100%', height: '100%', display: 'block' };
+  return (
+    <>
+      {viewerOpen && mem.img && <FullscreenViewer src={mem.img} id={mem.id} onClose={() => setViewerOpen(false)} />}
+      <div className="page-container" style={{ background: 'linear-gradient(160deg,#fdf1ff 0%,#f3e8ff 50%,#e9d5ff 100%)' }}>
+        <MusicIndicator />
+        <Balloons count={4} />
+        <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
+          <h1 className="script" style={{ fontSize: 'clamp(26px,7vw,34px)', color: '#a21caf', marginBottom: 22, textAlign: 'center' }}>Beautiful Memories 📸</h1>
+          <div className="mem-frame" onClick={() => setViewerOpen(true)}><div className="mem-frame-inner"><SmartImage key={idx} src={mem.img} id={mem.id} alt={mem.caption || `Memory ${idx + 1}`} className="mem-img" style={imgStyle} /></div></div>
+          <p className="mem-hint" style={{ textAlign: 'center' }}>👆 Tap image for fullscreen</p>
+          <div className="mem-dots">{CONFIG.memories.map((_, i) => (<button key={i} className={`mem-dot ${i === idx ? 'active' : ''}`} onClick={() => goDot(i)} />))}</div>
+          <div className="mt-md" style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+            {idx > 0 && <RippleButton onClick={goPrev} className="btn btn-purple" style={{ padding: '14px 24px', fontSize: 14 }}>← Prev</RippleButton>}
+            <RippleButton onClick={goNext} className="btn btn-purple" style={{ padding: '14px 30px', fontSize: 14, minWidth: 160 }}>{idx < total - 1 ? 'Next Memory →' : 'Continue →'}</RippleButton>
+          </div>
+          <p style={{ marginTop: 14, fontSize: 12, color: '#a855f7', fontWeight: 700, textAlign: 'center' }}>{idx + 1} of {total}</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function PageLetter({ onNext }) {
+  return (
+    <div className="page-container" style={{ background: 'linear-gradient(160deg,#fff8e8 0%,#ffefd5 100%)' }}>
+      <MusicIndicator />
+      <div style={{ width: '100%', maxWidth: 360, position: 'relative', zIndex: 2 }}>
+        <div className="letter anim-pop">
+          <div className="letter-stamp">💌</div><div className="letter-bear">🧸</div>
+          <div className="letter-greet">My Dearest {CONFIG.name},</div>
+          <div className="letter-body">{CONFIG.letterBody}</div>
+          <div className="letter-sign">{CONFIG.letterSign}</div>
+        </div>
+        <div className="mt-lg" style={{ textAlign: 'center' }}><RippleButton onClick={onNext} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 16 }}>Continue 🎁</RippleButton></div>
+      </div>
+    </div>
+  );
+}
+
+function PageGifts() {
+  const [confetti, setConfetti] = useState(true);
+  const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [celebratingIdx, setCelebratingIdx] = useState(null);
+  const [selectedGift, setSelectedGift] = useState(null);
+  useEffect(() => { const t = setTimeout(() => setConfetti(false), 4000); return () => clearTimeout(t); }, []);
+  const handleGiftTap = (gift, idx) => {
+    if (celebratingIdx !== null) return;
+    playMelody([[N.C5,.14,.12],[N.E5,.14,.12],[N.G5,.14,.12],[N.C6,.35,.13]]);
+    setCelebratingIdx(idx);
+    setTimeout(() => { setSelectedGift(gift); setCelebratingIdx(null); }, 1100);
+  };
+  return (
+    <>
+      <Confetti active={confetti} count={90} />
+      {selectedGift && <GiftSendModal gift={selectedGift} onClose={() => setSelectedGift(null)} />}
+      {qrModalOpen && <QRModal onClose={() => setQrModalOpen(false)} />}
+      {shareModalOpen && <ShareMemoryModal onClose={() => setShareModalOpen(false)} />}
+      <div className="last-page">
+        <MusicIndicator />
+        <Balloons count={7} />
+        <div className="last-page-inner">
+          <div className="anim-float" style={{ width: 110, height: 110, margin: '0 auto 14px', background: 'linear-gradient(145deg,#fef3c7,#fde68a)', borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, boxShadow: '0 14px 34px rgba(244,114,182,.3)', border: '3px solid rgba(255,255,255,.8)' }}>🧸</div>
+          <h1 className="script" style={{ fontSize: 'clamp(24px,6.5vw,32px)', color: '#a21caf', marginBottom: 6 }}>Happy Birthday!</h1>
+          <p style={{ color: '#7c3aed', fontSize: 13, fontWeight: 700, marginBottom: 8 }}>Here are some gifts from the heart 🎁</p>
+          <p style={{ color: '#a855f7', fontSize: 11, fontWeight: 700, marginBottom: 22 }}>👆 Tap any gift to redeem & send</p>
+          <div className="stack" style={{ gap: 12 }}>
+            {CONFIG.gifts.map((g, i) => (
+              <div key={i} className={`gift-card anim-fadeUp ${celebratingIdx === i ? 'celebrating' : ''}`} style={{ background: `linear-gradient(135deg,${g.c1},${g.c2})`, animationDelay: `${.1 + i * .1}s` }} onClick={() => handleGiftTap(g, i)}>
+                <div className="gift-icon">{g.icon}</div>
+                <div className="gift-info">
+                  <div className="gift-title">{g.title}</div>
+                  <div className="gift-sub">{g.sub}</div>
+                  <div className="gift-tap-hint">Tap to redeem ✨</div>
+                </div>
+                {celebratingIdx === i && <GiftEmojiBurst active={true} emoji={g.icon} />}
+              </div>
+            ))}
+          </div>
+          <div className="mt-lg"><RippleButton onClick={() => setQrModalOpen(true)} className="btn btn-gradient" style={{ padding: '16px 34px', fontSize: 15 }}>📸 Create your birthday card ✨</RippleButton></div>
+          <ReachMe onOpenShare={() => setShareModalOpen(true)} />
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔐 ADMIN PANEL
+   ═══════════════════════════════════════════════════════════════════════════ */
+function MemoryEditor({ mem, index, onChange }) {
+  const fileRef = useRef(null);
+  const handleFile = (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => onChange({ ...mem, img: ev.target.result, id: null });
+    reader.readAsDataURL(file); e.target.value = '';
+  };
+  return (
+    <div className="mem-editor">
+      <div className="mem-editor-head"><span>Memory #{index + 1}</span></div>
+      <div className="mem-preview">{mem.img ? (<SmartImage src={mem.img} id={mem.id} alt="preview" style={{ objectPosition: `${mem.x == null ? 50 : mem.x}% ${mem.y == null ? 50 : mem.y}%`, transform: `scale(${mem.zoom || 1})`, transformOrigin: `${mem.x == null ? 50 : mem.x}% ${mem.y == null ? 50 : mem.y}%`, width: '100%', height: '100%', objectFit: 'cover' }} />) : (<div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(233,213,255,.4)', fontSize: 11, fontWeight: 800 }}>No Image</div>)}</div>
+      <div className="admin-field" style={{ marginBottom: 8 }}><label>Image URL</label><input value={mem.img && !mem.img.startsWith('data:') ? mem.img : ''} onChange={(e) => onChange({ ...mem, img: e.target.value, id: extractKomodoId(e.target.value) })} placeholder="https://..." /></div>
+      <label className="mem-file-btn">📁 Upload<input type="file" accept="image/*" ref={fileRef} onChange={handleFile} /></label>
+      <div className="mem-slider-row"><label>Zoom</label><input type="range" min="1" max="3" step="0.05" value={mem.zoom || 1} onChange={(e) => onChange({ ...mem, zoom: parseFloat(e.target.value) })} /><span>{(mem.zoom || 1).toFixed(2)}×</span></div>
+      <div className="mem-slider-row"><label>X</label><input type="range" min="0" max="100" step="1" value={mem.x == null ? 50 : mem.x} onChange={(e) => onChange({ ...mem, x: parseInt(e.target.value) })} /><span>{mem.x == null ? 50 : mem.x}%</span></div>
+      <div className="mem-slider-row"><label>Y</label><input type="range" min="0" max="100" step="1" value={mem.y == null ? 50 : mem.y} onChange={(e) => onChange({ ...mem, y: parseInt(e.target.value) })} /><span>{mem.y == null ? 50 : mem.y}%</span></div>
+      <input className="mem-caption-input" value={mem.caption || ''} onChange={(e) => onChange({ ...mem, caption: e.target.value })} placeholder="Caption" />
+    </div>
+  );
+}
+
+function SharedMemoriesAdmin() {
+  const [memories, setMemories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [idbStatus, setIdbStatus] = useState(null);
+  const [urlCache, setUrlCache] = useState({});
+
+  const load = async () => {
+    setLoading(true);
+    const ok = await checkIDB();
+    setIdbStatus(ok);
+    try {
+      const all = await getAllSharedMemories();
+      all.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      setMemories(all);
+      const cache = {};
+      all.forEach(m => { if (m.blob && !urlCache[m.id]) cache[m.id] = URL.createObjectURL(m.blob); });
+      setUrlCache(prev => ({ ...prev, ...cache }));
+    } catch (e) {}
+    setLoading(false);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const handleDelete = async (id) => { if (!confirm('Delete permanently?')) return; await deleteSharedMemory(id); await load(); };
+  const handleClearAll = async () => { if (!confirm('Delete ALL shared memories?')) return; await clearAllSharedMemories(); await load(); };
+  const totalSize = memories.reduce((s, m) => s + (m.size || 0), 0);
+
+  return (
+    <div className="admin-section">
+      <h3>📤 Shared Memories ({memories.length})</h3>
+      {idbStatus === false && (
+        <div style={{ background: 'rgba(251,191,36,.15)', border: '1px solid rgba(251,191,36,.4)', color: '#fbbf24', fontSize: 11, fontWeight: 700, padding: 10, borderRadius: 8, marginBottom: 10, lineHeight: 1.5 }}>
+          ⚠️ IndexedDB blocked — memories memory-only (session).<br />Page ko http:// ya https:// se kholo.
+        </div>
+      )}
+      {idbStatus === true && (
+        <div style={{ background: 'rgba(16,185,129,.15)', border: '1px solid rgba(16,185,129,.4)', color: '#34d399', fontSize: 11, fontWeight: 700, padding: 8, borderRadius: 8, marginBottom: 10 }}>
+          ✅ Permanent storage active
+        </div>
+      )}
+      {loading ? (<div className="shared-empty">⏳ Loading...</div>) : memories.length === 0 ? (
+        <div className="shared-empty">✨ No memories yet</div>
+      ) : (
+        <>
+          <div className="shared-grid">
+            {memories.map(m => (
+              <div key={m.id} className="shared-tile">
+                {m.isVideo ? (<video src={urlCache[m.id] || ''} muted playsInline />) : (<img src={urlCache[m.id] || ''} alt={m.name} />)}
+                <div className="shared-tile-badge">{m.isVideo ? '🎬' : '🖼️'}</div>
+                <button className="shared-tile-del" onClick={() => handleDelete(m.id)}>✕</button>
+                <div className="shared-tile-info">{formatBytes(m.size)}</div>
+              </div>
+            ))}
+          </div>
+          <div className="shared-stats">Total: {formatBytes(totalSize)}</div>
+          <button className="admin-btn admin-btn-danger" onClick={handleClearAll} style={{ marginTop: 10, width: '100%' }}>🗑 Clear All</button>
+        </>
+      )}
+    </div>
+  );
+}
+
+function CalendarEditor({ cal, onChange }) {
+  const updateField = (key, value) => onChange({ ...cal, [key]: value });
+  const updateMsg = (i, value) => { const messages = [...(cal.messages || [])]; messages[i] = value; onChange({ ...cal, messages }); };
+  return (
+    <div className="admin-section">
+      <h3>📅 Calendar</h3>
+      <div className="admin-grid-2">
+        <div className="admin-field" style={{ marginBottom: 0 }}><label>Month</label><input value={cal.month || ''} onChange={(e) => updateField('month', e.target.value)} /></div>
+        <div className="admin-field" style={{ marginBottom: 0 }}><label>Year</label><input value={cal.year || ''} onChange={(e) => updateField('year', e.target.value)} /></div>
+      </div>
+      <div className="admin-field"><label>⭐ Special Date</label><input type="number" min="1" max="30" value={cal.specialDate || 22} onChange={(e) => updateField('specialDate', parseInt(e.target.value) || 22)} /></div>
+      <div className="admin-field"><label>Title</label><input value={cal.title || ''} onChange={(e) => updateField('title', e.target.value)} /></div>
+      <div className="admin-field"><label>Hint</label><input value={cal.hint || ''} onChange={(e) => updateField('hint', e.target.value)} /></div>
+      <div className="admin-field"><label>Quote 1</label><input value={cal.quoteLine1 || ''} onChange={(e) => updateField('quoteLine1', e.target.value)} /></div>
+      <div className="admin-field"><label>Quote 2</label><input value={cal.quoteLine2 || ''} onChange={(e) => updateField('quoteLine2', e.target.value)} /></div>
+      <div className="admin-grid-2">
+        <div className="admin-field" style={{ marginBottom: 0 }}><label>Bhanja 1</label><input value={cal.Bhanja1 || ''} onChange={(e) => updateField('Bhanja1', e.target.value)} /></div>
+        <div className="admin-field" style={{ marginBottom: 0 }}><label>Bhanja 2</label><input value={cal.Bhanja2 || ''} onChange={(e) => updateField('Bhanja2', e.target.value)} /></div>
+      </div>
+      <div style={{ marginTop: 12 }}>
+        <label style={{ fontSize: 11, fontWeight: 800, color: '#c4b5fd', textTransform: 'uppercase', display: 'block', marginBottom: 6 }}>Bottom Messages</label>
+        {(cal.messages || []).map((msg, i) => (
+          <input key={i} value={msg} onChange={(e) => updateMsg(i, e.target.value)} style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(168,85,247,.25)', borderRadius: 10, padding: '10px 12px', color: '#fff', fontFamily: 'Nunito', fontSize: 14, outline: 'none', marginBottom: 6 }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AdminPanel({ onClose, onApply }) {
+  const [authed, setAuthed] = useState(false);
+  const [pw, setPw] = useState('');
+  const [err, setErr] = useState('');
+  const [toast, setToast] = useState('');
+  const [draft, setDraft] = useState(() => {
+    try {
+      const saved = localStorage.getItem('bdayDraft');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const merged = mergeConfig(DEFAULT_CONFIG, parsed);
+        if (merged.memories && merged.memories.length < 10) {
+          while (merged.memories.length < 10) merged.memories.push({ img: '', caption: `Memory ${merged.memories.length + 1}`, zoom: 1, x: 50, y: 50 });
+        }
+        return merged;
+      }
+    } catch (e) {}
+    return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+  });
+  useEffect(() => { try { localStorage.setItem('bdayDraft', JSON.stringify(draft)); } catch (e) {} }, [draft]);
+  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(''), 2000); };
+  const tryLogin = () => { if (pw === ADMIN_PASSWORD) { setAuthed(true); setErr(''); } else setErr('Wrong password!'); };
+  const updateField = (key, value) => setDraft(prev => ({ ...prev, [key]: value }));
+  const updateMsg = (i, key, value) => setDraft(prev => { const messages = [...prev.messages]; messages[i] = { ...messages[i], [key]: value }; return { ...prev, messages }; });
+  const updateMem = (i, newMem) => setDraft(prev => { const memories = [...prev.memories]; memories[i] = newMem; return { ...prev, memories }; });
+  const updateGift = (i, key, value) => setDraft(prev => { const gifts = [...prev.gifts]; gifts[i] = { ...gifts[i], [key]: value }; return { ...prev, gifts }; });
+  const updateCalendar = (newCal) => setDraft(prev => ({ ...prev, calendar: newCal }));
+  const applyPreview = () => { Object.assign(CONFIG, draft); onApply(draft); showToast('Preview applied! 🎉'); };
+  const generateLink = () => {
+    const encoded = encodeConfig(draft);
+    const url = `${window.location.origin + window.location.pathname}#c=${encoded}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => showToast('Link copied! 📋')).catch(() => prompt('Copy:', url));
+    } else prompt('Copy:', url);
+  };
+  const resetForm = () => { if (!confirm('Reset?')) return; setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); showToast('Reset done ✅'); };
+  const clearDraft = () => { if (!confirm('Clear draft?')) return; localStorage.removeItem('bdayDraft'); setDraft(JSON.parse(JSON.stringify(DEFAULT_CONFIG))); };
+
+  if (!authed) {
+    return (
+      <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
+        <div className="admin-panel" style={{ maxWidth: 340, position: 'relative' }}>
+          <button className="admin-close" onClick={onClose}>✕</button>
+          <h2>Admin Login</h2><p className="sub">Enter password</p>
+          <div className="admin-field">
+            <label>Password</label>
+            <input type="password" value={pw} autoFocus onChange={(e) => setPw(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') tryLogin(); }} placeholder="Enter admin password" />
+            {err && <div style={{ color: '#f87171', fontSize: 12, marginTop: 6, fontWeight: 700 }}>{err}</div>}
+          </div>
+          <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={tryLogin}>Login</button><button className="admin-btn admin-btn-secondary" onClick={onClose}>Cancel</button></div>
+          <p className="admin-hint">Default: <b>admin123</b></p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="admin-overlay" onClick={(e) => { if (e.target.classList.contains('admin-overlay')) onClose(); }}>
+      <div className="admin-panel" style={{ position: 'relative' }}>
+        <button className="admin-close" onClick={onClose}>✕</button>
+        <h2>Admin Panel 🎂</h2>
+        <p className="sub">Customize & share</p>
+
+        <SharedMemoriesAdmin />
+        <CalendarEditor cal={draft.calendar || DEFAULT_CALENDAR} onChange={updateCalendar} />
+
+        <div className="admin-section"><h3>👤 Name</h3><div className="admin-field"><input value={draft.name} onChange={(e) => updateField('name', e.target.value)} /></div></div>
+
+        <div className="admin-section"><h3>💬 Messages (3)</h3>
+          {draft.messages.map((m, i) => (<div key={i} className="admin-row"><input value={m.icon} onChange={(e) => updateMsg(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={m.text} onChange={(e) => updateMsg(i, 'text', e.target.value)} /></div>))}
+        </div>
+
+        <div className="admin-section"><h3>💌 Letter</h3>
+          <div className="admin-field"><label>Body</label><textarea value={draft.letterBody} onChange={(e) => updateField('letterBody', e.target.value)} /></div>
+          <div className="admin-field"><label>Sign</label><input value={draft.letterSign} onChange={(e) => updateField('letterSign', e.target.value)} /></div>
+        </div>
+
+        <div className="admin-section"><h3>🖼️ Images</h3>
+          <div className="admin-field"><label>Page 1</label><input value={draft.page1Image} onChange={(e) => updateField('page1Image', e.target.value)} /></div>
+          <div className="admin-field"><label>Cake</label><input value={draft.cakeImage} onChange={(e) => updateField('cakeImage', e.target.value)} /></div>
+        </div>
+
+        <div className="admin-section"><h3>📸 Memories ({draft.memories.length})</h3>
+          {draft.memories.map((m, i) => (<MemoryEditor key={i} mem={m} index={i} onChange={(nm) => updateMem(i, nm)} />))}
+        </div>
+
+        <div className="admin-section"><h3>🎁 Gifts (4)</h3>
+          {draft.gifts.map((g, i) => (
+            <div key={i} style={{ marginBottom: 14, paddingBottom: 12, borderBottom: '1px solid rgba(168,85,247,.15)' }}>
+              <div className="admin-row"><input value={g.icon} onChange={(e) => updateGift(i, 'icon', e.target.value)} style={{ textAlign: 'center' }} /><input value={g.title} onChange={(e) => updateGift(i, 'title', e.target.value)} /></div>
+              <input value={g.sub} onChange={(e) => updateGift(i, 'sub', e.target.value)} placeholder="Subtitle" style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(168,85,247,.25)', borderRadius: 10, padding: '10px 12px', color: '#fff', fontFamily: 'Nunito', fontSize: 14, outline: 'none', marginBottom: 6 }} />
+            </div>
+          ))}
+        </div>
+
+        <div className="admin-actions"><button className="admin-btn admin-btn-primary" onClick={applyPreview}>👁 Apply</button><button className="admin-btn admin-btn-primary" onClick={generateLink}>🔗 Link</button></div>
+        <div className="admin-actions"><button className="admin-btn admin-btn-secondary" onClick={resetForm}>♻ Reset</button><button className="admin-btn admin-btn-danger" onClick={clearDraft}>🗑 Clear</button></div>
+        <p className="admin-hint">💡 Password: <b>Mahnoor@2</b></p>
+        {toast && <div className="admin-toast">{toast}</div>}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🚀 APP ROOT
+   ═══════════════════════════════════════════════════════════════════════════ */
+function App() {
+  const [accessStage, setAccessStage] = useState(() => {
+    try { if (sessionStorage.getItem('bdayUnlocked') === 'yes') return 'app'; } catch (e) {}
+    return 'locked';
+  });
+  const [page, setPage] = useState(1);
+  const [showBalloons, setShowBalloons] = useState(true);
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [, forceUpdate] = useState(0);
+
+  // ⭐ Check IDB on mount
+  useEffect(() => { checkIDB(); }, []);
+
+  useEffect(() => {
+    if (accessStage !== 'app') return;
+    stopMelody();
+    const melody = PAGE_MELODIES[page];
+    if (melody) {
+      const t = setTimeout(() => playMelody(melody), 400);
+      return () => clearTimeout(t);
+    }
+  }, [page, accessStage]);
+
+  useEffect(() => { setShowBalloons(page !== 2 && page !== 3); }, [page]);
+
+  const go = (n) => setPage(n);
+  const handleApply = (newCfg) => { Object.assign(CONFIG, newCfg); forceUpdate(v => v + 1); setPage(1); };
+  const handleUnlocked = () => { try { sessionStorage.setItem('bdayUnlocked', 'yes'); } catch (e) {} setAccessStage('welcome'); };
+  const handleWelcomeContinue = () => { setAccessStage('app'); setPage(1); };
+
+  if (accessStage === 'locked') return <PasswordGate onSuccess={handleUnlocked} />;
+  if (accessStage === 'welcome') return <WelcomeScreen onContinue={handleWelcomeContinue} />;
+
+  const renderPage = () => {
+    switch (page) {
+      case 1: return <PageIntro onNext={() => go(2)} onSecretUnlock={() => setAdminOpen(true)} />;
+      case 2: return <PageDark onNext={() => go(3)} />;
+      case 3: return <PageBirthdayDate onCorrect={() => go(4)} />;
+      case 4: return <PageSurprise onNext={() => go(5)} />;
+      case 5: return <PageMessages onNext={() => go(6)} />;
+      case 6: return <PageWish onNext={() => go(7)} />;
+      case 7: return <PageMemories onNext={() => go(8)} />;
+      case 8: return <PageLetter onNext={() => go(9)} />;
+      case 9: return <PageGifts />;
+      default: return null;
+    }
+  };
+
+  return (
+    <>
+      {adminOpen && <AdminPanel onClose={() => setAdminOpen(false)} onApply={handleApply} />}
+      <div className="app">
+        {showBalloons && page !== 5 && page !== 7 && page !== 9 && (<div className="bg-layer" style={{ zIndex: 1 }}><Balloons count={8} /></div>)}
+        <div key={page} style={{ position: 'absolute', inset: 0, animation: 'fadeIn .5s ease' }}>{renderPage()}</div>
+        {page > 1 && page < 9 && (
+          <div style={{ position: 'absolute', bottom: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6, zIndex: 100, pointerEvents: 'none' }}>
+            {[1,2,3,4,5,6,7,8,9].map(n => (<div key={n} style={{ width: n === page ? 20 : 6, height: 6, borderRadius: 3, background: n === page ? 'linear-gradient(90deg,#a855f7,#ec4899)' : 'rgba(255,255,255,.25)', transition: 'all .4s' }} />))}
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
